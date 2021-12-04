@@ -1,9 +1,9 @@
 import { toggleTheme } from '../dark-mode';
-import './sidebar.style.scss';
+import { SidebarContainer } from './Sidebar.styles';
 
-const Sidebar = ({ navigate }) => {
+const Sidebar = () => {
   return (
-    <div className="aside-container">
+    <SidebarContainer>
       <aside>
         <div className="me">
           <h2 id="header-page-nav" className="nav-item">
@@ -11,19 +11,19 @@ const Sidebar = ({ navigate }) => {
           </h2>
         </div>
         <ul className="navigation no-style with-indicator">
-          <li id="profile-page-nav" className="nav-item" onClick={() => navigate()}>
+          <li id="profile-page-nav" className="nav-item" onClick={() => null}>
             About Me
           </li>
-          <li id="portfolio-page-nav" className="nav-item" onClick={() => navigate()}>
+          <li id="portfolio-page-nav" className="nav-item" onClick={() => null}>
             Portfolio
           </li>
-          <li id="skills-page-nav" className="nav-item" onClick={() => navigate()}>
+          <li id="skills-page-nav" className="nav-item" onClick={() => null}>
             Skills
           </li>
-          <li id="education-page-nav" className="nav-item" onClick={() => navigate()}>
+          <li id="education-page-nav" className="nav-item" onClick={() => null}>
             Education
           </li>
-          <li id="resume-page-nav" className="nav-item" onClick={() => navigate()}>
+          <li id="resume-page-nav" className="nav-item" onClick={() => null}>
             Experience
           </li>
         </ul>
@@ -60,7 +60,7 @@ const Sidebar = ({ navigate }) => {
           </li>
         </ul>
       </aside>
-    </div>
+    </SidebarContainer>
   );
 };
 
