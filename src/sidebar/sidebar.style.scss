@@ -1,0 +1,147 @@
+@import '../mixins.scss';
+
+aside {
+  background-color: var(--nav-bg);
+  @include flex(row, center, center);
+  box-shadow: var(--box-shadow);
+  color: var(--white-text);
+  font-size: var(--font-size-small);
+  padding: 10px var(--base-margin);
+  height: 100%;
+
+  .open-menu {
+    width: 80%;
+    margin-top: var(--base-margin);
+    @include flex(column, center, center);
+    display: none;
+    font-size: 30px;
+    border-right: 5px solid var(--white-text);
+    position: absolute;
+    top: 0;
+  }
+
+  .me {
+    @include flex(row, flex-start, center);
+    flex: 1 25%;
+
+    h2 {
+      font-size: var(--font-size-medium);
+      padding-bottom: 0;
+      border-bottom: 0;
+      margin-bottom: 0;
+      cursor: pointer;
+    }
+
+    .portrait {
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
+      margin-right: var(--base-margin);
+      border-radius: 50%;
+      box-shadow: var(--box-shadow);
+    }
+  }
+
+  ul {
+    @include flex(row, flex-start, flex-start);
+
+    li {
+      white-space: nowrap;
+      @include flex(row, flex-start, center);
+      margin-right: 5px;
+
+      i {
+        vertical-align: middle;
+        font-size: var(--font-size-medium);
+      }
+    }
+
+    &.summary {
+      flex: 1 25%;
+      justify-content: flex-end;
+
+      a {
+        color: var(--white-text);
+
+        i {
+          width: 25px;
+        }
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+
+    &.navigation {
+      flex: 1 750px;
+      @include flex(row, center, center);
+      position: relative;
+      z-index: 0;
+
+      li {
+        margin: 0 15px;
+      }
+
+      .nav-item {
+        user-select: none;
+        cursor: pointer;
+        height: 30px;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+
+    &.paginator {
+      @include flex(column, flex-end, center);
+      position: absolute;
+      left: 0;
+      bottom: var(--base-margin);
+      width: 100%;
+
+      li {
+        cursor: pointer;
+        margin: 0;
+        margin-top: 10px;
+
+        i {
+          margin: 0;
+        }
+      }
+
+      #next-page,
+      #previous-page {
+        font-size: 30px;
+        @include transition();
+      }
+
+      #next-page.disabled,
+      #previous-page.disabled {
+        visibility: hidden;
+        pointer-events: none;
+        opacity: 0;
+      }
+
+      @keyframes bounce {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+
+        50% {
+          transform: translateY(-5px);
+        }
+      }
+
+      .bounce {
+        animation-duration: 1s;
+        animation-fill-mode: both;
+        animation-timing-function: ease;
+        animation-iteration-count: infinite;
+        animation-name: bounce;
+      }
+    }
+  }
+}

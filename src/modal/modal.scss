@@ -1,220 +1,219 @@
 @import '../mixins.scss';
 
 .modal {
-    position: fixed;
+  position: fixed;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 1;
+  z-index: 10;
+  color: var(--white-text);
+  background: var(--stripe-bg);
+  @include transition();
+  @include flex(row, center, center);
+
+  &-container {
+    background: var(--modal-bg);
+    border-radius: var(--border-radius);
+    overflow: auto;
     height: 100%;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    opacity: 1;
-    z-index: 10;
-    color: var(--white-text);
-    background: var(--stripe-bg);
-    @include transition();
+    max-height: 80vh;
+    @include flex(column, flex-start, center);
+
+    & > * {
+      max-width: 50em;
+    }
+
+    .contact & {
+      height: auto;
+      max-width: 50em;
+
+      .hero-button {
+        margin: auto;
+      }
+    }
+  }
+
+  &.hidden {
+    top: 200px;
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  &-close {
+    position: absolute;
+    top: var(--base-margin);
+    right: var(--base-margin);
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: var(--font-size-medium);
+    z-index: 12;
+    background: var(--modal-bg);
     @include flex(row, center, center);
+    width: 50px;
+    height: 50px;
+  }
 
-    &-container {
-        background: var(--modal-bg);
-        border-radius: var(--border-radius);
-        overflow: auto;
-        height: 100%;
-        max-height: 80vh;
-        @include flex(column, flex-start, center);
+  &-header {
+    margin-top: var(--base-margin);
+  }
 
-        &>* {
-            max-width: 50em;
-        }
+  &-slideshow {
+    position: relative;
+    margin-bottom: 20px;
+    padding: 0px 10px;
+    border-radius: var(--border-radius);
 
-        .contact & {
-            height: auto;
-            max-width: 50em;
+    .previous,
+    .next {
+      position: absolute;
+      margin: auto;
+      z-index: 11;
+      height: 98%;
+      cursor: pointer;
+      @include flex(row, flex-start, center);
+      @include transition();
+      background: transparent;
+      color: var(--white-text);
 
-            .hero-button {
-                margin: auto;
-            }
-        }
-    }
-
-    &.hidden {
-        top: 200px;
-        visibility: hidden;
-        opacity: 0;
-    }
-
-    &-close {
-        position: absolute;
-        top: var(--base-margin);
-        right: var(--base-margin);
-        border-radius: var(--border-radius);
-        cursor: pointer;
-        font-size: var(--font-size-medium);
-        z-index: 12;
-        background: var(--modal-bg);
+      i {
         @include flex(row, center, center);
-        width: 50px;
-        height: 50px;
+        font-size: 200%;
+        background-color: var(--accent-color1);
+        padding: 10px;
+        border-radius: 50%;
+        width: 25px;
+        height: 25px;
+        filter: drop-shadow(0px 0px 3px rgba(0, 0, 0, 0.4));
+      }
+
+      &.disabled {
+        visibility: hidden;
+      }
     }
 
-    &-header {
-        margin-top: var(--base-margin);
+    .previous {
+      left: 15px;
+      //padding-left: var(--base-margin);
     }
 
-    &-slideshow {
-        position: relative;
-        margin-bottom: 20px;
-        padding: 0px 10px;
-        border-radius: var(--border-radius);
-
-        .previous,
-        .next {
-            position: absolute;
-            margin: auto;
-            z-index: 11;
-            height: 98%;
-            cursor: pointer;
-            @include flex(row, flex-start, center);
-            @include transition();
-            background: transparent;
-            color: var(--white-text);
-
-            i {
-                @include flex(row, center, center);
-                font-size: 200%;
-                background-color: var(--accent-color1);
-                padding: 10px;
-                border-radius: 50%;
-                width: 25px;
-                height: 25px;
-                filter: drop-shadow(0px 0px 3px rgba(0, 0, 0, 0.4));
-            }
-
-            &.disabled {
-                visibility: hidden;
-            }
-        }
-
-        .previous {
-            left: 15px;
-            //padding-left: var(--base-margin);
-        }
-
-        .next {
-            right: 15px;
-            //padding-right: var(--base-margin);
-        }
-
-        .slides {
-            position: relative;
-            margin: 0 auto;
-            @include flex(row, flex-start, center);
-            overflow: hidden;
-            scroll-behavior: smooth;
-
-            .slide {
-                flex: 0 0 auto;
-                width: 100%;
-                padding: 10px 10px 10px 0;
-                @include flex(row, center, center);
-
-                &.image img {
-                    width: auto;
-                    max-width: 100%;
-                    max-height: 500px;
-                    border-radius: var(--border-radius);
-                }
-            }
-        }
+    .next {
+      right: 15px;
+      //padding-right: var(--base-margin);
     }
 
-    &-content {
-        padding: 0 var(--base-margin);
-        line-height: 1.25em;
-        margin-bottom: var(--base-margin);
-        max-width: 40em;
+    .slides {
+      position: relative;
+      margin: 0 auto;
+      @include flex(row, flex-start, center);
+      overflow: hidden;
+      scroll-behavior: smooth;
 
-        h2 {
-            font-size: var(--font-size-big);
+      .slide {
+        flex: 0 0 auto;
+        width: 100%;
+        padding: 10px 10px 10px 0;
+        @include flex(row, center, center);
+
+        &.image img {
+          width: auto;
+          max-width: 100%;
+          max-height: 500px;
+          border-radius: var(--border-radius);
         }
+      }
+    }
+  }
 
-        ul {
-            margin-bottom: var(--base-margin);
-        }
+  &-content {
+    padding: 0 var(--base-margin);
+    line-height: 1.25em;
+    margin-bottom: var(--base-margin);
+    max-width: 40em;
 
-        p {
-            text-indent: 2em;
-        }
-
-        .contact & {
-
-            p {
-                text-indent: inherit;
-                margin: var(--base-margin) 0 10px;
-            }
-
-            ul {
-                margin: 0;
-            }
-
-            a {
-                color: var(--white-text);
-
-                i {
-                    width: 25px;
-                }
-
-                &:hover {
-                    text-decoration: underline;
-                }
-            }
-
-            form {
-                display: table;
-
-                label,
-                input,
-                textarea {
-                    display: table-row;
-                }
-
-                .form-field {
-                    margin-bottom: var(--base-margin);
-                }
-
-                label {
-                    font-size: var(--font-size-small);
-                    text-transform: uppercase;
-                }
-
-                textarea,
-                input {
-                    border: none;
-                    border-bottom: 1px solid var(--white-text);
-                    width: 300px;
-                    min-height: 2em;
-                    background: none;
-                    font-family: inherit;
-                    font-size: var(--font-size-normal);
-                    color: var(--white-text);
-
-                    &:focus {
-                        outline: none;
-                        border-color: var(--white-text);
-                    }
-                }
-            }
-        }
+    h2 {
+      font-size: var(--font-size-big);
     }
 
-    &-footer {
-        padding: 0 var(--base-margin);
-        font-size: var(--font-size-small);
-        text-align: right;
-        font-style: italic;
-        margin-bottom: var(--base-margin);
-
-        .contact & {
-            display: none;
-        }
+    ul {
+      margin-bottom: var(--base-margin);
     }
+
+    p {
+      text-indent: 2em;
+    }
+
+    .contact & {
+      p {
+        text-indent: inherit;
+        margin: var(--base-margin) 0 10px;
+      }
+
+      ul {
+        margin: 0;
+      }
+
+      a {
+        color: var(--white-text);
+
+        i {
+          width: 25px;
+        }
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+
+      form {
+        display: table;
+
+        label,
+        input,
+        textarea {
+          display: table-row;
+        }
+
+        .form-field {
+          margin-bottom: var(--base-margin);
+        }
+
+        label {
+          font-size: var(--font-size-small);
+          text-transform: uppercase;
+        }
+
+        textarea,
+        input {
+          border: none;
+          border-bottom: 1px solid var(--white-text);
+          width: 300px;
+          min-height: 2em;
+          background: none;
+          font-family: inherit;
+          font-size: var(--font-size-normal);
+          color: var(--white-text);
+
+          &:focus {
+            outline: none;
+            border-color: var(--white-text);
+          }
+        }
+      }
+    }
+  }
+
+  &-footer {
+    padding: 0 var(--base-margin);
+    font-size: var(--font-size-small);
+    text-align: right;
+    font-style: italic;
+    margin-bottom: var(--base-margin);
+
+    .contact & {
+      display: none;
+    }
+  }
 }

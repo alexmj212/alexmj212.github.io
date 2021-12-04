@@ -1,99 +1,95 @@
 @import '../mixins.scss';
 
 .portfolio {
-    @include flex(row, flex-start, flex-start);
-    flex-direction: row;
-    flex-wrap: wrap;
+  @include flex(row, flex-start, flex-start);
+  flex-direction: row;
+  flex-wrap: wrap;
 
-    &-item {
-        flex: 1 1 100%;
-        margin-bottom: var(--base-margin);
-        background: var(--stripe-bg);
-        border-radius: var(--border-radius);
-        @include flex(column, center, center);
+  &-item {
+    flex: 1 1 100%;
+    margin-bottom: var(--base-margin);
+    background: var(--stripe-bg);
+    border-radius: var(--border-radius);
+    @include flex(column, center, center);
 
-        &-container {
-            @include flex(row, center, center);
-            flex: 1 0 auto;
-            width: 100%;
-
-        }
-
-        &-image {
-            flex: 1 1 auto;
-            @include flex(row, center, center);
-            align-self: stretch;
-            //background-color: var(--border);
-            border-radius: var(--border-radius) 0 0 var(--border-radius);
-            padding: var(--base-margin);
-            cursor: pointer;
-
-            img {
-                height: auto;
-                width: auto;
-                max-height: 200px;
-                max-width: 275px;
-                object-fit: contain;
-
-            }
-        }
-
-        &-description {
-            flex: 0 1 50%;
-            font-size: var(--font-size-normal);
-            margin: var(--base-margin);
-
-            h3 {
-                margin-bottom: 20px;
-            }
-
-            p {
-                margin-bottom: var(--base-margin);
-            }
-
-            .view {
-                display: inline-block;
-                color: var(--white-text);
-                padding: 5px 15px;
-                margin-bottom: 30px;
-                font-weight: var(--font-weight-bold);
-                background-color: var(--accent-color2);
-                border-radius: var(--border-radius);
-                cursor: pointer;
-            }
-
-            ul {
-                padding: 0;
-                margin: 0;
-
-                &.description {
-                    margin: var(--base-margin) 0;
-                    padding-left: var(--base-margin);
-                }
-
-                &.badges {
-                    list-style: none;
-                    @include flex(row, flex-start, center);
-                    flex-wrap: wrap;
-
-                    li {
-                        border-radius: var(--border-radius);
-                        margin-right: 5px;
-                        padding: 0 10px;
-                    }
-
-                }
-            }
-        }
-
-        // &:nth-child(even) {
-        //     .portfolio-item-container {
-        //         flex-direction: row-reverse;
-        //         .portfolio-item-image {
-        //             border-radius: 0 var(--border-radius) var(--border-radius)0 ;
-        //         }
-        //     }
-        // }
-
+    &-container {
+      @include flex(row, center, center);
+      flex: 1 0 auto;
+      width: 100%;
     }
+
+    &-image {
+      flex: 1 1 auto;
+      @include flex(row, center, center);
+      align-self: stretch;
+      //background-color: var(--border);
+      border-radius: var(--border-radius) 0 0 var(--border-radius);
+      padding: var(--base-margin);
+      cursor: pointer;
+
+      img {
+        height: auto;
+        width: auto;
+        max-height: 200px;
+        max-width: 275px;
+        object-fit: contain;
+      }
+    }
+
+    &-description {
+      flex: 0 1 50%;
+      font-size: var(--font-size-normal);
+      margin: var(--base-margin);
+
+      h3 {
+        margin-bottom: 20px;
+      }
+
+      p {
+        margin-bottom: var(--base-margin);
+      }
+
+      .view {
+        display: inline-block;
+        color: var(--white-text);
+        padding: 5px 15px;
+        margin-bottom: 30px;
+        font-weight: var(--font-weight-bold);
+        background-color: var(--accent-color2);
+        border-radius: var(--border-radius);
+        cursor: pointer;
+      }
+
+      ul {
+        padding: 0;
+        margin: 0;
+
+        &.description {
+          margin: var(--base-margin) 0;
+          padding-left: var(--base-margin);
+        }
+
+        &.badges {
+          list-style: none;
+          @include flex(row, flex-start, center);
+          flex-wrap: wrap;
+
+          li {
+            border-radius: var(--border-radius);
+            margin-right: 5px;
+            padding: 0 10px;
+          }
+        }
+      }
+    }
+
+    // &:nth-child(even) {
+    //     .portfolio-item-container {
+    //         flex-direction: row-reverse;
+    //         .portfolio-item-image {
+    //             border-radius: 0 var(--border-radius) var(--border-radius)0 ;
+    //         }
+    //     }
+    // }
+  }
 }

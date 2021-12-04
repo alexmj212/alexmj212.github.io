@@ -1,55 +1,55 @@
-@mixin flex ($direction, $justify, $align) {
-    display: flex;
-    flex-direction: $direction;
-    justify-content: $justify;
-    align-items: $align;
+@mixin flex($direction, $justify, $align) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
 }
 
 @mixin border-detail {
-    position: relative;
-    &::after {
-        opacity: 1;
-        content: "";
-        width: var(--divider-border-width);
-        height: 220px;
-        position: absolute;
-        bottom: -1px;
-        left: var(--divider-border-width-offset);
-        background-image: var(--border-svg);
-        background-size: auto 15%;
-        background-position: bottom -6px left -1px;
-        background-repeat: no-repeat;
-    }
+  position: relative;
+  &::after {
+    opacity: 1;
+    content: '';
+    width: var(--divider-border-width);
+    height: 220px;
+    position: absolute;
+    bottom: -1px;
+    left: var(--divider-border-width-offset);
+    background-image: var(--border-svg);
+    background-size: auto 15%;
+    background-position: bottom -6px left -1px;
+    background-repeat: no-repeat;
+  }
 }
 
 @mixin box-outline-shadow {
-    box-shadow: 3px 3px 0 var(--base-color);
-    border: 2px solid var(--base-color);
+  box-shadow: 3px 3px 0 var(--base-color);
+  border: 2px solid var(--base-color);
 }
 
 @mixin text-outline-shadow {
-    color: var(--base-background);
-    -webkit-text-stroke: 2px var(--base-color);
-    text-shadow: 3px 3px 0 var(--base-color);
+  color: var(--base-background);
+  -webkit-text-stroke: 2px var(--base-color);
+  text-shadow: 3px 3px 0 var(--base-color);
 }
 
 @mixin halftone-overlay {
-    position: relative;
-    &::after {
-        opacity: 1;
-        content: "";
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        top: 0;
-        left: 0;
-        background-image: url("../img/halftone.png");
-        background-size: auto 10%;
-        background-position: top 3px left 7px;
-        background-blend-mode: darken;
-    }
+  position: relative;
+  &::after {
+    opacity: 1;
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-image: url('../img/halftone.png');
+    background-size: auto 10%;
+    background-position: top 3px left 7px;
+    background-blend-mode: darken;
+  }
 }
 
 @mixin transition($time: 250ms) {
-    transition: all $time ease-out;
+  transition: all $time ease-out;
 }

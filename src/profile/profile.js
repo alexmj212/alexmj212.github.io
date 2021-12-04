@@ -1,10 +1,10 @@
-import "./profile.scss";
+import './profile.scss';
 
-import { Modal } from "../modal/modal.js";
+import { Modal } from '../modal/modal.js';
 
 export let modalContent = {
-    header: 'Contact Me',
-    form: `
+  header: 'Contact Me',
+  form: `
         <form>
             <div class="form-field">
                 <label>Name</label>
@@ -30,28 +30,32 @@ export let modalContent = {
             <li><a href="https://www.github.com/alexmj212" title="GitHub" target="_blank"><i class="fab fa-github"></i>GitHub</a>
             </li>
         </ul>
-    `
+    `,
 };
 
 export class profilePage extends HTMLElement {
+  constructor() {
+    super();
+  }
 
-    constructor() { super() }
+  async connectedCallback() {
+    let res = await fetch('profile.html');
+    let parser = new DOMParser();
+    parser
+      .parseFromString(await res.text(), 'text/html')
+      .querySelectorAll('section')
+      .forEach((element) => {
+        this.appendChild(element);
+      });
+    document.getElementById('contact-button').addEventListener('click', (event) => {
+      this.openContactModal(event.currentTarget);
+    });
+  }
 
-    async connectedCallback() {
-        let res = await fetch('profile.html');
-        let parser = new DOMParser();
-        parser.parseFromString(await res.text(), 'text/html').querySelectorAll('section').forEach(element => {
-            this.appendChild(element);
-        });
-        document.getElementById('contact-button').addEventListener('click', (event) => {
-            this.openContactModal(event.currentTarget);
-        });
-    }
-
-    openContactModal() {
-        let modal = new Modal();
-        modal.openModal(Modal.CONTACT_MODAL, modalContent);
-    }
+  openContactModal() {
+    let modal = new Modal();
+    modal.openModal(Modal.CONTACT_MODAL, modalContent);
+  }
 }
 
 window.customElements.define('profile-page', profilePage);

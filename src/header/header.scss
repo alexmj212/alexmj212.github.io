@@ -1,56 +1,55 @@
 @import '../mixins.scss';
 
 header-page {
-    @include flex(column, center, center);
+  @include flex(column, center, center);
+  background-image: repeating-linear-gradient(
+    45deg,
+    #075988,
+    #075988 25%,
+    #0972ae 25%,
+    #0972ae 50%,
+    var(--accent-color1) 50%,
+    var(--accent-color1) 75%,
+    #075988 75%,
+    #075988 100%
+  );
+  background-position: 50% 50%;
+  background-size: var(--hero-bg-offset) 100vh;
+
+  [data-theme='dark'] & {
     background-image: repeating-linear-gradient(
-        45deg,
-        #075988,
-        #075988 25%,
-        #0972AE 25%,
-        #0972AE 50%,
-        var(--accent-color1) 50%,
-        var(--accent-color1) 75%,
-        #075988 75%,
-        #075988 100%
+      45deg,
+      #2e3138,
+      #2e3138 25%,
+      #57595f 25%,
+      #57595f 50%,
+      #494b51 50%,
+      #494b51 75%,
+      #2e3138 75%,
+      #2e3138 100%
     );
-    background-position: 50% 50%;
-    background-size: var(--hero-bg-offset) 100vh;
+  }
 
-    [data-theme="dark"] & {
-        background-image: repeating-linear-gradient(
-            45deg,
-            #2E3138,
-            #2E3138 25%,
-            #57595F 25%,
-            #57595F 50%,
-            #494B51 50%,
-            #494B51 75%,
-            #2E3138 75%,
-            #2E3138 100%
-        );
+  header {
+    width: 100%;
+    padding-left: var(--base-margin);
+    color: var(--white-text);
+
+    h1 {
+      font-size: var(--font-size-huge);
+      margin-bottom: 10px;
     }
 
-    header {
-        width: 100%;
-        padding-left: var(--base-margin);
-        color: var(--white-text);
-
-
-        h1 {
-            font-size: var(--font-size-huge);
-            margin-bottom: 10px;
-        }
-
-        h3 {
-            color: var(--white-text);
-        }
-
-        p {
-            margin-bottom: 0;
-        }
-
-        .contact {
-            display: none;
-        }
+    h3 {
+      color: var(--white-text);
     }
+
+    p {
+      margin-bottom: 0;
+    }
+
+    .contact {
+      display: none;
+    }
+  }
 }

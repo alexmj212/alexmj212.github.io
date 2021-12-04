@@ -1,53 +1,54 @@
 const path = require('path');
-const CopyPlugin = require("copy-webpack-plugin");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
-module.exports = [
-    {
-        name: 'dev',
-        mode: 'development',
-        devtool: 'eval',
-        plugins: [
-            new CopyPlugin({
-                patterns: [
-                    { from: "src/index.html" },
-                    { from: "src/**/*.html", to: '[name].[ext]' }
-                ],
-            }),
-        ],
-        entry: {
-            'main': './src/index.js',
-        },
-        output: {
-            filename: 'main.js',
-            path: path.resolve(__dirname, './docs'),
-        },
-        module: {
-            rules: [
-                {
-                    test: /\.scss$/i,
-                    use: [
-                        "style-loader",
-                        "css-loader",
-                        "sass-loader",
-                    ],
-                },
-                {
-                    test: /img\.(png|svg|jpg|jpeg|gif)$/i,
-                    type: 'asset/resource',
-                },
-                {
-                    test: /\.(png|jpe?g|gif)$/i,
-                    use: [
-                        {
-                            loader: 'file-loader',
-                        },
-                    ],
-                },
-            ],
-        },
-        devServer: {
-            contentBase: './docs',
-            port: 3000
-        }
+module.exports = {
+    entry: path.resolve(__dirname, 'src', 'index.tsx'),
+    output: {
+        path: path.resolve(__dirname, 'dist'),
+        filename: 'bundle.js',
     },
-];
+    mode: 'development',
+    watchOptions: {
+        poll: 1000,
+    },
+    module: {
+        rules: [
+            {
+                test: /\.[jt]sx?$/,
+                use: ['babel-loader'],
+                exclude: /node_modules/,
+            },
+            {
+                test: /\.css$/,
+                use: ['style-loader', 'css-loader'],
+            },
+            {
+                test: /\.scss$/,
+                use: ['style-loader', 'css-loader', 'sass-loader'],
+            },
+            {
+                test: /\.(?:ico|gif|png|jpg|jpeg)$/i,
+                type: 'asset/resource',
+            },
+            {
+                test: /\.(woff(2)?|eot|ttf|otf|svg|)$/,
+                type: 'asset/inline',
+            },
+        ],
+    },
+    resolve: {
+        extensions: ['.tsx', '.ts', '.js', '.jsx'],
+    },
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: path.resolve(__dirname, './src/index.html'),
+        }),
+        new CleanWebpackPlugin(),
+    ],
+    devServer: {
+        static: './dist',
+        hot: false,
+        liveReload: true
+    },
+};
