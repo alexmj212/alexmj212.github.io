@@ -1,5 +1,9 @@
-@tailwind base;
+@import "./vars.css";
 
-@tailwind components;
+@import "./base.css";
+
+@import "./components.css";
 
 @tailwind utilities;
+
+
