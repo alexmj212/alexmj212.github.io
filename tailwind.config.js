@@ -42,7 +42,7 @@ module.exports = {
       panel: {
         DEFAULT: colors.white,
         dark: colors.trueGray[800],
-      }
+      },
     },
     fontFamily: {
       serif: ["Georgia", "serif"],

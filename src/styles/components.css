@@ -1,7 +1,37 @@
 @tailwind components;
 
 @layer components {
+  .third-width {
+    max-width: 33%;
+  }
+
+  .half-width {
+    max-width: 50%;
+  }
+
   .hero-button {
     @apply flex justify-center items-center flex-row text-white py-2 px-6 font-bold bg-accent2 rounded;
+  }
+
+  .badge {
+    @apply rounded inline-block align-middle;
+    @apply font-bold text-xs whitespace-nowrap uppercase;
+    @apply text-gray-500 dark:text-white;
+    @apply bg-gray-300 dark:bg-gray-600;
+    @apply mr-2 mb-2 py-1 px-4;
+  }
+
+  .uk {
+    @apply align-middle inline-block;
+    width: 35px;
+    height: 35px;
+  }
+
+  .portrait {
+    @apply object-cover rounded-full;
+    @apply my-4 sm:ml-8 ml-0;
+    @apply sm:float-right float-none;
+    width: 200px;
+    height: 200px;
   }
 }

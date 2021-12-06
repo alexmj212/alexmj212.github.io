@@ -11,7 +11,7 @@ type ListItemProps = {
 
 export const List: React.FunctionComponent<ListProps> = (props: ListProps) => {
   const { horizontal = false, children, className } = props;
-  return <ul className={`${horizontal ? "flex flex-row" : ""} ${className || ""}`}>{children}</ul>;
+  return <ul className={`${horizontal ? "flex flex-row flex-wrap" : ""} ${className || ""}`}>{children}</ul>;
 };
 
 export const ListItem: React.FunctionComponent<ListItemProps> = (props: ListItemProps) => {
