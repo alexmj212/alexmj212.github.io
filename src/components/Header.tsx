@@ -6,7 +6,7 @@ type HeaderProps = {
 
 const Header: React.FunctionComponent<HeaderProps> = (props: HeaderProps) => {
   const { children } = props;
-  return <div className={`w-full max-w-screen-md`}>{children}</div>;
+  return <div className={`w-full`}>{children}</div>;
 };
 
 export default Header;
