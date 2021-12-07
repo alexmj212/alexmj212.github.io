@@ -66,5 +66,3 @@
     @apply hover:bg-white hover:text-accent1-dark;
   }
 }
-
-@import "./animated-background.css";
