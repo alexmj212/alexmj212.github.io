@@ -7,7 +7,8 @@
   }
 
   body {
-    @apply bg-gray-200 text-black font-sans2 leading-6;
+    @apply bg-white text-black;
+    @apply font-sans2 text-lg;
     @apply dark:bg-black-dark dark:text-white-dark;
     -webkit-tap-highlight-color: transparent;
     scroll-behavior: smooth;
@@ -33,11 +34,11 @@
   }
 
   h3 {
-    @apply font-sans text-accent1 dark:text-white;
+    @apply font-semibold;
   }
 
   h4 {
-    @apply text-gray-500 font-sans font-light dark:text-gray-300 mb-0;
+    @apply text-gray-500 text-xl font-sans font-light dark:text-gray-300 mb-0;
   }
 
   p {

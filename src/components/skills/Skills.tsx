@@ -8,14 +8,14 @@ import skillsData from "../skills/SkillsData";
 const Skills = () => {
   return (
     <Panel header="Skills">
-      <div className={`grid md:grid-cols-3 grid-cols-1 gap-8 mb-8`}>
+      <div className={`grid md:grid-cols-3 grid-cols-1 gap-4 mb-8`}>
         {skillsData.map((skill) => (
           <div key={skill.name} className={`skill-grid`}>
             <div className={"text-6xl flex justify-center mr-4 text-accent1"}>
               <FontAwesomeIcon icon={skill.icon} />
             </div>
             <div>
-              <h4>{skill.name}</h4>
+              <h3>{skill.name}</h3>
               <p className={`text-sm`}>{skill.description}</p>
             </div>
           </div>
