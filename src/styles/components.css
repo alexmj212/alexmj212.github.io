@@ -1,16 +1,30 @@
 @tailwind components;
 
 @layer components {
-  .third-width {
-    max-width: 33%;
+  .app-container {
+    @apply h-full w-full flex flex-col justify-center items-center pb-8;
+    @apply sm:border-8 border-accent1 dark:border-accent1-dark;
+    @apply border-t-0;
   }
 
-  .half-width {
-    max-width: 50%;
+  @responsive {
+    .section-container {
+      margin: 100px 0px;
+    }
+  }
+
+  .skill-grid {
+    @apply grid;
+    grid-template-columns: 1fr 2fr;
   }
 
   .hero-button {
-    @apply flex justify-center items-center flex-row text-white py-2 px-6 font-bold bg-accent2 rounded;
+    @apply flex justify-center items-center flex-row  py-2 px-6 rounded cursor-pointer;
+    @apply w-max;
+    @apply font-bold text-white;
+    @apply bg-accent2 dark:bg-accent2-dark;
+    @apply transition-all duration-500;
+    @apply hover:text-white hover:shadow-xl;
   }
 
   .badge {
@@ -34,4 +48,19 @@
     width: 200px;
     height: 200px;
   }
+
+  nav a {
+    @apply text-white cursor-pointer transition duration-200;
+  }
+
+  nav .nav-item {
+    @apply py-4;
+  }
+
+  nav .page-link {
+    @apply px-4 py-2 rounded;
+    @apply hover:bg-white hover:text-accent1-dark;
+  }
 }
+
+@import "./animated-background.css";

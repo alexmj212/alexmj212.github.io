@@ -25,7 +25,7 @@
   }
 
   h1 {
-    @apply text-4xl font-header font-bold;
+    @apply text-4xl font-header font-bold mb-16;
   }
 
   h2 {
