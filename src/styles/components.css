@@ -9,7 +9,8 @@
 
   @responsive {
     .section-container {
-      margin: 100px 0px;
+      margin: 0px;
+      min-height: 50vh;
     }
   }
 
@@ -61,11 +62,28 @@
   }
 
   nav .nav-item {
-    @apply py-4;
+    @apply py-4 z-30;
   }
 
   nav .page-link {
     @apply px-4 py-2 rounded;
     @apply hover:bg-white hover:text-accent1-dark;
   }
+
+  .fade-in-section {
+    opacity: 0;
+    padding-top: 400px;
+    visibility: hidden;
+    transition: opacity 2s ease-out, padding 1.6s ease-out;
+    will-change: opacity, visibility;
+  }
+  
+  .fade-in-section.is-visible {
+    opacity: 1;
+    padding-top: 0;
+    visibility: visible;
+    display: flex; 
+  }
 }
+
+@import './hand-wave.css';

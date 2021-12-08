@@ -5,7 +5,12 @@ import { List, ListItem } from "../components/List";
 import { Link } from "react-scroll";
 import { Pages, scrollOffset } from "../App";
 
-const Navbar = () => {
+type NavbarProps = {
+  disableAnimation: () => void;
+} & React.ComponentPropsWithRef<"section">;
+
+const Navbar = (props: NavbarProps) => {
+  const { disableAnimation } = props;
   return (
     <nav className={`sm:flex hidden w-full h-15 flex-row items-center sticky top-0 z-20 px-4 -mb-8 text-white bg-accent1 dark:bg-accent1-dark`}>
       <div className={`justify-start items-center`}>
@@ -15,33 +20,33 @@ const Navbar = () => {
           </Link>
         </h2>
       </div>
-      <List horizontal className={`no-style items-center`}>
-        <ListItem className={`nav-item`} onClick={() => null}>
-          <Link className={`page-link`} to={Pages.ABOUT} smooth offset={scrollOffset}>
+      {/* <List horizontal className={`no-style items-center`}>
+        <ListItem className={`nav-item`}>
+          <Link className={`page-link`} to={Pages.ABOUT} smooth offset={scrollOffset} onClick={disableAnimation}>
             About Me
           </Link>
         </ListItem>
-        <ListItem className={`nav-item`} onClick={() => null}>
-          <Link className={`page-link`} to={Pages.PORTFOLIO} smooth offset={scrollOffset}>
+        <ListItem className={`nav-item`} >
+          <Link className={`page-link`} to={Pages.PORTFOLIO} smooth offset={scrollOffset} onClick={disableAnimation}>
             Portfolio
           </Link>
         </ListItem>
-        <ListItem className={`nav-item`} onClick={() => null}>
-          <Link className={`page-link`} to={Pages.SKILLS} smooth offset={scrollOffset}>
+        <ListItem className={`nav-item`}>
+          <Link className={`page-link`} to={Pages.SKILLS} smooth offset={scrollOffset} onClick={disableAnimation}>
             Skills
           </Link>
         </ListItem>
-        <ListItem className={`nav-item`} onClick={() => null}>
-          <Link className={`page-link`} to={Pages.EDUCATION} smooth offset={scrollOffset}>
+        <ListItem className={`nav-item`}>
+          <Link className={`page-link`} to={Pages.EDUCATION} smooth offset={scrollOffset} onClick={disableAnimation}>
             Education
           </Link>
         </ListItem>
-        <ListItem className={`nav-item`} onClick={() => null}>
-          <Link className={`page-link`} to={Pages.EXPERIENCE} smooth offset={scrollOffset}>
+        <ListItem className={`nav-item`}>
+          <Link className={`page-link`} to={Pages.EXPERIENCE} smooth offset={scrollOffset} onClick={disableAnimation}>
             Experience
           </Link>
         </ListItem>
-      </List>
+      </List> */}
       <List horizontal className={`flex-1 no-style justify-end items-center text-xl`}>
         <ListItem className={`p-1`}>
           <a href="mailto:alexmj212@gmail.com" title="Email: alexmj212@gmail.com">
