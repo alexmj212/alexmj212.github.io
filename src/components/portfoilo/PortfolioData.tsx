@@ -7,6 +7,7 @@ type PortfolioType = {
   badges: string[];
   bullets?: string[];
   description?: string;
+  caseStudy?: string;
 }[];
 
 const portfolioData: PortfolioType = [
@@ -23,7 +24,7 @@ const portfolioData: PortfolioType = [
     ],
     date: "2020 - 2021",
     company: "TwinSpires.com",
-    caption: "Dark Mode visual theme for TwinSpires.com",
+    caption: "Dark Mode Framework for TwinSpires.com",
     badges: ["Angular", "SASS", "Mobile", "CSS3"],
     bullets: [
       "Created a feature-rich theming system using modern CSS techniques",
@@ -31,7 +32,12 @@ const portfolioData: PortfolioType = [
       "Integrated all components to automatically react to theme changes",
       "Optimized and consolidated page elements for performant user experience",
     ],
-    description: `
+    description: `I led the initiative to add dark mode functionality to the existing TwinSpires.com website. 
+      This involved a coordinated effort between our design and quality assurance teams. 
+      I modified our style library to support theming and optimized the theme system. 
+      We improved the overall performance of the site in addition to the user experience.
+    `,
+    caseStudy: `
           <h2>Summary</h2>
           <ul class="description">
               <li>Created a feature-rich theming system using modern CSS techniques</li>
@@ -82,7 +88,7 @@ const portfolioData: PortfolioType = [
     images: ["img/twinspires/responsive/program-mobile-thumb.png", "img/twinspires/responsive/program-light.png", "img/twinspires/responsive/landing-light.png", "img/twinspires/responsive/calendar-light.png"],
     date: "2018",
     company: "TwinSpires.com",
-    caption: "Responsive implementation of TwinSpires.com",
+    caption: "Responsive Implementation of TwinSpires.com",
     bullets: [
       "Added support for dynamically sized content viewports",
       "Supporting all mobile platforms including iOS, iPadOS, and Android",
@@ -90,7 +96,11 @@ const portfolioData: PortfolioType = [
       "Full parity in mobile vs. desktop functionality",
     ],
     badges: ["Angular", "TypeScript", "Mobile", "CSS3"],
-    description: ``,
+    description: `I worked with a talented front-end-focused team to add a responsive implementation to TwinSpires.com. 
+      We added support for dynamically sized components for a range of medium and small glass devices. 
+      We included support for all mobile platforms including iOS and Android. 
+      We achieved the goal of full feature parity between the large and small glass views.
+    `,
   },
   {
     project: "TwinSpires Video",
@@ -105,7 +115,11 @@ const portfolioData: PortfolioType = [
       "Support for desktop and mobile video experiences",
     ],
     badges: ["Angular", "HTML5", "Mobile", "Multimedia"],
-    description: ``,
+    description: `
+      One my roles was maintaining the video multimedia features on TwinSpires.com. 
+      I integrated front-end libraries from multiple vendors to create a seamless video experience for desktop and mobile. 
+      I helped implement dynamic video controls that enhanced the user experience.
+    `,
   },
 ];
 

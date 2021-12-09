@@ -9,9 +9,12 @@ import experienceData from "../experience/ExperienceData";
 const Experience = () => {
   return (
     <Panel header="Experience">
+      <p>
+        I've worked on teams of all shapes and sizes. My strengths are <strong>communication</strong> and <strong>team coordination</strong>. I've lead projects and initiatives across multiple teams. I accomplish this by using my strengths to translate project requirements into successful solutions.
+      </p>
       {experienceData.map((experienceItem) => {
         return (
-          <div key={experienceItem.date + experienceItem.company} className={`flex md:flex-row flex-col mb-16`}>
+          <div key={experienceItem.date + experienceItem.company} className={`flex md:flex-row flex-col my-16`}>
             <div className={`date-column mt-1 mr-8 whitespace-nowrap`}>
               <p className={`text-accent2 mb-0 font-semibold`}>{experienceItem.date}</p>
             </div>
