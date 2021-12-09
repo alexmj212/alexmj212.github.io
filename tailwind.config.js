@@ -47,10 +47,10 @@ module.exports = {
       },
       fontFamily: {
         serif: ["Georgia", "serif"],
-        sans: ["Work Sans", "sans-serif"],
-        sans2: ["Open Sans", "sans-serif"],
-        condensed: ["Work Sans", "sans-serif"],
-        header: ["Work Sans", "sans-serif"],
+        sans: ["Lato", "sans-serif"],
+        sans2: ["Exo", "sans-serif"],
+        condensed: ["Lato", "sans-serif"],
+        header: ["Exo", "sans-serif"],
       },
       backgroundImage: {
         header: "url('/src/img/msgorigin2.jpg')",
