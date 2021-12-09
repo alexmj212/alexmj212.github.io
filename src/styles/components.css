@@ -2,15 +2,14 @@
 
 @layer components {
   .app-container {
-    @apply h-full w-full flex flex-col justify-center items-center pb-8;
-    @apply sm:border-8 border-accent1 dark:border-accent1-dark;
+    @apply h-full w-full flex flex-col justify-center items-center;
     @apply border-t-0;
   }
 
   @responsive {
     .section-container {
-      margin: 0px;
-      min-height: 50vh;
+      @apply flex justify-center;
+      padding: 10vh 0;
     }
   }
 
@@ -29,15 +28,16 @@
     @apply font-bold text-white;
     @apply bg-accent2 dark:bg-accent2-dark;
     @apply transition-all duration-500;
-    @apply hover:text-white hover:shadow-xl;
+    @apply hover:text-white hover:shadow;
   }
 
   .badge {
     @apply rounded inline-block align-middle;
-    @apply font-bold text-xs whitespace-nowrap uppercase;
+    @apply font-sans2 font-bold text-xs whitespace-nowrap uppercase;
     @apply text-gray-500 dark:text-white;
     @apply bg-gray-300 dark:bg-gray-600;
     @apply mr-2 mb-2 py-1 px-4;
+    @apply shadow;
   }
 
   .uk {
@@ -46,19 +46,24 @@
     height: 35px;
   }
 
-  .header-portrait, .portrait {
-    @apply object-cover rounded-full;
-    width: 300px;
-    height: 300px;
+  .header-portrait,
+  .portrait {
+    @apply object-cover rounded-full md:w-72 md:h-72 w-48 h-48 md:mb-0 mb-4;
   }
 
   .hand-wave {
-    @apply -mt-16;
+    @apply bottom-10 left-0;
     cursor: grab;
   }
 
-  nav a {
-    @apply text-white cursor-pointer transition duration-200;
+  .light-link a {
+    @apply cursor-pointer transition duration-100;
+    @apply text-white dark:text-white-dark;
+    @apply hover:text-white dark:hover:text-white-dark;
+  }
+
+  .light-link a:hover {
+    @apply filter drop-shadow;
   }
 
   nav .nav-item {
@@ -72,18 +77,16 @@
 
   .fade-in-section {
     opacity: 0;
-    padding-top: 400px;
     visibility: hidden;
-    transition: opacity 2s ease-out, padding 1.6s ease-out;
+    transition: opacity 2s ease-out;
     will-change: opacity, visibility;
   }
-  
+
   .fade-in-section.is-visible {
     opacity: 1;
-    padding-top: 0;
     visibility: visible;
-    display: flex; 
+    display: flex;
   }
 }
 
-@import './hand-wave.css';
+@import "./hand-wave.css";

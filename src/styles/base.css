@@ -7,8 +7,8 @@
   }
 
   body {
+    @apply font-sans font-normal text-lg antialiased;
     @apply bg-white text-black;
-    @apply font-sans2 text-lg;
     @apply dark:bg-black-dark dark:text-white-dark;
     -webkit-tap-highlight-color: transparent;
     scroll-behavior: smooth;
@@ -22,11 +22,11 @@
   h2,
   h3,
   h4 {
-    @apply m-0 mb-4;
+    @apply font-header m-0 mb-4;
   }
 
   h1 {
-    @apply text-4xl font-header font-bold mb-16;
+    @apply text-4xl font-bold mb-8;
   }
 
   h2 {
@@ -38,7 +38,7 @@
   }
 
   h4 {
-    @apply text-gray-500 text-xl font-sans font-light dark:text-gray-300 mb-0;
+    @apply text-gray-500 text-xl font-light dark:text-gray-300 mb-0;
   }
 
   p {
@@ -59,5 +59,9 @@
 
   button {
     @apply select-none;
+  }
+
+  strong {
+    @apply font-black;
   }
 }
