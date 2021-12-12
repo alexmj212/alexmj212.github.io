@@ -40,9 +40,10 @@
   "scripts": {
     "build:style": "tailwind build src/styles/index.css -o src/styles/tailwind.css",
     "predeploy": "yarn build",
+    "build:blog": "cd ./blog && yarn build && cd ..",
     "deploy": "gh-pages -d build",
     "start": "craco start",
-    "build": "craco build",
+    "build": "craco build && yarn build:blog",
     "test": "craco test",
     "eject": "react-scripts eject"
   },
