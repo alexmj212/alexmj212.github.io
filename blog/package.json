@@ -44,7 +44,7 @@
     "gatsby"
   ],
   "scripts": {
-    "build": "gatsby build && rsync -av --delete --exclude 'admin' public/ ../public/blog",
+    "build": "gatsby build --prefix-paths && rsync -av --delete --exclude 'admin' public/ ../public/blog",
     "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "start": "gatsby develop",
