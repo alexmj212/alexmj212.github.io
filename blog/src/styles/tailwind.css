@@ -1,0 +1,11 @@
+@import "../../../src/styles/vars.css";
+
+@import "../../../src/styles/base.css";
+
+@import "../../../src/styles/components.css";
+
+@tailwind utilities;
+
+.header-blog {
+    @apply w-full max-w-screen-xl;
+}

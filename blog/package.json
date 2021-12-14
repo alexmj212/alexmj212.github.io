@@ -11,6 +11,14 @@
   },
   "private": true,
   "dependencies": {
+    "@types/react": "^17.0.37",
+    "@types/react-dom": "^17.0.11",
+    "autoprefixer": "^10.4.0",
+    "@fortawesome/fontawesome-svg-core": "^1.2.36",
+    "@fortawesome/free-brands-svg-icons": "^5.15.4",
+    "@fortawesome/free-regular-svg-icons": "^5.15.4",
+    "@fortawesome/free-solid-svg-icons": "^5.15.4",
+    "@fortawesome/react-fontawesome": "^0.1.16",
     "gatsby": "^4.3.0",
     "gatsby-plugin-feed": "^4.3.0",
     "gatsby-plugin-gatsby-cloud": "^4.3.0",
@@ -19,8 +27,10 @@
     "gatsby-plugin-manifest": "^4.3.0",
     "gatsby-plugin-netlify-cms": "^6.3.0",
     "gatsby-plugin-offline": "^5.3.0",
+    "gatsby-plugin-postcss": "^5.3.0",
     "gatsby-plugin-react-helmet": "^5.3.0",
     "gatsby-plugin-sharp": "^4.3.0",
+    "gatsby-plugin-typescript": "^4.3.0",
     "gatsby-remark-copy-linked-files": "^5.3.0",
     "gatsby-remark-images": "^6.3.0",
     "gatsby-remark-prismjs": "^6.3.0",
@@ -30,12 +40,14 @@
     "gatsby-transformer-remark": "^5.3.0",
     "gatsby-transformer-sharp": "^4.3.0",
     "netlify-cms-app": "^2.15.61",
+    "postcss": "^8.4.5",
+    "postcss-cli": "^9.1.0",
+    "postcss-import": "^14.0.2",
     "prismjs": "^1.25.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-helmet": "^6.1.0",
-    "typeface-merriweather": "0.0.72",
-    "typeface-montserrat": "0.0.75"
+    "tailwindcss": "^3.0.1"
   },
   "devDependencies": {
     "prettier": "^2.4.1"
@@ -44,10 +56,12 @@
     "gatsby"
   ],
   "scripts": {
-    "build": "gatsby build --prefix-paths && rsync -av --delete --exclude 'admin' public/ ../public/blog",
-    "develop": "gatsby develop",
+    "watch:postcss": "postcss src/styles/tailwind.css -o src/styles/main.css -w",
+    "build": "gatsby clean && gatsby build --prefix-paths && yarn sync",
+    "sync": "rsync -av --delete --exclude 'admin' public/ ../public/blog",
+    "develop": "gatsby clean && gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
-    "start": "gatsby develop",
+    "start": "yarn watch:postcss & gatsby develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"

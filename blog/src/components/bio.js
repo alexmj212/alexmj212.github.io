@@ -7,7 +7,6 @@
 
 import * as React from "react"
 import { useStaticQuery, graphql } from "gatsby"
-import { StaticImage } from "gatsby-plugin-image"
 
 const Bio = () => {
   const data = useStaticQuery(graphql`
@@ -28,14 +27,14 @@ const Bio = () => {
 
   // Set these values by editing "siteMetadata" in gatsby-config.js
   const author = data.site.siteMetadata?.author
-  const social = data.site.siteMetadata?.social
 
   return (
-    <div className="bio">
+    <div className="p-4 mb-4">
       {author?.name && (
-        <p>
-          <strong>{author.name}</strong>
-        </p>
+        <>
+          <strong>{author.name}</strong><br/>
+          <small className="text-gray-400">alexmj212@gmail.com</small>
+        </>
       )}
     </div>
   )

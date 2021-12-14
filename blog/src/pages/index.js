@@ -25,26 +25,30 @@ const BlogIndex = ({ data, location }) => {
 
   return (
     <Layout location={location} title={siteTitle}>
-      <Seo title="All posts" />
-      <Bio />
-      <ol style={{ listStyle: `none` }}>
+      <Seo title="blog" />
+      <div className="sm:px-4 px-2">
+        <Bio />
+      </div>
+
+      <ol className="no-style flex flex-wrap w-full">
         {posts.map(post => {
           const title = post.frontmatter.title || post.fields.slug
 
           return (
-            <li key={post.fields.slug}>
+            <li
+              key={post.fields.slug}
+              className="p-2 w-full lg:w-1/2"
+            >
               <article
-                className="post-list-item"
+                className="post-list-item rounded-md bg-gray-100 dark:bg-gray-800 p-4"
                 itemScope
                 itemType="http://schema.org/Article"
               >
-                <header>
-                  <h2>
-                    <Link to={post.fields.slug} itemProp="url">
-                      <span itemProp="headline">{title}</span>
-                    </Link>
-                  </h2>
-                  <small>{post.frontmatter.date}</small>
+                <header className="mb-4">
+                  <h2 className="m-0">{title}</h2>
+                  <small className="text-accent2 font-semibold">
+                    {post.frontmatter.date}
+                  </small>
                 </header>
                 <section>
                   <p
@@ -52,8 +56,17 @@ const BlogIndex = ({ data, location }) => {
                       __html: post.frontmatter.description || post.excerpt,
                     }}
                     itemProp="description"
+                    className="text-sm text-gray-500 dark:text-gray-400"
                   />
                 </section>
+                {post.frontmatter.tags.map((tag, index) => (
+                  <div key={tag+index} className="badge">{tag}</div>
+                ))}
+                <footer className="pt-2 text-sm font-semibold">
+                  <Link to={post.fields.slug} className="hover:underline" itemProp="url">
+                    Read More
+                  </Link>
+                </footer>
               </article>
             </li>
           )
@@ -82,6 +95,7 @@ export const pageQuery = graphql`
           date(formatString: "MMMM DD, YYYY")
           title
           description
+          tags
         }
       }
     }

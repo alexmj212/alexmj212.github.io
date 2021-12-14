@@ -5,6 +5,9 @@ import Bio from "../components/bio"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons"
+
 const BlogPostTemplate = ({ data, location }) => {
   const post = data.markdownRemark
   const siteTitle = data.site.siteMetadata?.title || `Title`
@@ -17,45 +20,56 @@ const BlogPostTemplate = ({ data, location }) => {
         description={post.frontmatter.description || post.excerpt}
       />
       <article
-        className="blog-post"
+        className="sm:px-4 px-2"
         itemScope
         itemType="http://schema.org/Article"
       >
         <header>
-          <h1 itemProp="headline">{post.frontmatter.title}</h1>
-          <p>{post.frontmatter.date}</p>
+          <h1 itemProp="headline" className="m-0">{post.frontmatter.title}</h1>
+          <p>
+            <small className="text-accent2 font-semibold">
+              {post.frontmatter.date}
+            </small>
+          </p>
         </header>
         <section
           dangerouslySetInnerHTML={{ __html: post.html }}
           itemProp="articleBody"
         />
-        <hr />
         <footer>
           <Bio />
         </footer>
       </article>
-      <nav className="blog-post-nav">
-        <ul
-          style={{
-            display: `flex`,
-            flexWrap: `wrap`,
-            justifyContent: `space-between`,
-            listStyle: `none`,
-            padding: 0,
-          }}
-        >
+      <nav className="px-2 md:px-4">
+        <ul className="no-style flex flex-row justify-between">
           <li>
             {previous && (
-              <Link to={previous.fields.slug} rel="prev">
-                ← {previous.frontmatter.title}
-              </Link>
+              <>
+                <Link to={previous.fields.slug} className="font-semibold" rel="prev">
+                  <span className="pr-2">
+                    <FontAwesomeIcon icon={faArrowLeft} />
+                  </span>
+                  {previous.frontmatter.title}
+                </Link>
+                <small className="text-gray-400 ml-2 hidden md:inline">
+                  {previous.frontmatter.date}
+                </small>
+              </>
             )}
           </li>
           <li>
             {next && (
-              <Link to={next.fields.slug} rel="next">
-                {next.frontmatter.title} →
-              </Link>
+              <>
+                <small className="text-gray-400 mr-2 hidden md:inline">
+                  {next.frontmatter.date}
+                </small>
+                <Link to={next.fields.slug} className="font-semibold" rel="next">
+                  {next.frontmatter.title}
+                  <span className="pl-2">
+                    <FontAwesomeIcon icon={faArrowRight} />
+                  </span>
+                </Link>
+              </>
             )}
           </li>
         </ul>
@@ -93,6 +107,7 @@ export const pageQuery = graphql`
       }
       frontmatter {
         title
+        date(formatString: "MMMM DD, YYYY")
       }
     }
     next: markdownRemark(id: { eq: $nextPostId }) {
@@ -101,6 +116,7 @@ export const pageQuery = graphql`
       }
       frontmatter {
         title
+        date(formatString: "MMMM DD, YYYY")
       }
     }
   }
