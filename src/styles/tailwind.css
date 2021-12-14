@@ -1,5 +1,7 @@
 @import "./vars.css";
 
+@import "./typography.css";
+
 @import "./base.css";
 
 @import "./components.css";

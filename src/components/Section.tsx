@@ -1,11 +1,10 @@
 import React from "react";
-import { Pages } from "../App";
 
 type SectionProps = {
   fullScreen?: boolean;
   children?: React.ReactNode;
-  sectionId: Pages;
-} & React.ComponentPropsWithRef<"section">;
+  sectionId: string;
+} & React.ComponentPropsWithRef<"div">;
 
 const Section: React.FunctionComponent<SectionProps> = (props: SectionProps) => {
   const { fullScreen, sectionId, children, className } = props;
