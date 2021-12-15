@@ -100,7 +100,7 @@ const App = () => {
             skills including regular expressions, databases, and object-oriented programming.
           </p>
           <div className="flex justify-center items-center mt-8 mx-auto w-full max-w-screen-sm">
-            <ContactList showLabel className={`light-link flex justify-evenly text-xl text-white dark:text-white-dark`}></ContactList>
+            <ContactList showLabel className={`light-link flex justify-evenly text-2xl text-white dark:text-white-dark`}></ContactList>
           </div>
         </Panel>
       </Section>

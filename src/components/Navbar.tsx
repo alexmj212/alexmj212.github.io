@@ -17,12 +17,12 @@ const Navbar = () => {
     <Disclosure as="nav" className="w-full sticky top-0 z-20 md:px-4">
       {({ open }) => (
         <>
-          <div className="max-w-screen-lg mx-auto px-4 sm:px-6 lg:px-8 bg-accent1 dark:bg-accent1-dark shadow-2xl md:rounded-md md:mt-4">
+          <div className="max-w-screen-lg mx-auto px-4 sm:px-6 lg:px-6 bg-accent1 dark:bg-accent1-dark shadow-2xl md:rounded-md md:mt-4">
             <div className="flex flex-1 items-center justify-between h-16">
               <div className="flex items-center">
                 <h2 className="flex-shrink-0 m-0">
                   <Link to={Pages["HOME"].id} smooth className={`text-white dark:text-white-dark hover:text-white dark:hover:text-white-dark cursor-pointer`} aria-current={Pages["HOME"].current ? "page" : undefined}>
-                    Alex Johnson
+                    alexmj212.dev
                   </Link>
                 </h2>
                 <div className="hidden md:block">

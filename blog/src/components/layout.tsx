@@ -1,22 +1,14 @@
-import React from "react"
-import { Link } from "gatsby"
+import React from "react";
+import { Link } from "gatsby";
+import Pages from "../../../src/App";
 
 const Layout = ({ location, title, children }) => {
   return (
-    <div className="app-container">
-      <div className="w-full px-0 md:px-4 pb-8">
-        <nav className="flex items-center w-full max-w-screen-lg mx-auto h-16 sm:px-6 px-4 mb-8 bg-accent1 dark:bg-accent1-dark shadow-2xl md:rounded-md md:mt-4">
-          <div className="flex items-center">
-            <h2 className="flex-shrink-0 m-0 text-white dark:text-white-dark">
-              <Link
-                to={"/"}
-                className="text-white dark:text-white-dark hover:text-white dark:hover:text-white-dark"
-              >
-                Alex Johnson
-              </Link>
-            </h2>
-          </div>
-        </nav>
+    <div className="app-container h-full">
+      <div className="w-full h-full px-0 md:px-4 pb-8">
+        <header className="w-full max-w-screen-lg h-16 mx-auto md:mt-4 md:rounded-md shadow-2xl px-4 sm:px-6 mb-8 text-white dark:text-white-dark bg-accent1 dark:bg-accent1-dark flex flex-row items-center">
+          <h2 className="m-0">alexmj212.dev/blog</h2>
+        </header>
         <main className="w-full max-w-4xl mx-auto px-2">{children}</main>
         <footer className="w-full max-w-4xl mx-auto sm:px-6 px-4 mt-8 text-sm text-gray-400">
           © {new Date().getFullYear()}, Built with
@@ -25,7 +17,7 @@ const Layout = ({ location, title, children }) => {
         </footer>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Layout
+export default Layout;
