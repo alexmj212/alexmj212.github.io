@@ -35,7 +35,7 @@ const ContactList = (props: ContactListProps) => {
         </a>
       </ListItem> */}
       <ListItem className="flex">
-        <a href="https://www.ListItemnkedin.com/in/alex-johnson-077b3564/" title="LinkedIn: Alex Johnson" className={`text-white dark:text-white-dark hover:text-white dark:hover:text-white-dark ${className || ""}`}>
+        <a href="https://www.linkedin.com/in/alex-johnson-077b3564/" title="LinkedIn: Alex Johnson" className={`text-white dark:text-white-dark hover:text-white dark:hover:text-white-dark ${className || ""}`}>
           <FontAwesomeIcon icon={faLinkedin} /> 
           {showLabel && (
             <div className="ml-2 leading-none">
