@@ -1,8 +1,0 @@
-profile-page {
-  color: var(--white-text) !important;
-  background-color: var(--nav-bg) !important;
-
-  [data-theme='dark'] & {
-    background-color: var(--stripe-bg) !important;
-  }
-}
