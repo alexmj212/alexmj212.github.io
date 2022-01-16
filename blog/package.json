@@ -58,14 +58,14 @@
   ],
   "scripts": {
     "watch:postcss": "postcss src/styles/tailwind.css -o src/styles/main.css -w",
-    "build": "gatsby clean && gatsby build --prefix-paths && yarn sync",
+    "build": "npx gatsby clean && npx gatsby build --prefix-paths && yarn sync",
     "sync": "rsync -av --delete --exclude 'admin' public/ ../public/blog",
-    "develop": "gatsby clean && gatsby develop",
+    "develop": "npx gatsby clean && npx gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
-    "start": "yarn watch:postcss & gatsby develop",
+    "start": "yarn watch:postcss & npx gatsby develop",
     "admin": "npx netlify-cms-proxy-server & yarn start",
-    "serve": "gatsby serve",
-    "clean": "gatsby clean",
+    "serve": "npx gatsby serve",
+    "clean": "npx gatsby clean",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
   }
 }
