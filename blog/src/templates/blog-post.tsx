@@ -32,6 +32,9 @@ const BlogPostTemplate = ({ data, location }) => {
           <h1 itemProp="headline" className="m-0">
             {post.frontmatter.title}
           </h1>
+          <div className="text-gray-400">
+            {post.frontmatter.description}
+          </div>
           <p>
             <small className="text-accent2 font-semibold">
               {post.frontmatter.date}
