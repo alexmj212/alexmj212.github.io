@@ -14,7 +14,7 @@ The hints have three states:
 * A letter you guessed is in the goal word and in the correct position.
 * A letter you guessed is not in the goal word at all.
 
-![Wordle](/img/screenshot-2022-01-16-163037.png "Wordle")
+![Wordle](/blog/img/screenshot-2022-01-16-163037.png "Wordle")
 
 ## Creating a Wordle Clone
 
@@ -52,13 +52,13 @@ What keeps players honest is that it's obvious when your results are manipulated
 
 The rules of Wordle are very simple and presented in a dialog upon opening the game for the first time. I won't dive into the optimal strategies for solving your Wordle puzzle. Instead, I want to examine the implementation from a technical perspective.
 
-![Wordle rules](/img/screenshot-2022-01-16-162217.png "Wordle rules")
+![Wordle rules](/blog/img/screenshot-2022-01-16-162217.png "Wordle rules")
 
 ### Game State
 
 Wordle is primarily a client-side game. This means that the entire game takes place within the browser in a JavaScript application on the users device. It is not communicating with a server to determine the daily puzzle nor is it saving your results to the cloud for recall. This means that if you play Wordle in a private browser session, you will be able to attempt the daily puzzle again. The entire game state is preserved in memory at runtime or in local storage. 
 
-![Wordle Puzzle #211](/img/screenshot-2022-01-16-145020.png "Wordle Puzzle #211")
+![Wordle Puzzle #211](/blog/img/screenshot-2022-01-16-145020.png "Wordle Puzzle #211")
 
 ```json
 {
@@ -83,7 +83,7 @@ Wordle is primarily a client-side game. This means that the entire game takes pl
 
 Upon every update of the game state, the local storage is updated as well. This ensures that if you step away from guessing the daily puzzle (i.e. close the browser), you can resume your game if you return to the page. The game also maintains data about your previous puzzles. This includes a win count, win streak, and a distribution of the number of attempts it took you to solve the puzzle.
 
-![Wordle Statistics](/img/screenshot-2022-01-16-162606.png "Wordle Statistics")
+![Wordle Statistics](/blog/img/screenshot-2022-01-16-162606.png "Wordle Statistics")
 
 ```json
 {
@@ -136,7 +136,7 @@ Once your guess is determined to be in either dictionary, it then performs some 
 
 When I examined the user experience of Wordle, my first question was why does it present an in-browser keyboard? If you're in a desktop environment, you likely already have a keyboard attached to your device. If you're playing in a mobile or tablet environment, there is a keyboard built into the operating system to allow for input. There are several important reasons why Wordle presents its own keyboard.
 
-![Wordle Keyboard](/img/screenshot-2022-01-16-142239.png "Wordle Keyboard")
+![Wordle Keyboard](/blog/img/screenshot-2022-01-16-142239.png "Wordle Keyboard")
 
 ### Limiting Input
 
