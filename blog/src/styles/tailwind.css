@@ -10,3 +10,7 @@ html, body, #___gatsby, #gatsby-focus-wrapper {
     @apply bg-gray-100 dark:bg-gray-900;
     margin: 0;
 }
+
+article p img {
+    @apply mx-auto;
+}
