@@ -6,7 +6,7 @@ tags:
   - react
 description: Creating a Wordle Clone, Part 1
 ---
-[Wordle](https://www.powerlanguage.co.uk/wordle/) is a simple word guessing game. The goal of the game is to attempt to guess a 5 letter word. The word is chosen at random from a dictionary. You have 6 attempts to guess the word. As you submit guesses, letters will highlight to hint at the goal word. You win the game by using the hints the game display based on the letters you chose.
+[Wordle](https://www.powerlanguage.co.uk/wordle/) is a simple word guessing game. The goal of the game is to attempt to guess a 5 letter word. The word is chosen at random from a dictionary. You have 6 attempts to guess the word. As you submit guesses, letters will highlight to hint at the goal word. You win the game by using the hints the game displays based on the letters you chose.
 
 The hints have three states:
 
@@ -24,7 +24,7 @@ You can view my version here: <https://alexmj212.dev/word-guess/>
 
 ## What Makes Wordle Viral
 
-Wordle gained popularity not because of it's complexity or uniqueness. The appeal of Wordle is the ability to share your results. As people posted their results to social media, the popularity took off. The results of your puzzle are generated a grid of emoji that mirrors your list of guesses. In this case, 211 is the puzzle number and the 5/6 represents the number of attempts.
+Wordle gained popularity not because of its complexity or uniqueness. The appeal of Wordle is the ability to share your results. As people posted their results to social media, the popularity took off. The results of your puzzle are generated as a grid of emoji that mirrors your list of guesses. In this case, 211 is the puzzle number and the 5/6 represents the number of attempts.
 
 ```
 Wordle 211 5/6
@@ -38,7 +38,7 @@ Wordle 211 5/6
 
 Part of what makes the sharing interesting is that it [tells a story](https://www.theverge.com/tldr/22881995/wordle-emoji-results-auto-generated-tell-a-story) about your struggle with guessing the word. Your emoji grid is personal to your path to solving the puzzle. In addition, sharing your emoji grid doesn't spoil the daily puzzle for others.
 
-Sharing the puzzle results is not the entirety of why it took off. Because every user gets the same puzzle, users are able to compare their results to others in a competitive manner. Further, only one puzzle can be played per day. These means everyone is sharing the same experience and creates a scarcity and value in the specific puzzle for that day. If users could infinitely try puzzles, the value in that specific result decreases and makes the sharing of the results less appealing to others.
+Sharing the puzzle results is not the entirety of why it took off. Because every user gets the same puzzle, users are able to compare their results to others in a competitive manner. Further, only one puzzle can be played per day. This means everyone is sharing the same experience and creates a scarcity and value in the specific puzzle for that day. If users could infinitely try puzzles, the value in that specific result decreases and makes the sharing of the results less appealing to others.
 
 All these effects combined allowed this game to take off.
 
@@ -46,7 +46,7 @@ All these effects combined allowed this game to take off.
 
 The emoji grid is simply text that can be copied and pasted to any platform. There is no limitation to your modification of it. You can simply lie and post 6 green squares, a perfect score. Further, because your game data isn't validated with a remote server, it is easy to manipulate your results to make it appear as if you are optimally guessing every time.
 
-What keeps players honest is that it's obvious when your results are manipulated and the stakes in solving the puzzle are low. You can create an emoji grid and make it appear as though you solved in two guesses. But lying about your guessing abilities doesn't actually get you anything. A perfect score doesn't increase your clout or move you up on the leader board. Because your accuracy isn't the primary goal of Wordle, it is your journey to the solution. 
+What keeps players honest is that it's obvious when your results are manipulated and the stakes in solving the puzzle are low. You can create an emoji grid and make it appear as though you solved it in two guesses. But lying about your guessing abilities doesn't actually get you anything. A perfect score doesn't increase your clout or move you up on the leaderboard. Because your accuracy isn't the primary goal of Wordle, it is your journey to the solution. 
 
 ## Wordle Mechanics
 
@@ -56,7 +56,7 @@ The rules of Wordle are very simple and presented in a dialog upon opening the g
 
 ### Game State
 
-Wordle is primarily a client-side game. This means that the entire game takes place within the browser in a JavaScript application on the users device. It is not communicating with a server to determine the daily puzzle nor is it saving your results to the cloud for recall. This means that if you play Wordle in a private browser session, you will be able to attempt the daily puzzle again. The entire game state is preserved in memory at runtime or in local storage. 
+Wordle is primarily a client-side game. This means that the entire game takes place within the browser in a JavaScript application on the user's device. It is not communicating with a server to determine the daily puzzle nor is it saving your results to the cloud for recall. This means that if you play Wordle in a private browser session, you will be able to attempt the daily puzzle again. The entire game state is preserved in memory at runtime or in local storage. 
 
 ![Wordle Puzzle #211](/blog/img/screenshot-2022-01-16-145020.png "Wordle Puzzle #211")
 
@@ -112,7 +112,7 @@ const dailyPuzzleWords = [
 ]
 ```
 
-When a user attempts a guess, there is a second dictionary of about 10,000 words that it checks against. This second dictionary acts as a validation for "real" words. This means that you can guesses must be a "real" words. This list is in alphabetical order. Because the validation dictionary contains many more words than the puzzle dictionary, it is possible that a guess could never be the one of the daily puzzles. It also ensures that guesses such as "AAAAA" are not allowed.
+When a user attempts a guess, there is a second dictionary of about 10,000 words that it checks against. This second dictionary acts as a validation for "real" words. This means your guess must be a "real" word. This list is in alphabetical order. Because the validation dictionary contains many more words than the puzzle dictionary, it is possible that a guess could never be the one of the daily puzzles. It also ensures that guesses such as "AAAAA" are not allowed.
 
 ```javascript
 const validWords = [
@@ -144,7 +144,7 @@ The Wordle keyboard actually helps simplify the game from a technical perspectiv
 
 ### Mobile Device Input
 
-On a device with a physical keyboard, Wordle does accept keyboard input. Meaning, that you can type and submit guesses without the built-in keyboard. However, on a mobile device, the operating system keyboard does appear. Usually mobile device keyboards only appear when a prompted by an input field. So instead of having to manager the operating system keyboard appearance, the in-browser keyboard provided by Wordle suffices.
+On a device with a physical keyboard, Wordle does accept keyboard input. Meaning, that you can type and submit guesses without the built-in keyboard. However, on a mobile device, the operating system keyboard does appear. Usually mobile device keyboards only appear when prompted by an input field. So instead of having to manage the operating system keyboard appearance, the in-browser keyboard provided by Wordle suffices.
 
 ### Preserving Hints
 
