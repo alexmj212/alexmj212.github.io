@@ -58,7 +58,8 @@
   ],
   "scripts": {
     "watch:postcss": "postcss src/styles/tailwind.css -o src/styles/main.css -w",
-    "build": "yarn && npx gatsby clean && npx gatsby build --prefix-paths && yarn sync",
+    "postcss": "postcss src/styles/tailwind.css -o src/styles/main.css",
+    "build": "yarn && npx gatsby clean && yarn postcss && npx gatsby build --prefix-paths && yarn sync",
     "sync": "rsync -av --delete --exclude 'admin' public/ ../public/blog",
     "develop": "npx gatsby clean && npx gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
