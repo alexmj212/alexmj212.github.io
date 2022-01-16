@@ -43,9 +43,10 @@
   "scripts": {
     "predeploy": "yarn build",
     "build:blog": "cd ./blog && yarn build && cd ..",
+    "deploy:blog": "rsync -av --delete  public/blog/ ./build/blog",
     "deploy": "gh-pages -d build",
     "start": "BROWSER=none craco start",
-    "build": "craco build && yarn build:blog",
+    "build": "craco build && yarn build:blog && yarn deploy:blog",
     "test": "craco test",
     "eject": "react-scripts eject"
   },
