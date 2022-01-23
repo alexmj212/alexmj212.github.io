@@ -19,6 +19,8 @@ The logic for checking the guess against the solution is as follows:
 
 The game loop is executed upon specific actions from the player. Meaning the game is entirely event based. There isn't any requirement that forces us to constantly update the game state besides when the player takes actions. This means we can easily translate this logic to an event based language or framework.
 
+![Word Guess](/blog/img/screenshot-2022-01-23-174021.png "Word Guess")
+
 This post is part 2 of a series in which I'm creating a Wordle clone from scratch. [View Part 1 here.](/blog/understanding-how-wordle-works/)
 
 ## Choosing a Framework
