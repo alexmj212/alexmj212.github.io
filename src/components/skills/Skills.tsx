@@ -19,7 +19,7 @@ const Skills = () => {
               <FontAwesomeIcon icon={skill.icon} />
             </div>
             <div>
-              <h3>{skill.name}</h3>
+              <h3 className="mt-0">{skill.name}</h3>
               <p className={`text-sm`}>{skill.description}</p>
             </div>
           </div>

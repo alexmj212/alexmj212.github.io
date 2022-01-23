@@ -16,7 +16,7 @@ const Experience = () => {
         return (
           <div key={experienceItem.date + experienceItem.company} className={`flex md:flex-row flex-col my-16`}>
             <div className={`date-column mt-1 mr-8 whitespace-nowrap`}>
-              <p className={`text-accent2 mb-0 font-semibold`}>{experienceItem.date}</p>
+              <p className={`text-accent2 my-1 font-semibold`}>{experienceItem.date}</p>
             </div>
             <div className={``}>
               <h2 className={`my-2`}>{experienceItem.title}</h2>

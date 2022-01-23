@@ -16,15 +16,15 @@ module.exports = {
         transparent: "transparent",
         current: "currentColor",
         black: {
-          DEFAULT: colors.trueGray[700],
-          dark: colors.trueGray[900],
+          DEFAULT: colors.gray[700],
+          dark: colors.gray[900],
         },
         white: {
           DEFAULT: colors.white,
-          dark: colors.trueGray[200],
+          dark: colors.gray[300],
         },
         blue: colors.blue,
-        gray: colors.trueGray,
+        gray: colors.gray,
         indigo: colors.indigo,
         red: colors.rose,
         yellow: colors.amber,
@@ -42,7 +42,7 @@ module.exports = {
         },
         panel: {
           DEFAULT: colors.white,
-          dark: colors.trueGray[800],
+          dark: colors.gray[800],
         },
       },
       fontFamily: {

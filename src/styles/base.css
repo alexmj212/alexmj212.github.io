@@ -7,7 +7,7 @@
   }
 
   body {
-    @apply font-sans font-normal text-lg antialiased;
+    @apply font-sans font-light text-lg;
     @apply bg-white text-black;
     @apply dark:bg-black-dark dark:text-white-dark;
     -webkit-tap-highlight-color: transparent;
