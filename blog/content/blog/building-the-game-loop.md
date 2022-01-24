@@ -21,7 +21,7 @@ The game loop is executed upon specific actions from the player. Meaning the gam
 
 ![Word Guess](/blog/img/screenshot-2022-01-23-174021.png "Word Guess")
 
-This post is part 2 of a series in which I'm creating a Wordle clone from scratch. [View Part 1 here.](/blog/understanding-how-wordle-works/)
+This post is part 2 of a series in which I'm creating a Wordle clone from scratch. [View Part 1 here.](/understanding-how-wordle-works/)
 
 ## Choosing a Framework
 
