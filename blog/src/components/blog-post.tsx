@@ -19,22 +19,12 @@ const BlogPostTemplate = ({ data, location }) => {
         title={post.frontmatter.title}
         description={post.frontmatter.description || post.excerpt}
       />
-      <div className="mb-8 pl-2 md:pl-4">
-        <Link to={"/"} className="font-semibold" rel="prev">
-          <span className="pr-2">
-            <FontAwesomeIcon icon={faArrowLeft} />
-          </span>
-          Back to Index
-        </Link>
-      </div>
-      <article className="sm:px-4 px-2">
+      <article className="sm:px-4 px-2 border-b-2 pb-8 mb-8">
         <header>
           <h1 itemProp="headline" className="m-0">
             {post.frontmatter.title}
           </h1>
-          <div className="text-gray-400">
-            {post.frontmatter.description}
-          </div>
+          <div className="text-neutral-400">{post.frontmatter.description}</div>
           <p>
             <small className="text-accent2 font-semibold">
               {post.frontmatter.date}
@@ -45,13 +35,13 @@ const BlogPostTemplate = ({ data, location }) => {
           dangerouslySetInnerHTML={{ __html: post.html }}
           itemProp="articleBody"
         />
-        <footer>
-          <Bio />
-        </footer>
       </article>
+      <footer>
+        <Bio />
+      </footer>
       <nav className="px-2 md:px-4">
         <ul className="no-style flex flex-row justify-between">
-          <li>
+          <li className="flex flex-col">
             {previous && (
               <>
                 <Link
@@ -64,18 +54,15 @@ const BlogPostTemplate = ({ data, location }) => {
                   </span>
                   {previous.frontmatter.title}
                 </Link>
-                <small className="text-gray-400 ml-2 hidden md:inline">
+                <small className="text-neutral-400 ml-2 hidden md:inline">
                   {previous.frontmatter.date}
                 </small>
               </>
             )}
           </li>
-          <li>
+          <li className="flex flex-col">
             {next && (
               <>
-                <small className="text-gray-400 mr-2 hidden md:inline">
-                  {next.frontmatter.date}
-                </small>
                 <Link
                   to={next.fields.slug}
                   className="font-semibold"
@@ -86,6 +73,9 @@ const BlogPostTemplate = ({ data, location }) => {
                     <FontAwesomeIcon icon={faArrowRight} />
                   </span>
                 </Link>
+                <small className="text-neutral-400 mr-2 hidden md:inline text-right">
+                  {next.frontmatter.date}
+                </small>
               </>
             )}
           </li>

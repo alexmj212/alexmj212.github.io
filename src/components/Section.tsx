@@ -10,7 +10,7 @@ const Section: React.FunctionComponent<SectionProps> = (props: SectionProps) => 
   const { fullScreen, sectionId, children, className } = props;
 
   return (
-    <div id={sectionId} className={`container w-full max-w-full z-10 ${fullScreen ? "h-screen" : "md:section-container"} flex justify-center items-center flex-col ${className || ""}`}>
+    <div id={sectionId} className={`container w-full max-w-full z-10 ${fullScreen ? "h-screen" : "py-24"} px-4 flex justify-center items-center flex-col ${className || ""}`}>
       {children}
     </div>
   );

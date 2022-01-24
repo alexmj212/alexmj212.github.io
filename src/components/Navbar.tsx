@@ -57,7 +57,7 @@ const Navbar = () => {
               </div>
               <div className="hidden md:block">
                 <div className="ml-0 flex items-center lg:ml-6">
-                  <ContactList></ContactList>
+                  <ContactList onDarkBG iconSize="text-2xl"></ContactList>
                 </div>
               </div>
               <div className="-mr-2 flex md:hidden">
@@ -95,15 +95,11 @@ const Navbar = () => {
                     if (item.href) {
                       return (
                         <Disclosure.Button key={item.name} className={"block w-full pb-2 px-2 text-left"} aria-current={item.current ? "page" : undefined}>
-                        <a
-                          key={item.name}
-                          href={item.href}
-                          className={`flex flex-1 text-white px-3 py-2 rounded text-sm cursor-pointer`}
-                        >
-                          {item.name}
-                        </a>
-                      </Disclosure.Button>
-                      )
+                          <a key={item.name} href={item.href} className={`flex flex-1 text-white px-3 py-2 rounded text-sm cursor-pointer`}>
+                            {item.name}
+                          </a>
+                        </Disclosure.Button>
+                      );
                     }
                     return (
                       <Disclosure.Button key={item.name} className={"block w-full pb-2 px-2 text-left"} aria-current={item.current ? "page" : undefined}>
@@ -128,13 +124,13 @@ const Navbar = () => {
                   <div className="flex-shrink-0">
                     <img className={`header-portrait h-16 w-16 m-0`} src={user.imageUrl} alt="" />
                   </div>
-                  <div className="ml-4">
-                    <div className="text-white">{user.name}</div>
-                    <div className="text-sm text-gray-400">{user.email}</div>
+                  <div className="ml-4 text-white">
+                    <div>{user.name}</div>
+                    <div className="text-sm">{user.email}</div>
                   </div>
                 </div>
                 <div className={`px-2 py-4`}>
-                  <ContactList className={`flex justify-evenly text-4xl w-full`}></ContactList>
+                  <ContactList onDarkBG iconSize="text-2xl" className={`flex justify-center space-x-8 w-full`}></ContactList>
                 </div>
               </div>
             </Disclosure.Panel>

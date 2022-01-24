@@ -35,38 +35,36 @@ const BlogIndex = ({ data, location }) => {
           const title = post.frontmatter.title || post.fields.slug;
 
           return (
-            <li key={post.fields.slug} className="p-2 w-full lg:w-1/2">
-              <article className="post-list-item rounded-md shadow-md bg-white dark:bg-gray-800 p-4">
-                <header className="mb-4">
-                  <h2 className="m-0">{title}</h2>
-                  <small className="text-accent2 font-semibold">
-                    {post.frontmatter.date}
-                  </small>
-                </header>
-                <section>
-                  <p
-                    dangerouslySetInnerHTML={{
-                      __html: post.frontmatter.description || post.excerpt,
-                    }}
-                    itemProp="description"
-                    className="text-sm text-gray-500 dark:text-gray-400"
-                  />
-                </section>
-                {post.frontmatter.tags.map((tag, index) => (
-                  <div key={tag + index} className="badge">
-                    {tag}
-                  </div>
-                ))}
-                <footer className="pt-2 text-sm font-semibold">
-                  <Link
-                    to={post.fields.slug}
-                    className="hover:underline"
-                    itemProp="url"
-                  >
-                    Read More
-                  </Link>
-                </footer>
-              </article>
+            <li key={post.fields.slug} className="p-2 w-full">
+              <Link to={post.fields.slug}>
+                <article className="post-list-item rounded-md shadow-md bg-white dark:bg-neutral-800 p-4">
+                  <header>
+                    <h2 className="m-0 dark:text-white-dark text-accent1">
+                      {title}
+                    </h2>
+                    <small className="text-accent2 font-semibold">
+                      {post.frontmatter.date}
+                    </small>
+                  </header>
+                  <section>
+                    <p
+                      dangerouslySetInnerHTML={{
+                        __html: post.frontmatter.description || post.excerpt,
+                      }}
+                      itemProp="description"
+                      className="text-sm text-neutral-500 dark:text-neutral-400"
+                    />
+                  </section>
+                  {post.frontmatter.tags.map((tag, index) => (
+                    <div key={tag + index} className="badge">
+                      {tag}
+                    </div>
+                  ))}
+                  <footer className="pt-2 text-accent1 dark:text-white-dark cursor-pointer text-sm font-semibold">
+                    Read More...
+                  </footer>
+                </article>
+              </Link>
             </li>
           );
         })}

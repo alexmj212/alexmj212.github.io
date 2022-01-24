@@ -9,7 +9,7 @@ type PanelProps = {
 const Panel: React.FunctionComponent<PanelProps> = (props: PanelProps) => {
   const { header, overrideWidth, children, className } = props;
   return (
-    <div className={`w-full ${overrideWidth || "max-w-4xl"} px-8 py-8 pt-8 mt-8 ${className || ""}`} >
+    <div className={`w-full ${overrideWidth || "max-w-3xl"} ${className || ""}`} >
       {header && <h1>{header}</h1>}
       {children}
     </div>

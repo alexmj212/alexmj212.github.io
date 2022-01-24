@@ -47,7 +47,7 @@ const Bio = () => {
           <div className="flex flex-1 flex-col">
             <span>
               <strong>{author.name}</strong>{" "}
-              <small className="text-gray-400">alexmj212@gmail.com</small>
+              <small className="text-neutral-400">alexmj212@gmail.com</small>
             </span>
             <p className="leading-0 text-sm mb-1">
               I'm a front-end software engineer based in Lexington, KY and I
@@ -57,7 +57,7 @@ const Bio = () => {
                 here.
               </a>
             </p>
-            <ContactList className="text-accent1 text-2xl dark:text-accent1-dark hover:text-black dark:hover:text-white-dark mr-4"></ContactList>
+            <ContactList iconSize="text-2xl" className="mr-4"></ContactList>
           </div>
         </div>
       )}

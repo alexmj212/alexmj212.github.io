@@ -7,7 +7,9 @@
   }
 
   body {
-    @apply font-sans font-light text-lg;
+    @apply font-sans text-lg;
+    @apply font-normal;
+    @apply dark:font-light;
     @apply bg-white text-black;
     @apply dark:bg-black-dark dark:text-white-dark;
     -webkit-tap-highlight-color: transparent;

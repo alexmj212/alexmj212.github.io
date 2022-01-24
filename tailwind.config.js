@@ -47,18 +47,17 @@ module.exports = {
       },
       fontFamily: {
         serif: ["Georgia", "serif"],
-        sans: ["Lato", "sans-serif"],
+        sans: ["Open Sans", "sans-serif"],
         sans2: ["Exo", "sans-serif"],
-        condensed: ["Lato", "sans-serif"],
+        condensed: ["Open Sans", "sans-serif"],
         header: ["Exo", "sans-serif"],
-      },
-      backgroundImage: {
-        header: "url('/src/img/msgorigin2.jpg')",
       },
     },
   },
   variants: {
-    extend: {},
+    extend: {
+      fontWeight: ['dark']
+    },
   },
   plugins: [],
 };

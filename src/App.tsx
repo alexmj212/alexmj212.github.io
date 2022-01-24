@@ -50,7 +50,7 @@ export const Pages: PageDefinition = {
   BLOG: {
     id: "blog",
     name: "Blog",
-    href: "/blog"
+    href: "/blog",
   },
   FOOTER: {
     id: "footer",
@@ -100,7 +100,7 @@ const App = () => {
             skills including regular expressions, databases, and object-oriented programming.
           </p>
           <div className="flex justify-center items-center mt-8 mx-auto w-full max-w-screen-sm">
-            <ContactList showLabel className={`light-link flex justify-evenly text-2xl text-white dark:text-white-dark`}></ContactList>
+            <ContactList showLabel iconSize="text-2xl" labelSize="text-lg" onDarkBG className={`flex justify-evenly`}></ContactList>
           </div>
         </Panel>
       </Section>
@@ -116,7 +116,7 @@ const App = () => {
       <Section sectionId={Pages.FOOTER.id} className={`text-white bg-accent1 dark:bg-accent1-dark dark:text-white-dark text-center`}>
         <Panel>
           <h1>Alex Johnson</h1>
-          <ContactList className={`light-link flex justify-center w-full max-width-1/2 text-4xl text-white dark:text-white-dark`}></ContactList>
+          <ContactList iconSize="text-4xl" onDarkBG className={`flex justify-center w-full max-width-1/2`}></ContactList>
         </Panel>
       </Section>
     </div>

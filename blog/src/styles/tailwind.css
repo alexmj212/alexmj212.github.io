@@ -7,8 +7,13 @@
 @tailwind utilities;
 
 html, body, #___gatsby, #gatsby-focus-wrapper {
-    @apply bg-gray-100 dark:bg-gray-900;
+    @apply bg-neutral-100 dark:bg-neutral-900;
     margin: 0;
+    @apply font-normal dark:font-light antialiased;
+}
+
+article {
+    @apply text-base;
 }
 
 article p img {
