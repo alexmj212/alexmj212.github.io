@@ -11,13 +11,13 @@ This post is part of a series I'm writing to analyze how Wordle works and to con
 1. [Understanding How Wordle Works](https://alexmj212.dev/blog/understanding-how-wordle-works/)
 2. [Building The Wordle Game Loop](https://alexmj212.dev/blog/understanding-how-wordle-works/)
 
-When a player submits a guess to Word Guess, the game performs some string manipulation to verify the word against the solution. Each letter is tracked separately and tracked as a complete word to verify the hints that should be set or if the guess is correct entirely.
+When a player submits a guess to Word Guess, the game performs some string manipulation to verify the word against the solution. Each letter of the guessed word is tracked separately in addition to the full word. This is to verify the hints that should be set or if the guess is correct entirely.
 
 ![Word Guess validation message example](/blog/img/screenshot-2022-02-07-013532.png "Word Guess validation message example")
 
 ## Representing Letter Hints
 
-Much of this logic is dependent on the object structure I chose to represent the game state and how I'm tracking each letter in the guess grid. Here's a summary of how that works.
+Much of this logic is dependent on the object structure I chose to represent the game state and how I'm tracking each letter in the guess grid. First, we start with the `LetterState`. Each letter within the guess map and the keyboard is presented as this object.
 
 ```typescript
 export type LetterState = {
@@ -28,16 +28,16 @@ export type LetterState = {
 };
 ```
 
-Each letter is an object with several properties that are used to display hints. Each of the hint types is represented here as a property with `boolean` type. For example, when a letter is verified to be within the word but in the wrong position, I set the `containMatch` to `true`. If a letter is a position match, the `containMatch` and the `positionMatch` will be set to true; a letter in the correct position requires that the letter contained in the solution word of course.
+Each letter has several properties that are used to track and display hints. Each of the hint types is represented here as a property with the `boolean` type. For example, when a letter is verified to be within the word but in the wrong position, I set the `containMatch` to `true`. If a letter is a position match, the `containMatch` and the `positionMatch` will be set to true; a letter in the correct position always means that the letter is contained in the solution as well. However, this slightly differs for each representation of the hints for the player.
 
 ```typescript
 const [guessMap, setGuessMap] = useState<LetterState[][]>([]);
 const [letterOptions, setLetterOptions] = useState<LetterState[]>([]);
 ```
 
-I have two separate React states that represent each part of the game. The `guessMap` is a two-dimensional array of `LetterState`. The first dimension represents the row of the guess, and the second dimension represents each letter of the guess. 
+I have two separate React states that represent each component of the game. The `guessMap` is a two-dimensional array of `LetterState`. The first dimension represents the row of the guess, and the second dimension represents each letter of the guess.
 
-The state `letterOptions` is a single-dimension array of `LetterState`. This list helps us generate the keyboard in the game. The `letterOptions` tracks the keyboard display and also provides a simple flat list to check against in the event I need it.
+The `letterOptions` is a single-dimension array of `LetterState`. This tracks the keyboard display which allows displays the highest value hint to the player. More on hint value below.
 
 I can construct the guessed word by taking the `guessMap` in combination with the `mapPointer` and map the `LetterState` to a flat array of strings and then join them.
 
@@ -51,9 +51,9 @@ const guessedWord = guessMap[mapPointer[0]].map((letter) => letter.letter).join(
 
 ### Ranking the Value of Hints
 
-The way the hints are displayed necessitates tracking each portion of the game separately. This is because the guess map is tracking the position of the letter to display a match whereas the keyboard is tracking the highest "value" hints per unique letter, explained below. Secondly, the guesses can contain duplicate letters and each must be tracked separately for accuracy whereas the keyboard can only display one instance of each letter.
+Hints are displayed in two ways. First, hints are displayed in the guess map representing the accuracy of each letter from the guess. Second, hints are shown on the keyboard as the highest value hint for that unique letter. The hints for the guess map and the keyboard are tracked separately to provide a variety of information that helps the player make more informed guessed.
 
-The value of each hint is the usefulness of that hint to the player working towards the solution. This is all possible hint states in order from lowest value to highest value as well as their `LetterState` representation. 
+The value of each hint is the usefulness of that hint to the player working towards the solution. Below is all possible hint states ordered from lowest value to highest value and their `LetterState` representation. 
 
 **Unselected** - the letter hasn't been used in a guess.
 
@@ -69,7 +69,7 @@ const unselectedLetter: LetterState = {
 **No Match** - the letter isn't in the solution word.
 
 ```typescript
-const unselectedLetter: LetterState = {
+const noMatchLetter: LetterState = {
   letter: "A";
   containMatch: false;
   positionMatch: false;
@@ -80,7 +80,7 @@ const unselectedLetter: LetterState = {
 **Contains Match** - the letter is contained in the solution.
 
 ```typescript
-const unselectedLetter: LetterState = {
+const containMatchLetter: LetterState = {
   letter: "A";
   containMatch: true;
   positionMatch: false;
@@ -91,7 +91,7 @@ const unselectedLetter: LetterState = {
 **Position Match** - the letter is a position match to the solution.
 
 ```typescript
-const unselectedLetter: LetterState = {
+const positionMatchLetter: LetterState = {
   letter: "A";
   containMatch: true;
   positionMatch: true;
@@ -99,13 +99,13 @@ const unselectedLetter: LetterState = {
 };
 ```
 
-The position match is the most valuable hint because it is a direct reveal to the solution whereas the contain match hints doesn't immediately eliminate the uncertainty of that letter. No match is a hint from the opposite direction, avoid this letter entirely in the future. Unselected represents the remaining pool from which you can construct guesses.
+The position match is the most valuable hint because it is a direct reveal to the solution. Without the position match, the contain match doesn't immediately eliminate the uncertainty of that letter's position. No match is a hint from the opposite direction, avoid this letter entirely in future guesses because it is not part of the solution. Unselected represents the remaining pool from which you can construct guesses, they may or may not be in the solution.
 
 ## Validate A Guess
 
-Once the player has entered five letters, I perform checks to verify the accuracy of their guess. The first check is simply a validation against an approved word list. In previous posts, I mentioned that Wordle actually has two word lists from which it validates guesses. As part of the validation, I check that the guess word exists in either of the lists before proceeding. I included a hint that the word they attempted to submit is not a valid guess. This mostly filters out junk guesses like "AAAAA" or "ABCDE".
+Once the player has entered five letters, I perform checks to verify the accuracy of their guess. The first check is simply a validation against an approved word list. In previous posts, I mentioned that Wordle actually has two word lists from which it validates guesses, a list of all valid 5-letter words, and list of words to use as puzzles. As part of the validation, I check that the guess word exists in either of the lists before proceeding. I provide to the player that the word they attempted to submit is not a valid guess. This mostly filters out junk guesses like "AAAAA" or "ABCDE".
 
-The second validate I perform is a check to prevent duplicate words. The player can actually hurt their chances of finding the solution if their guess has already been attempted. I provide a warning and stop validation if the word is contained.
+The second validation I perform is a check to prevent duplicate words. The player can actually hurt their chances of finding the solution if they waste an attempt guessing the same word again. I provide a warning and stop validation if the word is already guessed.
 
 Those validations look like this:
 
@@ -125,9 +125,9 @@ if (guessWords.includes(guessedWord) || validWords.includes(guessedWord)) {
 }
 ```
 
-If the guessed word gets past these checks, then I can begin compiling the hints for each letter in the guess against the solution.
+If the guessed word passes these checks, then I begin compiling the hints for each letter.
 
-For each letter in the guess, I check it matches against the solution. I first look for the letter's representation in the keyboard and in the `guessMap`. Each representation needs to be updated independently as described above.
+For each letter in the guess, I perform a serious of checks to set the `containMatch`, `positionMatch`, or `noMatch` appropriately. As mentioned above, we must track the hints for each letter in the guess map and the keyboard separately. First, I grab the current state of the letter we're verifying from each.
 
 ```typescript
 // Loop over array of letter from the guessed word
@@ -139,7 +139,7 @@ guess.forEach((letter, index) => {
 })
 ```
 
-Then I check if this letter is contained within the solution at all.
+Then, after retrieving the current states, I check if this letter is contained within the solution at all and set the `containMatch` to `true`. If the letter isn't contained in the solution at all, I set the `noMatch` to `true`.
 
 ```typescript
 guess.forEach((letter, index) => {
@@ -159,7 +159,7 @@ guess.forEach((letter, index) => {
 })
 ```
 
-If the letter is contained in the word, I must then check if it's in the correct position. I do this by simply splitting the solution word into each individual letter and checking if the current letter's index matches the solution's indexed letter.
+If the letter is contained in the word, I must then check if it's in the correct position. I split the solution word into each individual letter and check if the current letter's index matches the solution letter's index. If there is a match, I set `positionMatch` to `true`.
 
 ```typescript
  guess.forEach((letter, index) => {
@@ -181,17 +181,15 @@ And that's it for validation! This logic works great for the first guess from a 
 
 ## Duplicate Letters and Hint Accuracy
 
-How can you handle a letter hint that should display an increased value? For example, if the letter "A" was contained in the first guess, but positioned matched in the second guess, how do you display that to the player? Conversely, what if the first guess had the letter "A" positioned matched but the second guess was only a contain match? To take it even further, I also have to be aware of duplicate letters and counting their hints as well.
+How can you handle a letter hint that should display an increased value? For example, if the letter "A" was contain matched in the first guess, but positioned matched in the second guess, how do you display that to the player? Conversely, what if the first guess had the letter "A" positioned matched but the second guess was only a contain match? Additionally, we must also track the occurences of each letter to ensure we're not showing more of less hints per the number of duplicate letters.
 
 In this example, you can see the "D" in the first guess shows a contain match. Then in the second guess, the "D" is used twice. However, the hints accurately display that the first D doesn't show a contain match because the second one is a position match. We need to handle these hint situations accurately, otherwise the player may be misled in the occurences of specific letters.
 
 ![Word Guess hints for multiple letters example](/blog/img/screenshot-2022-02-07-012424.png "Word Guess hints for multiple letters example")
 
-I need to ensure that a letter in the guessed word is accurately accounting for the contain match, position match, and the number of occurrences of each letter. If the solution contains two "A"s and the player's guess contains two "A"s, I need to accurately show the position match and the contain match for each "A" separately. 
+I need to ensure that a letter in the guessed word is accurately accounting for the contain match, position match, and the number of occurrences of each letter. This is important in the guess map but not important for the keyboard. The keyboard always displays the highest value hint achieved by the player. It doesn't need to track duplicate letters or the position of the letter.
 
-This is important in the guess map but not important for the keyboard. The keyboard always displays the highest value hint achieved by the player. It doesn't need to track duplicate letters or the position of the letter.
-
-First, I need to set up some variables. I want to count the number of duplicate letters in the guessed word and the solution. Then I can compare them to see if I need to perform additional checks. I chose to use regex for counting the number of matching letters. I defined a simple regex match for the current letter I'm examining. I then used that regex match against the guessed word and the solution.
+First, I want to count the number of duplicate letters in the guessed word and the solution. Then I can compare them to see if I need to perform additional checks. I chose to use a regular expression for counting the number of matching letters. I defined a simple regular expression for the current letter I'm examining. I then used that regular expression match against the guessed word and the solution.
 
 ```typescript
 // regex for finding occurrences of the current letter
@@ -202,7 +200,7 @@ const guessOccurenceCount = guess.match(dupeLetterMatch)?.length ?? 0;
 const solutionOccurenceCount = solution.match(dupeLetterMatch)?.length ?? 0;
 ```
 
-Then, I want to make sure if the user guessed multiple identical letters, but the solution contains less duplicates, that the hint accurately reflects that for each instance of the guess hints. Additionally, there must be an instance of the duplicate letter before this one.
+Then, if the user guessed multiple identical letters, but the solution contains less duplicates, the hint should accurately reflect that for each letter's hint in the guessed word. To reflect this hint accurately, I set the `containMatch` to `false`. I only perform this however, if this not the first occurence of this letter in the guess word.
 
 Effectively, I am retroactively turning off hints in the guess map for multiples of the same letter to ensure the hints are counted accurately in addition to being displayed accurately.
 
@@ -217,9 +215,9 @@ if (guessOccurenceCount > goalOccurenceCount && guess.indexOf(letter) < index) {
 }
 ```
 
-Afterward, I want to ensure that if the position matches on a duplicate letter in the guess word that I don't show hints on the other duplicates. Especially if the solution only contains one copy of the letter.
+Then, I want to ensure that if the position matches on a duplicate letter that I don't show hints on the other duplicates. Especially if the solution only contains one copy of the letter.
 
-I use the [`some`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/some) method here which returns true if some of the values match the condition I provide. The condition I'm looking for is if the letter is in the guess and if the letter has been validated to contain a position match. I set the `containMatch` to `false`. This ensures that a contain match is removed if the player found the position match later on.
+I use the [`some`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/some) method here which returns true if some of the values match the condition I provide. The condition I'm looking for is if the letter is in the guess and if the letter's `positionMatch` is `true`. I set the `containMatch` to `false`. This ensures that a contain match is removed if the player found the position match later on.
 
 ```typescript
 // If the guess already has a position match, hide hints for duplicate letter after
@@ -228,13 +226,15 @@ if (guessMap[mapPointer[0]].some((guessLetter) => letter === guessLetter.letter 
 }
 ```
 
-That completes all the validation and hint display. We are now accurately displaying hints for the contain and position match states while also taking multiple identical letters into account.
+That completes all the validation and hint display. We are now accurately displaying hints for the `containMatch`, `positionMatch`, and `noMatch` states while also taking multiple identical letters into account.
 
 ## Showing the Player Their Hints
 
 With the hint states fully constructed, we can now display them to the player.
 
-What if we went through all that and the player got the correct result? Why don't we just skip the checks if the player got it right? I still want to show the fully position matched guess to the user so the checks are necessary for that positive feedback to tell the player they made an accurate guess.
+Up until this point, we haven't just done a simple check to see if the guessed word matches the solution. We could check this before we perform any validation. Why don't we skip the checks if the player's guess was correct?
+
+I still want to show the fully position matched guess to the user. The checks are necessary for that positive feedback to tell the player they made an accurate guess. Additionally, Wordle generates an emoji grid for the player to share, if the last line of the emoji grid does not contain 5 green squares, it's clear if the player finished the puzzle.
 
 ```typescript
 // Success
@@ -245,7 +245,7 @@ if (guess === solution) {
 }
 ```
 
-If the player didn't manage to guess the word correctly, and they still have guesses available, we just move them to the next line and continue.
+If the player didn't manage to guess the word correctly and they still have guesses available, we just move them to the next line and continue playing.
 
 ```typescript
 // No success, next line
