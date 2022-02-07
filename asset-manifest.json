@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/static/css/main.be82815a.chunk.css",
+    "main.js": "/static/js/main.88db3372.chunk.js",
+    "main.js.map": "/static/js/main.88db3372.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.9745023d.js",
+    "runtime-main.js.map": "/static/js/runtime-main.9745023d.js.map",
+    "static/css/2.bd0d916d.chunk.css": "/static/css/2.bd0d916d.chunk.css",
+    "static/js/2.8981cef4.chunk.js": "/static/js/2.8981cef4.chunk.js",
+    "static/js/2.8981cef4.chunk.js.map": "/static/js/2.8981cef4.chunk.js.map",
+    "static/js/3.7c54ff98.chunk.js": "/static/js/3.7c54ff98.chunk.js",
+    "static/js/3.7c54ff98.chunk.js.map": "/static/js/3.7c54ff98.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/2.bd0d916d.chunk.css.map": "/static/css/2.bd0d916d.chunk.css.map",
+    "static/css/main.be82815a.chunk.css.map": "/static/css/main.be82815a.chunk.css.map",
+    "static/js/2.8981cef4.chunk.js.LICENSE.txt": "/static/js/2.8981cef4.chunk.js.LICENSE.txt",
+    "static/media/tailwind.css": "/static/media/open-sans-vietnamese-400-normal.19701383.woff2"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.9745023d.js",
+    "static/css/2.bd0d916d.chunk.css",
+    "static/js/2.8981cef4.chunk.js",
+    "static/css/main.be82815a.chunk.css",
+    "static/js/main.88db3372.chunk.js"
+  ]
+}
