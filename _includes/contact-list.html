@@ -1,0 +1,60 @@
+<!-- Contact List Include -->
+{% assign show_label = include.show_label | default: false %}
+{% assign show_labels = include.show_labels | default: false %}
+{% assign icon_size = include.icon_size | default: "text-base" %}
+{% assign label_size = include.label_size | default: "text-base" %}
+{% assign on_dark_bg = include.on_dark_bg | default: false %}
+{% assign classes = include.classes | default: "flex space-x-2" %}
+{% assign style_variant = include.style_variant | default: "default" %}
+
+{% assign show_any_label = show_label or show_labels %}
+
+<!-- Set link styles based on variant -->
+{% if style_variant == "card" %}
+  {% assign link_class = "contact-link" %}
+{% elsif style_variant == "footer" %}
+  {% assign link_class = "contact-link-footer" %}
+{% elsif style_variant == "minimal" %}
+  {% assign link_class = "contact-link-minimal" %}
+{% else %}
+  {% if include.color_style %}
+    {% assign link_class = include.color_style %}
+  {% elsif on_dark_bg %}
+    {% assign link_class = "text-white dark:text-white-dark hover:text-white dark:hover:text-white-dark" %}
+  {% else %}
+    {% assign link_class = "text-accent1 dark:text-accent1 hover:text-accent2 dark:hover:text-accent2 transition-colors duration-200" %}
+  {% endif %}
+  {% assign link_class = link_class | append: " " | append: icon_size %}
+{% endif %}
+
+<div class="{{ classes }}">
+  <!-- Email -->
+  <a href="mailto:alexmj212@gmail.com" 
+     title="Email: alexmj212@gmail.com" 
+     class="{{ link_class }}">
+    <i class="fas fa-envelope"></i>
+    {% if show_any_label %}
+      <div class="{{ label_size }} {% unless style_variant == "card" %}ml-2 leading-none{% endunless %}">alexmj212@gmail.com</div>
+    {% endif %}
+  </a>
+  
+  <!-- LinkedIn -->
+  <a href="https://www.linkedin.com/in/alex-johnson-077b3564/" 
+     title="LinkedIn: Alex Johnson" 
+     class="{{ link_class }}">
+    <i class="fab fa-linkedin"></i>
+    {% if show_any_label %}
+      <div class="{{ label_size }} {% unless style_variant == "card" %}ml-2 leading-none{% endunless %}">LinkedIn</div>
+    {% endif %}
+  </a>
+  
+  <!-- GitHub -->
+  <a href="https://www.github.com/alexmj212" 
+     title="GitHub: alexmj212" 
+     class="{{ link_class }}">
+    <i class="fab fa-github"></i>
+    {% if show_any_label %}
+      <div class="{{ label_size }} {% unless style_variant == "card" %}ml-2 leading-none{% endunless %}">GitHub</div>
+    {% endif %}
+  </a>
+</div>

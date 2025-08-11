@@ -1,0 +1,8 @@
+<!-- Section Include -->
+{% assign section_id = include.section_id %}
+{% assign full_screen = include.full_screen | default: false %}
+{% assign classes = include.classes %}
+
+<div id="{{ section_id }}" class="container w-full max-w-full z-10 {% if full_screen %}h-screen{% else %}py-24{% endif %} px-4 flex justify-center items-center flex-col {{ classes }}">
+  {{ include.content }}
+</div>

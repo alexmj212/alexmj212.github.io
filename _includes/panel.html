@@ -1,0 +1,11 @@
+<!-- Panel Include -->
+{% assign header = include.header %}
+{% assign override_width = include.override_width | default: "max-w-3xl" %}
+{% assign classes = include.classes %}
+
+<div class="w-full {{ override_width }} {{ classes }}">
+  {% if header %}
+    <h1>{{ header }}</h1>
+  {% endif %}
+  {{ include.content }}
+</div>

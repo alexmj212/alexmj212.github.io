@@ -1,0 +1,47 @@
+- date: "2021 - Now"
+  title: "Senior Software Engineer"
+  company: "Xometry, Inc."
+  summary:
+    - "Lead frontend development for enterprise manufacturing marketplace platform"
+    - "Architect and implement scalable React applications serving thousands of customers"
+    - "Collaborate with cross-functional teams to deliver customer-facing features and internal tools"
+    - "Mentor junior developers and contribute to engineering best practices and standards"
+    - "Drive technical initiatives to improve performance, accessibility, and user experience"
+  projects:
+    - name: ""
+      skills: ["React", "TypeScript", "GraphQL", "Node.js", "AWS", "Docker", "Jest", "Storybook", "Webpack"]
+
+- date: "2017 - 2021"
+  title: "Software Engineer"
+  company: "TwinSpires.com"
+  summary:
+    - "Work with multiple delivery teams focused on web-based products"
+    - "Coordinate design and implementation to meet project goals"
+    - "Organize developers and quality assurance team members for site-wide projects"
+    - "Support legacy products and administrative applications"
+  projects:
+    - name: ""
+      skills: ["Angular", "AngularJS", "TypeScript", "SASS", "CSS3", "HTML5", "Mobile", "Material", "Multimedia", "NodeJS", "NPM/Webpack", "AWS Lambda", "AWS DynamoDB"]
+
+- date: "2014 - 2017"
+  title: "Software Engineer"
+  company: "The Jockey Club Technology Services"
+  summary:
+    - "Created and deployed user interfaces and server infrastructure"
+    - "Lead the management of remote resources to achieve project goals"
+    - "Communicated proactively among team members and clients"
+    - "Supported and maintained existing applications and infrastructure"
+  projects:
+    - name: ""
+      skills: ["AngularJS", "Grails", "Bootstrap", "MS SQL Server", "Drupal", "Responsive Design"]
+
+- date: "2013 - 2014"
+  title: "System Administrator"
+  company: "iEntry, Inc."
+  summary:
+    - "Developed critical data and server infrastructure software"
+    - "Implemented marketing tools to identify subscriber audience"
+
+- date: "2011 - 2013"
+  title: "Technical Desktop Support"
+  company: "College of Arts and Sciences - University of Kentucky"

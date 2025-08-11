@@ -1,0 +1,104 @@
+<!-- Enhanced Navigation Bar -->
+<nav id="navbar" class="w-full sticky top-0 z-20 md:px-4 backdrop-blur-sm transition-transform duration-300 ease-in-out">
+  <div class="max-w-screen-lg mx-auto px-4 sm:px-6 lg:px-6 gradient-primary shadow-2xl md:rounded-lg md:mt-4 border-b-2 border-accent2 dark:border-accent2">
+    <div class="flex items-center justify-between h-16">
+      <!-- Enhanced Logo/Name -->
+      <div class="flex items-center">
+        <a href="/" class="text-white font-bold text-xl hover:text-gray-200 transition-colors duration-200 relative group">
+          {{ site.author.name }}
+          <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-white transition-all duration-200 group-hover:w-full"></span>
+        </a>
+      </div>
+
+      <!-- Desktop Navigation -->
+      <div class="hidden md:block">
+        <div class="ml-10 flex items-baseline space-x-4">
+          <a href="/#about" class="nav-link px-3 py-2 rounded-md text-sm font-medium">About</a>
+          <a href="/#portfolio" class="nav-link px-3 py-2 rounded-md text-sm font-medium">Portfolio</a>
+          <a href="/#skills" class="nav-link px-3 py-2 rounded-md text-sm font-medium">Skills</a>
+          <a href="/#experience" class="nav-link px-3 py-2 rounded-md text-sm font-medium">Experience</a>
+          <!-- <a href="/blog" class="nav-link px-3 py-2 rounded-md text-sm font-medium">Blog</a> -->
+
+          <!-- Contact Icons -->
+          {% include contact-list.html classes="hidden md:flex space-x-2 ml-4" style_variant="minimal" icon_size="text-lg" %}
+        </div>
+      </div>
+
+      <!-- Enhanced Mobile menu button -->
+      <div class="md:hidden">
+        <button id="mobile-menu-button" class="text-white hover:text-gray-200 focus:outline-none focus:text-gray-200 p-2 rounded hover:bg-white hover:bg-opacity-10 transition-all duration-200">
+          <i class="fas fa-bars text-xl"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Menu -->
+    <div id="mobile-menu" class="hidden md:hidden pb-4 transition-all duration-300 ease-in-out overflow-hidden opacity-0 max-h-0">
+      <div class="px-2 pt-2 pb-3 space-y-1">
+        <a href="/#about" class="nav-link block px-3 py-2 rounded-md text-base font-medium">About</a>
+        <a href="/#portfolio" class="nav-link block px-3 py-2 rounded-md text-base font-medium">Portfolio</a>
+        <a href="/#skills" class="nav-link block px-3 py-2 rounded-md text-base font-medium">Skills</a>
+        <a href="/#experience" class="nav-link block px-3 py-2 rounded-md text-base font-medium">Experience</a>
+        <!-- <a href="/blog" class="nav-link block px-3 py-2 rounded-md text-base font-medium">Blog</a> -->
+
+        <!-- Mobile Contact Icons -->
+        <div class="pt-2">{% include contact-list.html classes="flex space-x-4 justify-center" style_variant="minimal" icon_size="text-xl" %}</div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile menu toggle script -->
+<script>
+  const mobileMenuButton = document.getElementById("mobile-menu-button");
+  const mobileMenu = document.getElementById("mobile-menu");
+  const menuIcon = mobileMenuButton.querySelector("i");
+
+  let isMenuOpen = false;
+
+  mobileMenuButton.addEventListener("click", function () {
+    isMenuOpen = !isMenuOpen;
+
+    if (isMenuOpen) {
+      // Show menu with smooth animation
+      mobileMenu.classList.remove("hidden");
+      requestAnimationFrame(() => {
+        mobileMenu.classList.remove("opacity-0", "max-h-0");
+        mobileMenu.classList.add("opacity-100", "max-h-96");
+      });
+    } else {
+      // Hide menu with smooth animation
+      mobileMenu.classList.remove("opacity-100", "max-h-96");
+      mobileMenu.classList.add("opacity-0", "max-h-0");
+      setTimeout(() => {
+        mobileMenu.classList.add("hidden");
+      }, 300); // Match transition duration
+    }
+
+    // Toggle icon
+    menuIcon.classList.toggle("fa-bars");
+    menuIcon.classList.toggle("fa-times");
+  });
+
+  // Navbar scroll behavior
+  let lastScrollY = window.scrollY;
+  const navbar = document.getElementById("navbar");
+
+  window.addEventListener("scroll", () => {
+    const currentScrollY = window.scrollY;
+    const scrollThreshold = 100; // Only trigger after scrolling 100px
+
+    if (currentScrollY < scrollThreshold) {
+      // Always show navbar at the top
+      navbar.style.transform = "translateY(0)";
+    } else if (currentScrollY > lastScrollY) {
+      // Scrolling down - hide navbar
+      navbar.style.transform = "translateY(-100%)";
+    } else {
+      // Scrolling up - show navbar
+      navbar.style.transform = "translateY(0)";
+    }
+
+    lastScrollY = currentScrollY;
+  });
+</script>

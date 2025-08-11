@@ -1,0 +1,39 @@
+- name: "TypeScript"
+  icon: "fab fa-microsoft"
+  description: "Typing, classes, inheritance, interfaces, generics, compiler configuration"
+
+- name: "React"
+  icon: "fab fa-react"
+  description: "Lifecycle hooks, hoisting state, component abstraction, JSX, GraphQL"
+
+- name: "Angular (v2+)"
+  icon: "fab fa-angular"
+  description: "Modules, components, services, routing, NG tooling, Material"
+
+- name: "JavaScript (ES5+)"
+  icon: "fab fa-js-square"
+  description: "Classes, objects, JSON, event-based programming, ECMA modules, web components"
+
+- name: "NodeJS"
+  icon: "fab fa-node-js"
+  description: "Server-level Javascript development, environment configuration"
+
+- name: "Responsive Design"
+  icon: "fas fa-mobile-alt"
+  description: "Browser and operating system testing, media queries, responsive layouts, mobile-focused design"
+
+- name: "SASS / CSS3"
+  icon: "fab fa-css3"
+  description: "Styling frameworks, reusability, precedence, pseudo-selectors, media queries, inheritence, flex box"
+
+- name: "HTML5"
+  icon: "fab fa-html5"
+  description: "Semantic document elements, multimedia content and controls"
+
+- name: "NPM, Yarn, Grunt, Webpack"
+  icon: "fab fa-npm"
+  description: "Implementing toolchains for building and testing complex front-end frameworks"
+
+- name: "Git / GitHub"
+  icon: "fab fa-github"
+  description: "Branching strategy, merge conflict resolution, tagging, pull requests"

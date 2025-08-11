@@ -1,0 +1,57 @@
+- project: "TwinSpires Dark Mode"
+  images:
+    - "assets/img/twinspires/program/program-dark-thumb.png"
+    - "assets/img/twinspires/program/program-mobile.png"
+    - "assets/img/twinspires/program/program-dark.png"
+    - "assets/img/twinspires/program/program-light.png"
+    - "assets/img/twinspires/program/calendar-mobile.png"
+    - "assets/img/twinspires/program/toteboard-dark.png"
+    - "assets/img/twinspires/program/toteboard-light.png"
+  date: "2020 - 2021"
+  company: "TwinSpires.com"
+  caption: "Dark Mode Framework for TwinSpires.com"
+  challenge: "The existing TwinSpires.com theming infrastructure lacked any dark-mode implementations, with hard-coded colors throughout 100+ components. Users were requesting dark mode options for extended viewing sessions and to compete with other sites with modern UX features."
+  solution: "Led cross-functional team to architect and implement a comprehensive CSS custom property-based theming system. Refactored component library to support dynamic theme switching while maintaining visual consistency."
+  impact: "Delivered dark mode to 200K+ daily active users, and improved overall site performance through CSS consolidation."
+  technical_highlights:
+    - "Designed scalable CSS architecture using custom properties and SASS mixins"
+    - "Implemented real-time theme switching without page reloads"
+    - "Coordinated design system updates across multiple product teams"
+    - "Optimized bundle size by 15% through CSS consolidation"
+  badges: ["Angular", "SASS", "Mobile", "CSS3"]
+
+- project: "TwinSpires Responsive"
+  images:
+    - "assets/img/twinspires/responsive/program-mobile-thumb.png"
+    - "assets/img/twinspires/responsive/program-light.png"
+    - "assets/img/twinspires/responsive/landing-light.png"
+    - "assets/img/twinspires/responsive/calendar-light.png"
+  date: "2018"
+  company: "TwinSpires.com"
+  caption: "Responsive Implementation of TwinSpires.com"
+  challenge: "A redesigned TwinSpires.com was initially desktop-only and an aging mobile website needed to be replaced with a scalable single frontend. Complex betting interfaces and real-time data required complete reimagining for mobile without losing functionality."
+  solution: "Spearheaded mobile-first responsive redesign, creating adaptive component system that maintained full feature parity across all screen sizes. Implemented progressive enhancement strategy."
+  impact: "Increased mobile user engagement by serving a mobile-focused presentation and achieved 98% feature parity between desktop and mobile experiences."
+  technical_highlights:
+    - "Architected responsive component library with breakpoint-specific behaviors"
+    - "Implemented touch-optimized betting interfaces for complex wagering"
+    - "Optimized mobile performance by reducing bundle sizes and compiled CSS"
+    - "Led cross-browser compatibility testing across 20+ device/OS combinations"
+  badges: ["Angular", "TypeScript", "Mobile", "CSS3"]
+
+- project: "TwinSpires Video"
+  images:
+    - "assets/img/twinspires/video/video-desktop-thumb.png"
+    - "assets/img/twinspires/video/video-desktop-light.png"
+    - "assets/img/twinspires/video/video-mobile-light.png"
+  date: "2018 - 2020"
+  company: "TwinSpires.com"
+  caption: "Live and Replayable Video of Racing Content"
+  challenge: "Multiple third-party video providers with different APIs, inconsistent user experience, and complex requirements for live racing video with betting integration during events."
+  solution: "Built unified video frontend component layer supporting multiple providers and created seamless betting-while-watching experience with synchronized data overlays."
+  impact: "Increased user engagement during live events, and supported a video user experience for 10k daily active users."
+  technical_highlights:
+    - "Architected provider-agnostic video component system"
+    - "Implemented real-time data synchronization with live video streams"
+    - "Built custom video controls optimized for racing content"
+  badges: ["Angular", "HTML5", "Mobile", "Multimedia"]

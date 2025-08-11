@@ -1,0 +1,207 @@
+---
+layout: default
+title: "Alex Johnson - Portfolio & Blog"
+description: "Front-end software engineer specializing in building experiences for the web. Based in Lexington, KY."
+---
+
+<!-- Home/Hero Section -->
+<div id="home" class="w-full z-10 h-screen flex justify-center items-center -mt-8 relative">
+  <!-- Three.js Background Canvas -->
+  <canvas id="hero-canvas" class="absolute top-0 left-0 w-full h-full -z-10"></canvas>
+  
+  <div class="container max-w-4xl mx-auto px-4 relative z-20 text-center">
+    <h1 class="hero-title mb-8">Hey, my name is Alex</h1>
+    <p class="hero-subtitle mb-8">
+      I'm a <strong class="whitespace-nowrap font-semibold text-accent2 dark:text-accent2-dark">front-end software engineer</strong> based in <i class="whitespace-nowrap font-light text-accent1 dark:text-accent1-dark">Lexington, KY</i> and I specialize in building (and sometimes designing)
+      experiences for the web.
+    </p>
+    <div class="flex justify-center mt-12">
+      <a href="#portfolio" class="hero-button group">
+        <span>Explore My Projects</span>
+        <i class="fas fa-arrow-down ml-2 transition-transform duration-200 group-hover:translate-y-1"></i>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- About Section -->
+<div id="about" class="w-full z-10 py-24 bg-gray-50 dark:bg-gray-800">
+  <div class="container max-w-3xl mx-auto px-4">
+    <article class="about-card">
+      <div class="about-header">
+        <h1 class="section-title text-gray-900 dark:text-white">About Me</h1>
+      </div>
+
+      <div class="about-content">
+        <div class="flex md:flex-row flex-col items-start gap-8">
+          <!-- Portrait -->
+          <div class="flex-shrink-0 mx-auto md:mx-0">
+            <img class="w-48 h-48 md:w-56 md:h-56 object-cover rounded-full shadow-xl" alt="Alex Johnson portrait" src="{{ '/assets/img/portrait.jpg' | relative_url }}" />
+          </div>
+          
+          <!-- Content -->
+          <div class="flex-1 space-y-6">
+            <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+              For {{ site.time | date: "%Y" | minus: 2013 }} years, I've built exceptional user experiences and coordinated teams to deliver projects from concept to production. I focus on design, usability, and modern web technologies.
+            </p>
+            
+            <p class="text-gray-700 dark:text-gray-300">
+              My passion for web development started in high school building basic websites. This led me to graduate from the <strong>University of Kentucky</strong> in 2013 with a <strong>B.S. in Computer Science</strong>, where I studied web development, algorithms, and software engineering.
+            </p>
+          </div>
+        </div>
+
+        <div class="about-contact mt-8">{% include contact-list.html show_label=true label_size="text-base" style_variant="card" classes="flex flex-col md:flex-row gap-4" %}</div>
+      </div>
+    </article>
+  </div>
+</div>
+
+<!-- Portfolio Section -->
+<div id="portfolio" class="w-full z-10 py-24">
+  <div class="container max-w-3xl mx-auto px-4">
+    <h1 class="section-title">Portfolio</h1>
+    <p>
+      I take great <strong>pride</strong> in the work that I do. I translate that into successful projects and initiatives. When a project is successful, it deserves to be shared. Here are just a few examples of projects of which I am most proud.
+    </p>
+    <div class="portfolio-showcase my-16">
+      {% for portfolioItem in site.data.portfolio %}
+      <article class="portfolio-card">
+        <div class="portfolio-header">
+          <div class="portfolio-image">
+            {% if portfolioItem.images %}
+            <img src="{{ portfolioItem.images[0] | relative_url }}" alt="{{ portfolioItem.project }}" />
+            {% endif %}
+          </div>
+          <div class="portfolio-title-section">
+            <h2 class="content-h2">{{ portfolioItem.project }}</h2>
+            <p class="portfolio-caption">{{ portfolioItem.caption }}</p>
+            <div class="portfolio-meta">
+              <span class="portfolio-company">{{ portfolioItem.company }}</span>
+              <span class="portfolio-separator">•</span>
+              <span class="portfolio-date">{{ portfolioItem.date }}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="portfolio-content">
+          <div class="portfolio-section">
+            <h4 class="portfolio-section-title">Challenge</h4>
+            <p class="portfolio-section-content">{{ portfolioItem.challenge }}</p>
+          </div>
+
+          <div class="portfolio-section">
+            <h4 class="portfolio-section-title">Solution</h4>
+            <p class="portfolio-section-content">{{ portfolioItem.solution }}</p>
+          </div>
+
+          <div class="portfolio-section">
+            <h4 class="portfolio-section-title">Impact</h4>
+            <p class="portfolio-section-content">{{ portfolioItem.impact }}</p>
+          </div>
+
+          {% if portfolioItem.technical_highlights %}
+          <div class="portfolio-section">
+            <h4 class="portfolio-section-title">Technical Highlights</h4>
+            <ul class="technical-highlights-list">
+              {% for highlight in portfolioItem.technical_highlights %}
+              <li>{{ highlight }}</li>
+              {% endfor %}
+            </ul>
+          </div>
+          {% endif %}
+
+          <div class="portfolio-footer">
+            <div class="portfolio-badges">
+              {% for badge in portfolioItem.badges %}
+              <span class="badge">{{ badge }}</span>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<!-- Skills Section -->
+<div id="skills" class="w-full z-10 py-24 bg-gray-50 dark:bg-gray-800">
+  <div class="container max-w-3xl mx-auto px-4">
+    <article class="skills-card">
+      <div class="skills-header">
+        <h1 class="section-title text-gray-900 dark:text-white">Skills</h1>
+        <p class="text-gray-700 dark:text-gray-300">
+          In my career, I've developed using many languages and frameworks. Experience in a wide variety of front-end technologies has sharpened my skills. It has also helped me maintain a <strong>strong foundation</strong> in the basics of front-end
+          web development. I've even done a little work server-side.
+        </p>
+      </div>
+
+      <div class="skills-content">
+        {% for category_data in site.data.skills_categorized %} {% assign category = category_data[1] %}
+        <div class="skills-category-card">
+          <div class="skills-category-header">
+            <i class="{{ category.icon }} skills-category-icon text-accent1 dark:text-accent1-dark"></i>
+            <h3 class="skills-category-title text-gray-900 dark:text-white">{{ category.title }}</h3>
+          </div>
+          <div class="skills-list">
+            {% for skill in category.skills %}
+            <div class="skill-item">
+              <h4 class="skill-name text-gray-900 dark:text-white">{{ skill.name }}</h4>
+              <p class="skill-description text-gray-600 dark:text-gray-400">{{ skill.description }}</p>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        {% endfor %}
+
+        <div class="skills-additional">
+          <p class="text-sm text-gray-600 dark:text-gray-400 text-center"><strong>Additional:</strong> Jira, VSCode, macOS, Windows, Figma</p>
+        </div>
+      </div>
+    </article>
+  </div>
+</div>
+
+<!-- Experience Section -->
+<div id="experience" class="w-full z-10 py-24">
+  <div class="container max-w-3xl mx-auto px-4">
+    <h1 class="section-title">Experience</h1>
+    <p class="mb-12">
+      I've worked on teams of all shapes and sizes. My strengths are <strong>communication</strong> and <strong>team coordination</strong>. I've lead projects and initiatives across multiple teams. I accomplish this by using my strengths to translate
+      project requirements into successful solutions.
+    </p>
+
+    <div class="experience-timeline">
+      {% for experienceItem in site.data.experience %}
+      <article class="experience-card">
+        <div class="experience-date">{{ experienceItem.date }}</div>
+
+        <div class="experience-header">
+          <div class="mobile-date md:hidden">{{ experienceItem.date }}</div>
+          <h2 class="experience-title">{{ experienceItem.title }}</h2>
+          <h3 class="experience-company">{{ experienceItem.company }}</h3>
+        </div>
+
+        <div class="experience-content">
+          {% if experienceItem.summary %}
+          <ul class="list-disc ml-5 space-y-2">
+            {% for bullet in experienceItem.summary %}
+            <li class="leading-relaxed">{{ bullet }}</li>
+            {% endfor %}
+          </ul>
+          {% endif %}
+        </div>
+
+        {% if experienceItem.projects %} {% for project in experienceItem.projects %}
+        <div class="experience-badges">
+          {% for skill in project.skills %}
+          <span class="badge">{{ skill }}</span>
+          {% endfor %}
+        </div>
+        {% endfor %} {% endif %}
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,86 @@
+# Site settings
+title: "Alex Johnson"
+description: "Frontend Software Engineer based in Lexington, KY"
+baseurl: ""
+url: "https://alexmj212.github.io"
+author:
+  name: "Alex Johnson"
+  email: "alexmj212@gmail.com"
+  github: "alexmj212"
+  linkedin: "alexmj212"
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+permalink: /blog/:title/
+timezone: America/New_York
+
+# Plugins
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+  - jekyll-postcss
+
+# GitHub Pages compatibility
+repository: alexmj212/alexmj212.github.io
+
+# Collections
+collections:
+  posts:
+    output: true
+    permalink: /blog/:title/
+  portfolio:
+    output: true
+    permalink: /portfolio/:name/
+
+# Default layouts
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+  - scope:
+      path: ""
+      type: portfolio
+    values:
+      layout: portfolio
+  - scope:
+      path: ""
+    values:
+      layout: default
+
+# Exclude files from Jekyll processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - _backup
+  - build
+  - blog
+  - src
+  - public/blog
+  - craco.config.js
+  - postcss.config.js
+  - package.json
+  - package-lock.json
+  - vite.config.ts
+  - tsconfig.json
+  - tailwind.config.js
+  - assets/css/main.css
+  - tailwind-input.css
+  - README.md
+
+# Include hidden files
+include:
+  - _pages
+
+# CSS processing
+sass:
+  sass_dir: _sass
+  style: compressed
+
+# PostCSS for TailwindCSS
+postcss:
+  cache: false

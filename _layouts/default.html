@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% if page.title %}{{ page.title }} - {% endif %}{{ site.title }}</title>
+    <meta name="description" content="{{ page.description | default: site.description }}" />
+
+    <!-- FontAwesome -->
+    <script src="https://kit.fontawesome.com/926bef921d.js" crossorigin="anonymous"></script>
+
+    <!-- TailwindCSS -->
+    <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}" />
+
+    <!-- Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <!-- Jekyll SEO Tag -->
+    {% seo %}
+
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧙‍♂️</text></svg>" />
+  </head>
+  <body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+    <div class="app-container min-h-screen">
+      <!-- Navigation -->
+      {% include navbar.html %}
+
+      <!-- Main Content -->
+      <main class="w-full">{{ content }}</main>
+
+      <!-- Footer -->
+      {% include footer.html %}
+    </div>
+
+    <!-- Smooth scroll behavior -->
+    <script>
+      // Smooth scroll for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          document.querySelector(this.getAttribute("href")).scrollIntoView({
+            behavior: "smooth",
+          });
+        });
+      });
+
+      // Three.js Hero Background Animation
+      document.addEventListener("DOMContentLoaded", function () {
+        const canvas = document.getElementById("hero-canvas");
+        if (!canvas) return;
+
+        // Scene, camera, renderer setup
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({
+          canvas: canvas,
+          alpha: true,
+          antialias: true,
+        });
+
+        const heroSection = document.getElementById("home");
+        const rect = heroSection.getBoundingClientRect();
+
+        renderer.setSize(rect.width, rect.height);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+        // Position camera for rail perspective filling entire hero section
+        camera.position.set(0, -2, 10); // Further back to capture full width/height
+        camera.lookAt(0, 1, 0); // Look slightly up toward vanishing point
+        camera.aspect = rect.width / rect.height;
+        camera.updateProjectionMatrix();
+
+        // Adjust field of view to fill hero section
+        camera.fov = 60; // Wider field of view
+        camera.updateProjectionMatrix();
+
+        // Helper function to get CSS variable color as hex
+        const getCSSColor = (varName) => {
+          const color = getComputedStyle(document.documentElement).getPropertyValue(varName).trim();
+          return parseInt(color.replace('#', ''), 16);
+        };
+
+        // ===== CONFIGURABLE ANIMATION SETTINGS =====
+        const CONFIG = {
+          // Particle Settings
+          particleCount: 50,
+          particleSize: 0.08,
+          particleSizeVariation: 1, // Size variance multiplier (0-1, higher = more size difference)
+          particleGeometrySegments: 16, // Higher = smoother spheres (perfect circles)
+          baseSpeed: 0.0001,
+          speedVariation: 0.0002,
+
+          // Trail Settings
+          trailCount: 8,
+          trailOpacity: 0.12,
+          trailResolution: 2, // Lower = better performance
+
+          // Colors - using CSS variables with dark mode support
+          get startColor() { 
+            return window.matchMedia('(prefers-color-scheme: dark)').matches 
+              ? getCSSColor('--carolina-blue-dark') 
+              : getCSSColor('--carolina-blue');
+          },
+          get endColor() { 
+            return window.matchMedia('(prefers-color-scheme: dark)').matches 
+              ? getCSSColor('--russian-green-dark') 
+              : getCSSColor('--russian-green');
+          },
+          get trailColor() { 
+            return window.matchMedia('(prefers-color-scheme: dark)').matches 
+              ? getCSSColor('--carolina-blue-dark') 
+              : getCSSColor('--carolina-blue');
+          },
+
+          // Perspective & Layout
+          raceTrackWidth: 30, // Total width left to right
+          laneSpacing: 4, // Distance between lanes
+          vanishingPointY: 8, // Height of vanishing point
+          perspectiveIntensity: 0.9, // How much lanes converge (0-1)
+
+          // Scale & Position Controls
+          globalScale: 1.4, // Overall size multiplier for entire effect
+          verticalOffset: 0, // Move entire effect up/down
+          horizontalOffset: 4, // Move entire effect left/right
+          depthOffset: 0, // Move entire effect forward/backward
+          perspectiveScale: 0.8, // Base perspective scaling factor
+          scaleVariation: 0.2, // Random scale variation (0-1)
+          depthRange: 2, // Z-axis depth range for perspective
+
+          // Performance
+          enableMouseInteraction: false, // Temporarily disable for debugging
+          mouseInfluenceRadius: 2,
+          mouseSpeedBoost: 0,
+
+          // Hero Content Effects (Rotation Only)
+          contentRotationIntensity: 4, // Content rotation strength (degrees)
+          wobbleSmoothing: 1, // Smoothness of rotation transitions (0-1)
+        };
+
+        // Derived values for optimization
+        const particles = [];
+        const mouse = { x: 0, y: 0 };
+        const smoothMouse = { x: 0, y: 0 }; // Smoothed mouse for wobble effect
+        const halfTrackWidth = CONFIG.raceTrackWidth / 2;
+
+        // Optimized geometry - reuse for all particles (with global scale)
+        const particleGeometry = new THREE.SphereGeometry(CONFIG.particleSize * CONFIG.globalScale, CONFIG.particleGeometrySegments, CONFIG.particleGeometrySegments);
+
+        // Use MeshLambertMaterial for better distance-based lighting control
+        const particleMaterial = new THREE.MeshLambertMaterial({
+          color: CONFIG.startColor,
+          transparent: true,
+          opacity: 0.6,
+        });
+
+        // Perspective object with scale and position offsets
+        const PERSPECTIVE = {
+          startX: -halfTrackWidth * CONFIG.globalScale + CONFIG.horizontalOffset,
+          endX: halfTrackWidth * CONFIG.globalScale + CONFIG.horizontalOffset,
+          vanishingPointY: CONFIG.vanishingPointY * CONFIG.globalScale + CONFIG.verticalOffset,
+        };
+
+        // Create optimized particle trail lines
+        const createParticleTrails = () => {
+          const trailGroup = new THREE.Group();
+
+          // Optimized trail material
+          const trailMaterial = new THREE.LineBasicMaterial({
+            color: CONFIG.trailColor,
+            transparent: true,
+            opacity: CONFIG.trailOpacity,
+          });
+
+          // Create trails using config values
+          for (let i = 0; i < CONFIG.trailCount; i++) {
+            const trailGeometry = new THREE.BufferGeometry();
+            const trailPoints = [];
+
+            // Calculate lane position using configurable spacing and scale
+            const baseLaneY = (i - (CONFIG.trailCount - 1) / 2) * CONFIG.laneSpacing * CONFIG.globalScale + CONFIG.verticalOffset;
+
+            // Use configurable resolution for performance
+            for (let j = 0; j < CONFIG.trailResolution; j++) {
+              const progress = j / (CONFIG.trailResolution - 1);
+
+              // Exact same calculation as particles use with depth controls
+              const currentX = PERSPECTIVE.startX + (PERSPECTIVE.endX - PERSPECTIVE.startX) * progress;
+              const convergenceFactor = progress * CONFIG.perspectiveIntensity;
+              const startY = baseLaneY;
+              const targetY = PERSPECTIVE.vanishingPointY;
+              const finalY = startY + (targetY - startY) * convergenceFactor;
+              const finalZ = -progress * CONFIG.depthRange + CONFIG.depthOffset;
+
+              trailPoints.push(currentX, finalY, finalZ);
+            }
+
+            trailGeometry.setAttribute("position", new THREE.Float32BufferAttribute(trailPoints, 3));
+            const trailLine = new THREE.Line(trailGeometry, trailMaterial);
+            trailGroup.add(trailLine);
+          }
+
+          return trailGroup;
+        };
+
+        // Add particle trails to scene
+        const particleTrails = createParticleTrails();
+        scene.add(particleTrails);
+
+        // Simple lighting setup for particle-relative mouse lighting
+        const ambientLight = new THREE.AmbientLight(0xffffff, window.matchMedia('(prefers-color-scheme: dark)').matches ? 0.2 : 0.4);
+        scene.add(ambientLight);
+
+        // Mouse-following point light for particle interaction
+        const mouseLight = new THREE.PointLight(0xffffff, window.matchMedia('(prefers-color-scheme: dark)').matches ? 1.5 : 2.0, 30);
+        mouseLight.position.set(0, 0, 5); // Start position
+        scene.add(mouseLight);
+
+        // Additional soft glow light using theme colors
+        const glowLight = new THREE.PointLight(CONFIG.startColor, window.matchMedia('(prefers-color-scheme: dark)').matches ? 0.6 : 0.8, 25);
+        glowLight.position.set(0, 0, 3); // Closer for glow effect
+        scene.add(glowLight);
+
+        // Create simple 2D canvas overlay for mouse influence radius visualization
+        const overlayCanvas = document.createElement("canvas");
+        overlayCanvas.style.position = "absolute";
+        overlayCanvas.style.top = "0";
+        overlayCanvas.style.left = "0";
+        overlayCanvas.style.pointerEvents = "none";
+        overlayCanvas.style.zIndex = "5";
+        overlayCanvas.width = rect.width;
+        overlayCanvas.height = rect.height;
+        canvas.parentElement.appendChild(overlayCanvas);
+
+        const overlayCtx = overlayCanvas.getContext("2d");
+
+        // Get hero content container (not the whole section)
+        const heroContent = heroSection ? heroSection.querySelector(".container.max-w-4xl") : null;
+
+        // Apply initial setup to hero content (rotation only)
+        if (heroContent) {
+          heroContent.style.transformOrigin = "center center";
+          heroContent.style.transition = "transform 0.1s ease-out";
+        }
+
+        // Create optimized particles using config values
+        for (let i = 0; i < CONFIG.particleCount; i++) {
+          const particle = new THREE.Mesh(particleGeometry, particleMaterial.clone());
+
+          // Configurable color gradient
+          const gradientFactor = i / (CONFIG.particleCount - 1);
+          const startColor = new THREE.Color(CONFIG.startColor);
+          const endColor = new THREE.Color(CONFIG.endColor);
+          const particleColor = startColor.lerp(endColor, gradientFactor);
+          particle.material.color = particleColor;
+
+          // Optimized particle distribution across trails with scale
+          const particlesPerTrail = Math.ceil(CONFIG.particleCount / CONFIG.trailCount);
+          const trailIndex = Math.floor(i / particlesPerTrail);
+          const baseLaneY = (trailIndex - (CONFIG.trailCount - 1) / 2) * CONFIG.laneSpacing * CONFIG.globalScale + CONFIG.verticalOffset;
+
+          // Random size variance for each particle
+          const sizeVariance = 0.5 + Math.random() * CONFIG.particleSizeVariation;
+
+          particle.userData = {
+            progress: Math.random(), // Random starting position
+            speed: CONFIG.baseSpeed + Math.random() * CONFIG.speedVariation,
+            baseSpeed: CONFIG.baseSpeed + Math.random() * CONFIG.speedVariation,
+            baseLaneY: baseLaneY,
+            baseOpacity: 0.4 + Math.random() * 0.4,
+            baseSizeVariance: sizeVariance, // Store individual size multiplier
+          };
+
+          scene.add(particle);
+          particles.push(particle);
+        }
+
+        // Enhanced mouse interaction with hero wobble
+        if (CONFIG.enableMouseInteraction) {
+          let mouseMoveThrottle = false;
+          document.addEventListener("mousemove", function (event) {
+            if (!mouseMoveThrottle) {
+              mouseMoveThrottle = true;
+              requestAnimationFrame(() => {
+                // Canvas mouse tracking for particles
+                const rect = canvas.getBoundingClientRect();
+                mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+                mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+                mouse.screenX = event.clientX;
+                mouse.screenY = event.clientY;
+
+                // Global mouse tracking for hero wobble
+                const windowCenterX = window.innerWidth / 2;
+                const windowCenterY = window.innerHeight / 2;
+                const mouseXFromCenter = (event.clientX - windowCenterX) / windowCenterX;
+                const mouseYFromCenter = (event.clientY - windowCenterY) / windowCenterY;
+
+                // Smooth mouse movement for content rotation
+                smoothMouse.x += (mouseXFromCenter - smoothMouse.x) * CONFIG.wobbleSmoothing;
+                smoothMouse.y += (mouseYFromCenter - smoothMouse.y) * CONFIG.wobbleSmoothing;
+
+                // Apply simple rotation to hero content only (not particles/canvas)
+                if (heroContent) {
+                  // Clean 3D rotation based on mouse position
+                  const rotateX = -smoothMouse.y * CONFIG.contentRotationIntensity; // Tilt forward/backward
+                  const rotateY = smoothMouse.x * CONFIG.contentRotationIntensity; // Tilt left/right
+
+                  heroContent.style.transform = `
+                    perspective(1200px)
+                    rotateX(${rotateX}deg) 
+                    rotateY(${rotateY}deg)
+                  `;
+                }
+
+                // Update point lights to follow mouse for particle-relative lighting
+                if (mouseLight && glowLight) {
+                  // Convert screen mouse to 3D world coordinates matching particle coordinate system
+                  const rect = canvas.getBoundingClientRect();
+
+                  // Map mouse to same coordinate system as particles
+                  const mouseXNorm = (event.clientX - rect.left) / rect.width; // 0 to 1
+                  const mouseYNorm = (event.clientY - rect.top) / rect.height; // 0 to 1
+
+                  // Convert to particle world space (matching PERSPECTIVE coordinates)
+                  const mouseX3D = PERSPECTIVE.startX + (PERSPECTIVE.endX - PERSPECTIVE.startX) * mouseXNorm;
+                  const mouseY3D = 10 - mouseYNorm * 20; // Map screen Y (0-1) to world Y (10 to -10)
+                  const mouseZ3D = 5; // Position lights in front of particles
+
+                  // Update lights to actual mouse world position
+                  mouseLight.position.set(mouseX3D, mouseY3D, mouseZ3D);
+                  glowLight.position.set(mouseX3D * 0.95, mouseY3D * 0.95, mouseZ3D - 1); // Slightly offset and closer
+                }
+
+                // Draw 2D mouse influence radius on overlay canvas
+                const canvasRect = canvas.getBoundingClientRect();
+                const canvasMouseX = event.clientX - canvasRect.left;
+                const canvasMouseY = event.clientY - canvasRect.top;
+
+                // Clear and redraw radius circle
+                overlayCtx.clearRect(0, 0, overlayCanvas.width, overlayCanvas.height);
+                if (canvasMouseX >= 0 && canvasMouseX <= overlayCanvas.width && canvasMouseY >= 0 && canvasMouseY <= overlayCanvas.height) {
+                  const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                  const strokeColor = isDark 
+                    ? getComputedStyle(document.documentElement).getPropertyValue('--carolina-blue-dark').trim() + '80'  // 50% opacity
+                    : getComputedStyle(document.documentElement).getPropertyValue('--carolina-blue').trim() + '66';      // 40% opacity
+                  const fillColor = isDark 
+                    ? getComputedStyle(document.documentElement).getPropertyValue('--carolina-blue-dark').trim() + '0D'   // 5% opacity
+                    : getComputedStyle(document.documentElement).getPropertyValue('--carolina-blue').trim() + '0D';       // 5% opacity
+                    
+                  overlayCtx.beginPath();
+                  overlayCtx.arc(canvasMouseX, canvasMouseY, CONFIG.mouseInfluenceRadius * 50, 0, 2 * Math.PI);
+                  overlayCtx.strokeStyle = strokeColor;
+                  overlayCtx.lineWidth = 2;
+                  overlayCtx.stroke();
+                  overlayCtx.fillStyle = fillColor;
+                  overlayCtx.fill();
+                }
+
+                mouseMoveThrottle = false;
+              });
+            }
+          });
+        }
+
+        // Animation loop with perspective-skewed racing motion
+        function animate() {
+          requestAnimationFrame(animate);
+
+          // Optimized animation loop using config values
+          particles.forEach((particle) => {
+            const userData = particle.userData;
+
+            // Calculate position using perspective values
+            const currentX = PERSPECTIVE.startX + (PERSPECTIVE.endX - PERSPECTIVE.startX) * userData.progress;
+            const perspectiveFactor = 1 - userData.progress * 0.8;
+            const convergenceFactor = userData.progress * CONFIG.perspectiveIntensity;
+
+            // Calculate Y position with configurable convergence
+            const finalY = userData.baseLaneY + (PERSPECTIVE.vanishingPointY - userData.baseLaneY) * convergenceFactor;
+
+            // Optional mouse interaction for performance
+            let speedMultiplier = 1;
+            let mouseOpacityBoost = 0;
+
+            if (CONFIG.enableMouseInteraction) {
+              // Create a separate vector for projection to avoid modifying particle position
+              const projectionVector = new THREE.Vector3(currentX, finalY, finalZ);
+              projectionVector.project(camera);
+
+              // Convert normalized device coordinates to screen pixels
+              const rect = canvas.getBoundingClientRect();
+              const particleScreenX = ((projectionVector.x + 1) * rect.width) / 2;
+              const particleScreenY = ((-projectionVector.y + 1) * rect.height) / 2;
+
+              // Calculate 2D screen distance between mouse and particle
+              const mouseScreenX = mouse.screenX - rect.left;
+              const mouseScreenY = mouse.screenY - rect.top;
+
+              const screenDistance = Math.sqrt(Math.pow(mouseScreenX - particleScreenX, 2) + Math.pow(mouseScreenY - particleScreenY, 2));
+
+              // Use screen pixel distance with scaled radius
+              const influenceRadiusPixels = CONFIG.mouseInfluenceRadius * 50; // Same scaling as visual radius
+              speedMultiplier = screenDistance < influenceRadiusPixels ? CONFIG.mouseSpeedBoost : 1;
+              mouseOpacityBoost = screenDistance < influenceRadiusPixels * 1.5 ? (1 - screenDistance / (influenceRadiusPixels * 1.5)) * 0.2 : 0;
+            }
+
+            // Update particle
+            userData.speed = userData.baseSpeed * speedMultiplier;
+            userData.progress += userData.speed;
+
+            if (userData.progress >= 1) {
+              userData.progress = 0;
+            }
+
+            // Set optimized position and scale with configurable controls and size variance
+            const finalZ = userData.progress * -CONFIG.depthRange + CONFIG.depthOffset;
+            particle.position.set(currentX, finalY, finalZ);
+
+            // Apply individual size variance along with perspective and global scaling (no random flicker)
+            const scale = perspectiveFactor * CONFIG.perspectiveScale * CONFIG.globalScale * userData.baseSizeVariance;
+            particle.scale.setScalar(scale);
+
+            // Optimized opacity calculation
+            const distanceOpacity = userData.baseOpacity * (0.3 + perspectiveFactor * 0.7);
+            particle.material.opacity = Math.min(distanceOpacity + mouseOpacityBoost, 0.9);
+          });
+
+          renderer.render(scene, camera);
+        }
+
+        // Handle window resize
+        window.addEventListener("resize", function () {
+          const rect = heroSection.getBoundingClientRect();
+          camera.aspect = rect.width / rect.height;
+          camera.updateProjectionMatrix();
+          renderer.setSize(rect.width, rect.height);
+
+          // Update overlay canvas size
+          overlayCanvas.width = rect.width;
+          overlayCanvas.height = rect.height;
+        });
+
+        // Start animation
+        animate();
+      });
+    </script>
+  </body>
+</html>
