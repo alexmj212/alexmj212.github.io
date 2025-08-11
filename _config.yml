@@ -55,6 +55,7 @@ exclude:
   - Gemfile
   - Gemfile.lock
   - node_modules
+  - vendor
   - _backup
   - build
   - blog
