@@ -3,14 +3,15 @@
   "version": "4.0.0",
   "description": "Alex Johnson - Portfolio & Blog",
   "scripts": {
-    "build:css": "tailwindcss -i ./tailwind-input.css -o ./_site/assets/css/main.css",
-    "build:css:watch": "tailwindcss -i ./tailwind-input.css -o ./_site/assets/css/main.css --watch",
-    "build": "bundle exec jekyll build && npm run build:css",
-    "serve": "bundle exec jekyll serve --livereload",
-    "dev": "bundle exec jekyll serve --livereload & npm run build:css:watch"
+    "build:css": "tailwindcss -i ./tailwind-input.css -o ./assets/css/main.css --minify",
+    "build": "npm run build:css && bundle exec jekyll build",
+    "serve": "npm run build:css && bundle exec jekyll serve --livereload",
+    "dev": "npm run build:css && bundle exec jekyll serve --livereload --drafts"
   },
   "devDependencies": {
-    "tailwindcss": "^3.4.17",
-    "autoprefixer": "^10.4.21"
+    "autoprefixer": "^10.4.21",
+    "cssnano": "^7.1.0",
+    "postcss-import": "^16.1.1",
+    "tailwindcss": "^3.4.17"
   }
 }

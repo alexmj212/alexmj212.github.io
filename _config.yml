@@ -20,7 +20,6 @@ plugins:
   - jekyll-feed
   - jekyll-sitemap
   - jekyll-seo-tag
-  - jekyll-postcss
 
 # GitHub Pages compatibility
 repository: alexmj212/alexmj212.github.io
@@ -68,7 +67,6 @@ exclude:
   - vite.config.ts
   - tsconfig.json
   - tailwind.config.js
-  - assets/css/main.css
   - tailwind-input.css
   - README.md
 
@@ -81,6 +79,4 @@ sass:
   sass_dir: _sass
   style: compressed
 
-# PostCSS for TailwindCSS
-postcss:
-  cache: false
+
