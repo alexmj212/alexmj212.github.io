@@ -1,71 +1,16 @@
 {
   "name": "alexmj212.dev",
-  "version": "3.0.0",
-  "description": "Alex Johnson",
-  "homepage": "https://alexmj212.dev",
-  "author": "Alex Johnson",
-  "license": "MIT",
-  "repository": "git+https://github.com/alexmj212/alexmj212.github.io.git",
-  "bugs": {
-    "url": "https://github.com/alexmj212/alexmj212.github.io/issues"
-  },
-  "private": true,
-  "dependencies": {
-    "@craco/craco": "^6.4.2",
-    "@fontsource/exo": "^4.5.1",
-    "@fontsource/open-sans": "^4.5.0",
-    "@fortawesome/fontawesome-svg-core": "^1.2.36",
-    "@fortawesome/free-brands-svg-icons": "^5.15.4",
-    "@fortawesome/free-regular-svg-icons": "^5.15.4",
-    "@fortawesome/free-solid-svg-icons": "^5.15.4",
-    "@fortawesome/react-fontawesome": "^0.1.16",
-    "@headlessui/react": "^1.4.2",
-    "@testing-library/jest-dom": "^5.11.4",
-    "@testing-library/react": "^11.1.0",
-    "@testing-library/user-event": "^12.1.10",
-    "@types/jest": "^26.0.15",
-    "@types/node": "^12.0.0",
-    "@types/react": "^17.0.0",
-    "@types/react-dom": "^17.0.0",
-    "@types/react-scroll": "^1.8.3",
-    "autoprefixer": "^9",
-    "gh-pages": "^3.2.3",
-    "postcss": "^7",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-intersection-observer": "^8.32.5",
-    "react-scripts": "4.0.3",
-    "react-scroll": "^1.8.4",
-    "tailwindcss": "npm:@tailwindcss/postcss7-compat",
-    "typescript": "^4.1.2",
-    "web-vitals": "^1.0.1"
-  },
+  "version": "4.0.0",
+  "description": "Alex Johnson - Portfolio & Blog",
   "scripts": {
-    "predeploy": "yarn build",
-    "build:blog": "cd ./blog && yarn build && cd ..",
-    "deploy:blog": "rsync -av --delete  public/blog/ ./build/blog",
-    "deploy": "gh-pages -d build",
-    "start": "BROWSER=none craco start",
-    "build": "craco build && yarn build:blog && yarn deploy:blog",
-    "test": "craco test",
-    "eject": "react-scripts eject"
+    "build:css": "tailwindcss -i ./tailwind-input.css -o ./_site/assets/css/main.css",
+    "build:css:watch": "tailwindcss -i ./tailwind-input.css -o ./_site/assets/css/main.css --watch",
+    "build": "bundle exec jekyll build && npm run build:css",
+    "serve": "bundle exec jekyll serve --livereload",
+    "dev": "bundle exec jekyll serve --livereload & npm run build:css:watch"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "devDependencies": {
+    "tailwindcss": "^3.4.17",
+    "autoprefixer": "^10.4.21"
   }
 }

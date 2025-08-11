@@ -21,6 +21,7 @@
     "@headlessui/react": "^1.4.2",
     "@types/react": "^17.0.37",
     "@types/react-dom": "^17.0.11",
+    "ajv": "^8.17.1",
     "autoprefixer": "^10.4.0",
     "gatsby": "^4.3.0",
     "gatsby-plugin-feed": "^4.3.0",
@@ -53,7 +54,9 @@
     "tailwindcss": "^3.0.1"
   },
   "devDependencies": {
-    "prettier": "^2.4.1"
+    "@vitejs/plugin-react": "^5.0.0",
+    "prettier": "^2.4.1",
+    "vite": "^7.1.1"
   },
   "keywords": [
     "gatsby"
@@ -61,12 +64,12 @@
   "scripts": {
     "watch:postcss": "postcss src/styles/tailwind.css -o src/styles/main.css -w",
     "postcss": "postcss src/styles/tailwind.css -o src/styles/main.css",
-    "build": "npx gatsby clean && yarn postcss && npx gatsby build --prefix-paths && yarn sync",
+    "build": "npx gatsby clean && npm run postcss && npx gatsby build --prefix-paths && npm run sync",
     "sync": "rsync -av --delete --exclude 'admin' public/ ../public/blog",
     "develop": "npx gatsby clean && npx gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
-    "start": "yarn watch:postcss & npx gatsby develop",
-    "admin": "npx netlify-cms-proxy-server & yarn start",
+    "start": "npm run watch:postcss & npx gatsby develop",
+    "admin": "npx netlify-cms-proxy-server & npm run start",
     "serve": "npx gatsby serve",
     "clean": "npx gatsby clean",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
