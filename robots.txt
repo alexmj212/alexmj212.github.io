@@ -1,0 +1,10 @@
+# robots.txt for alexmj212.github.io
+User-agent: *
+Allow: /
+Disallow: /assets/
+Disallow: /_layouts/
+Disallow: /_includes/
+Disallow: /_data/
+
+# Sitemap location
+Sitemap: https://alexmj212.github.io/sitemap.xml

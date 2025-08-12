@@ -1,0 +1,17 @@
+{
+  "name": "Alex Johnson",
+  "short_name": "AJ Portfolio",
+  "description": "Front-end software engineer specializing in building experiences for the web",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0b8bd5",
+  "icons": [
+    {
+      "src": "/assets/img/portrait.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ]
+}
