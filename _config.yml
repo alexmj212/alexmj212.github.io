@@ -2,7 +2,7 @@
 title: "Alex Johnson"
 description: "Frontend Software Engineer based in Lexington, KY"
 baseurl: ""
-url: "https://alexmj212.github.io"
+url: "https://alexmj212.dev"
 author:
   name: "Alex Johnson"
   email: "alexmj212@gmail.com"
@@ -79,5 +79,3 @@ include:
 sass:
   sass_dir: _sass
   style: compressed
-
-
