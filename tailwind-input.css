@@ -13,9 +13,11 @@
   --cadet-gray: #818f9c;
   --carolina-blue: #0b8bd5;
   --carolina-blue-dark: #38799d;
+  --carolina-blue-muted: #7db3d9;
   --indigo-dye: #053f61;
   --russian-green: #5b9a63;
   --russian-green-dark: #52905a;
+  --russian-green-muted: #93b896;
   --royal-blue-dark: #0b1c51;
   --space-cadet: #1b264b;
   --gunmetal: #2e3438;
@@ -46,7 +48,11 @@
   }
 
   .gradient-subtle {
-    @apply bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-700;
+    @apply bg-gradient-to-br from-gray-50/60 to-slate-100/60 dark:from-gray-800/80 dark:to-gray-700/80;
+  }
+
+  .gradient-none {
+    background: none;
   }
 
   /* Card Styles */
@@ -54,6 +60,20 @@
     @apply bg-white dark:bg-gray-900;
     @apply rounded-xl shadow-lg;
     @apply hover:shadow-xl transition-all duration-300;
+  }
+
+  /* Enhanced padding for cards on large screens */
+  .card-padding {
+    @apply p-8 xl:p-10;
+  }
+
+  /* Consistent Panel Class for all content cards */
+  .content-panel {
+    @apply bg-gradient-to-br from-gray-50/60 to-slate-100/60 dark:from-gray-800/80 dark:to-gray-700/80;
+    @apply border border-gray-200 dark:border-gray-700;
+    @apply rounded-xl shadow-lg;
+    @apply hover:shadow-xl hover:scale-[1.005] transition-all duration-300;
+    backdrop-filter: blur(5px);
   }
 
   .card-bordered {
@@ -125,14 +145,6 @@
     @apply w-3/4;
   }
 
-  /* Timeline Elements */
-  .timeline-dot {
-    @apply w-4 h-4 rounded-full;
-    @apply gradient-primary-diagonal;
-    @apply border-4 border-white dark:border-gray-900;
-    @apply shadow-lg;
-  }
-
   .timeline-line {
     @apply w-0.5;
     @apply gradient-primary-vertical;
@@ -140,11 +152,65 @@
 
   /* Content Containers */
   .container-narrow {
-    @apply container max-w-3xl mx-auto px-4;
+    @apply container max-w-4xl mx-auto px-4;
   }
 
   .container-wide {
-    @apply container max-w-4xl mx-auto px-4;
+    @apply container max-w-6xl mx-auto px-4;
+  }
+
+  /* Responsive content containers */
+  .container-responsive {
+    @apply container mx-auto px-4;
+    @apply max-w-4xl lg:max-w-5xl xl:max-w-6xl 2xl:max-w-6xl;
+  }
+
+  /* Improved layout for better text flow */
+  .content-layout {
+    @apply grid gap-8;
+    @apply grid-cols-1 lg:grid-cols-2 xl:grid-cols-3;
+  }
+
+  .content-layout-balanced {
+    @apply grid gap-6 lg:gap-8;
+    @apply grid-cols-1 lg:grid-cols-2;
+  }
+
+  /* Better section content organization */
+  .section-grid {
+    @apply grid gap-8;
+    @apply grid-cols-1 lg:grid-cols-2 xl:grid-cols-3;
+  }
+
+  .section-grid > * {
+    @apply min-w-0; /* Prevent grid blowout */
+  }
+
+  /* Responsive text containers */
+  .text-container-optimal {
+    @apply max-w-none sm:max-w-lg md:max-w-xl lg:max-w-2xl xl:max-w-3xl;
+  }
+
+  /* Hero Layout */
+  .hero-layout {
+    @apply flex flex-col lg:flex-row lg:items-center gap-8 lg:gap-16;
+    @apply text-center;
+  }
+
+  .hero-title-section {
+    @apply flex-1 lg:text-left;
+
+    & .hero-title {
+      @apply text-6xl md:text-7xl lg:text-8xl xl:text-[15rem];
+    }
+  }
+
+  .hero-content {
+    @apply flex-1 lg:text-right;
+  }
+
+  .hero-actions {
+    @apply flex justify-center lg:justify-end;
   }
 
   .section-full {
@@ -152,7 +218,8 @@
   }
 
   .section-bg-alt {
-    @apply bg-gray-50 dark:bg-gray-800;
+    @apply bg-gray-50/90 dark:bg-gray-800/80;
+    backdrop-filter: blur(5px);
   }
 
   /* ==================================
@@ -246,43 +313,35 @@
 
     &::before {
       content: "";
-      @apply absolute left-8 top-0 bottom-0;
+      @apply absolute left-2 md:left-2 top-0 bottom-0;
       @apply timeline-line;
-      @apply hidden md:block;
     }
   }
 
   .experience-card {
-    @apply gradient-subtle card-bordered;
-    @apply rounded-xl shadow-lg;
-    @apply hover:shadow-xl transition-all duration-300;
-    @apply p-6 mb-8 ml-0 md:ml-20;
-    @apply relative;
+    @apply content-panel p-6 xl:p-8 mb-8 xl:mb-12 ml-0 md:ml-8 xl:ml-10 relative;
 
+    /* Timeline dot */
     &::before {
       content: "";
-      @apply absolute -left-20 top-8;
-      @apply timeline-dot;
-      @apply hidden md:block;
+      @apply absolute hidden md:block md:-left-[44px] top-6 xl:top-9;
+      @apply w-6 h-6 bg-accent1 dark:bg-accent1-dark rounded-full;
+      @apply border-4 border-white dark:border-gray-900;
     }
 
     & .experience-date {
-      @apply absolute -left-36 top-6 text-sm font-semibold;
-      @apply text-accent2 dark:text-accent2;
-      @apply bg-white dark:bg-gray-900 px-3 py-1 rounded-full;
-      @apply shadow-sm border border-gray-200 dark:border-gray-700;
-      @apply whitespace-nowrap hidden md:block;
+      @apply rounded-full inline-block align-middle;
+      @apply font-mono font-semibold text-xs whitespace-nowrap uppercase;
+      @apply text-gray-600 dark:text-gray-300;
+      @apply bg-gray-200 dark:bg-gray-700;
+      @apply mb-3 py-2 px-4;
+      @apply shadow-sm;
+      @apply tracking-wider;
+      @apply transition-all duration-200;
     }
 
     & .experience-header {
       @apply mb-4;
-
-      & .mobile-date {
-        @apply inline-block px-3 py-1 rounded-full;
-        @apply bg-accent1 text-white text-sm font-semibold;
-        @apply mb-3;
-        @apply md:hidden;
-      }
 
       & .experience-title {
         @apply font-display text-2xl font-bold;
@@ -312,21 +371,6 @@
     & .experience-badges {
       @apply flex flex-wrap gap-2 mt-4 pt-4;
       @apply border-t border-gray-200 dark:border-gray-600;
-    }
-  }
-
-  /* Mobile Timeline Adjustments */
-  @media (max-width: 767px) {
-    .experience-card {
-      @apply ml-0;
-
-      &::before {
-        @apply hidden;
-      }
-    }
-
-    .experience-timeline::before {
-      @apply hidden;
     }
   }
 
@@ -390,35 +434,28 @@
     }
   }
 
-  /* Hero Button - extends btn-gradient */
+  /* Hero Button - simplified */
   .hero-button {
-    @apply btn-gradient;
+    @apply gradient-primary;
+    @apply text-white font-semibold;
     @apply inline-flex items-center justify-center;
-    @apply px-8 py-4 text-lg font-semibold;
-    @apply shadow-lg hover:shadow-xl;
-    @apply transform hover:-translate-y-0.5;
+    @apply px-8 py-4 text-lg;
+    @apply rounded-lg;
     @apply transition-all duration-200;
-    @apply border-2 border-transparent;
-    @apply hover:scale-105;
-  }
-
-  .hero-button:hover {
-    @apply shadow-2xl;
-    box-shadow: 0 25px 50px -12px light-dark(color-mix(in srgb, var(--carolina-blue) 30%, transparent), color-mix(in srgb, var(--carolina-blue-dark) 40%, transparent));
+    @apply hover:bg-opacity-90;
   }
 
   /* Enhanced Navigation Styles */
   .nav-link {
-    @apply text-white hover:text-gray-200;
+    @apply text-white md:text-gray-900 md:dark:text-white;
+    @apply hover:text-gray-200 md:hover:text-gray-700 md:dark:hover:text-gray-200;
     @apply transition-all duration-200 ease-out;
-    @apply hover:bg-white hover:bg-opacity-10;
     @apply relative;
 
     &::after {
       content: "";
-      @apply absolute bottom-0 left-1/2 w-0 h-0.5;
-      @apply bg-white transition-all duration-200;
-      @apply transform -translate-x-1/2;
+      @apply absolute bottom-0 left-0 w-0 h-0.5;
+      @apply bg-white md:bg-gray-900 md:dark:bg-white transition-all duration-200;
     }
 
     &:hover::after {
@@ -501,10 +538,11 @@
   }
 
   .contact-link-minimal {
-    @apply text-white hover:text-gray-200;
+    @apply text-white md:text-gray-900 md:dark:text-white;
+    @apply hover:text-gray-200 md:hover:text-gray-700 md:dark:hover:text-gray-200;
     @apply transition-colors duration-200;
     @apply p-2 rounded;
-    @apply hover:bg-white hover:bg-opacity-10;
+    @apply hover:bg-white hover:bg-opacity-10 md:hover:bg-gray-100 md:hover:bg-opacity-50 md:dark:hover:bg-gray-800 md:dark:hover:bg-opacity-50;
   }
 
   .contact-link-footer {
@@ -542,48 +580,49 @@
     }
   }
 
-  /* Portfolio Showcase Styles */
+  /* Portfolio Grid */
   .portfolio-showcase {
-    @apply space-y-12;
+    @apply grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6;
   }
 
-  .portfolio-card {
-    @apply gradient-subtle card-bordered;
-    @apply rounded-xl shadow-lg;
-    @apply hover:shadow-xl transition-all duration-300;
-    @apply overflow-hidden;
+  /* Portfolio Showcase Styles */
 
+  .portfolio-card {
+    @apply relative content-panel cursor-pointer transition-all duration-500 ease-in-out;
+    @apply hover:shadow-xl hover:scale-[1.02];
+
+    /* Compact card state */
     & .portfolio-header {
-      @apply flex md:flex-row flex-col;
+      @apply flex flex-col;
+    }
+
+    & .portfolio-image-container {
+      @apply relative w-full h-48 overflow-hidden rounded-t-lg;
     }
 
     & .portfolio-image {
-      @apply md:w-80 w-full md:h-64 h-48 flex-shrink-0;
+      @apply w-full h-full flex items-center justify-center p-4;
 
       & img {
-        @apply w-full h-full object-cover;
+        @apply w-full h-full object-cover rounded-lg transition-transform duration-300;
       }
     }
 
     & .portfolio-title-section {
-      @apply p-6 flex-1;
+      @apply p-4;
     }
 
     & .portfolio-caption {
-      @apply text-lg font-medium text-gray-600 dark:text-gray-400;
-      @apply mb-3;
+      @apply text-sm font-medium text-gray-600 dark:text-gray-400;
+      @apply mb-2 line-clamp-2;
     }
 
     & .portfolio-meta {
-      @apply flex flex-wrap items-center gap-2 text-sm;
-      @apply text-gray-500 dark:text-gray-400;
+      @apply flex flex-wrap items-center gap-2 text-xs;
+      @apply text-gray-500 dark:text-gray-400 mb-3;
 
       & .portfolio-company {
         @apply font-semibold text-accent1 dark:text-accent1-dark;
-      }
-
-      & .portfolio-role {
-        @apply font-medium;
       }
 
       & .portfolio-separator {
@@ -591,69 +630,141 @@
       }
     }
 
-    & .portfolio-content {
-      @apply px-6 pb-6 space-y-6;
+    /* Footer styling for compact view */
+    & .portfolio-footer {
+      @apply px-4 pb-4;
 
-      & .portfolio-section {
-        @apply space-y-2;
-      }
+      & .portfolio-badges {
+        @apply flex flex-wrap gap-2;
 
-      & .portfolio-section-title {
-        @apply subsection-header gradient-border-left;
-      }
-
-      & .portfolio-section-content {
-        @apply text-gray-700 dark:text-gray-300;
-        @apply leading-relaxed;
-
-        &.impact-highlight {
-          @apply font-medium text-gray-900 dark:text-white;
-          @apply bg-gradient-to-r from-green-50 to-blue-50;
-          @apply dark:bg-gradient-to-r dark:from-green-900 dark:to-blue-900;
-          @apply px-4 py-3 rounded-lg;
-          @apply border-l-4 border-green-500;
-        }
-      }
-
-      & .technical-highlights-list {
-        @apply space-y-2 ml-4;
-
-        & li {
-          @apply flex items-start;
-          @apply text-gray-700 dark:text-gray-300;
-          @apply leading-relaxed;
-
-          &::before {
-            content: "▸";
-            @apply text-accent2 mr-3 font-bold;
-            @apply flex-shrink-0 mt-0.5;
-          }
+        & .badge {
+          @apply text-xs py-2 px-4;
         }
       }
     }
 
-    & .portfolio-footer {
-      @apply flex md:flex-row flex-col justify-between items-start md:items-center;
-      @apply pt-4 border-t border-gray-200 dark:border-gray-600;
-      @apply space-y-3 md:space-y-0;
+    /* Compact content - hidden by default */
+    & .portfolio-content {
+      @apply hidden;
+    }
+  }
 
-      & .team-size {
-        @apply text-sm font-medium text-gray-600 dark:text-gray-400;
-        @apply bg-gray-100 dark:bg-gray-700;
-        @apply px-3 py-1 rounded-full;
-      }
+  /* Portfolio Dialog Styles */
+  .portfolio-dialog {
+    @apply fixed inset-0 z-50 flex items-center justify-center p-4;
+    @apply bg-black bg-opacity-50 backdrop-blur-sm;
+    @apply opacity-0 invisible transition-all duration-300;
+  }
 
-      & .portfolio-badges {
-        @apply flex flex-wrap gap-2;
+  .portfolio-dialog.open {
+    @apply opacity-100 visible;
+  }
+
+  .portfolio-dialog-content {
+    @apply bg-white dark:bg-gray-900 rounded-xl shadow-2xl;
+    @apply max-w-4xl w-full max-h-[90vh] overflow-hidden;
+    @apply transform scale-95 transition-transform duration-300;
+    @apply relative;
+  }
+
+  .portfolio-dialog.open .portfolio-dialog-content {
+    @apply scale-100;
+  }
+
+  .portfolio-dialog-header {
+    @apply flex flex-col lg:flex-row gap-6 p-6;
+  }
+
+  .portfolio-dialog-image {
+    @apply w-full lg:w-80 h-64 lg:h-80 flex-shrink-0 rounded-lg overflow-hidden;
+    @apply bg-gray-100 dark:bg-gray-800;
+
+    & img {
+      @apply w-full h-full object-contain;
+    }
+  }
+
+  .portfolio-dialog-title-section {
+    @apply flex-1;
+
+    & .portfolio-caption {
+      @apply text-lg mb-3;
+    }
+
+    & .portfolio-meta {
+      @apply text-sm mb-4;
+    }
+  }
+
+  .portfolio-dialog-body {
+    @apply overflow-y-auto px-6 pb-6 space-y-6;
+    @apply max-h-[50vh];
+
+    & .portfolio-section {
+      @apply space-y-2;
+    }
+
+    & .portfolio-section-title {
+      @apply subsection-header gradient-border-left;
+    }
+
+    & .portfolio-section-content {
+      @apply text-gray-700 dark:text-gray-300;
+      @apply leading-relaxed;
+    }
+
+    & .technical-highlights-list {
+      @apply space-y-2 ml-4;
+
+      & li {
+        @apply flex items-start;
+        @apply text-gray-700 dark:text-gray-300;
+        @apply leading-relaxed;
+
+        &::before {
+          content: "▸";
+          @apply text-accent2 mr-3 font-bold;
+          @apply flex-shrink-0 mt-0.5;
+        }
       }
     }
   }
 
+  .portfolio-dialog-footer {
+    @apply flex flex-row justify-between items-center;
+    @apply p-4 border-t border-gray-200 dark:border-gray-600;
+
+    & .portfolio-badges {
+      @apply flex flex-wrap gap-2;
+
+      & .badge {
+        @apply text-xs py-2 px-4;
+      }
+    }
+  }
+
+  .portfolio-dialog-close {
+    @apply absolute top-4 right-4 w-8 h-8;
+    @apply bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600;
+    @apply rounded-full flex justify-center;
+    @apply text-gray-600 dark:text-gray-400 text-xl font-bold uppercase;
+    @apply cursor-pointer transition-colors duration-200;
+    z-index: 10;
+  }
+
   /* About Card Styles */
   .about-card {
-    @apply gradient-subtle card-padding card-gradient-top card-bordered;
-    @apply rounded-xl shadow-lg;
-    @apply hover:shadow-xl transition-all duration-300;
+    @apply content-panel card-padding card-gradient-top;
+  }
+
+  /* Wide screen layout for about and skills sections */
+  @media (min-width: 1280px) {
+    .wide-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
   }
 
   .about-header {
@@ -671,9 +782,7 @@
 
   /* Skills Card Styles */
   .skills-card {
-    @apply gradient-subtle card-padding card-gradient-top card-bordered;
-    @apply rounded-xl shadow-lg;
-    @apply hover:shadow-xl transition-all duration-300;
+    @apply content-panel card-padding card-gradient-top;
   }
 
   .skills-header {
@@ -685,40 +794,37 @@
   }
 
   .skills-category-card {
-    @apply bg-white dark:bg-gray-900;
-    @apply rounded-lg p-6;
-    @apply border border-gray-200 dark:border-gray-600;
-    @apply shadow-sm;
+    @apply pb-6;
 
     & .skills-category-header {
       @apply flex items-center mb-6;
+      @apply pb-2 border-b border-gray-200 dark:border-gray-700;
 
       & .skills-category-icon {
-        @apply text-xl;
+        @apply text-xl text-accent1 dark:text-accent1-dark;
       }
 
       & .skills-category-title {
         @apply font-display text-xl font-bold;
         @apply ml-3 tracking-tight;
+        @apply text-gray-900 dark:text-white;
       }
     }
 
     & .skills-list {
-      @apply grid md:grid-cols-2 grid-cols-1 gap-4;
+      @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-4;
     }
 
     & .skill-item {
-      @apply bg-gray-50 dark:bg-gray-800;
-      @apply rounded-md p-4;
-      @apply border border-gray-200 dark:border-gray-600;
-
       & .skill-name {
         @apply font-display text-base font-semibold;
-        @apply mb-2 tracking-tight;
+        @apply mb-1 tracking-tight;
+        @apply text-gray-900 dark:text-white;
       }
 
       & .skill-description {
         @apply text-sm leading-relaxed;
+        @apply text-gray-600 dark:text-gray-400;
       }
     }
   }
@@ -726,6 +832,177 @@
   .skills-additional {
     @apply mt-6 pt-4;
     @apply border-t border-gray-200 dark:border-gray-600;
+  }
+
+  /* Resume Print Styles */
+  .resume-container {
+    @apply max-w-4xl mx-auto px-6 py-8;
+  }
+
+  .resume-header {
+    @apply border-b border-gray-200 dark:border-gray-700 pb-6;
+  }
+
+  .resume-section {
+    @apply mb-8;
+  }
+
+  .section-header {
+    @apply font-display font-bold tracking-tight;
+  }
+
+  .experience-item {
+    @apply pb-4 border-b border-gray-100 dark:border-gray-800 last:border-b-0;
+  }
+
+  .skills-keywords {
+    @apply space-y-2;
+
+    .skill-category {
+      @apply leading-normal;
+    }
+  }
+
+  /* Print-specific styles */
+  @media print {
+    @page {
+      margin: 0.5in;
+    }
+
+    * {
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+
+    body {
+      font-size: 11pt !important;
+      line-height: 1.2 !important;
+      background: white !important;
+      color: black !important;
+    }
+
+    .resume-container {
+      max-width: none !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      background: white !important;
+      color: black !important;
+    }
+
+    .resume-header {
+      border-bottom: 2px solid #9ca3af !important;
+      padding-bottom: 0.75rem !important;
+      margin-bottom: 1rem !important;
+    }
+
+    .resume-section {
+      margin-bottom: 1rem !important;
+    }
+
+    .section-header {
+      color: black !important;
+      border-color: #9ca3af !important;
+      font-size: 1.125rem !important;
+      line-height: 1.75rem !important;
+    }
+
+    .experience-item {
+      padding-bottom: 0.5rem !important;
+      margin-bottom: 0.5rem !important;
+      border-bottom: 1px solid #d1d5db !important;
+      page-break-inside: avoid;
+    }
+
+    .experience-item:last-child {
+      border-bottom: none !important;
+    }
+
+    .skill-category {
+      page-break-inside: avoid;
+    }
+
+    .skills-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+      gap: 1rem !important;
+    }
+
+    .skills-keywords {
+      line-height: 1.2 !important;
+    }
+
+    .skills-keywords .skill-category {
+      margin-bottom: 0.5rem !important;
+      line-height: 1.2 !important;
+    }
+
+    .contact-info {
+      font-size: 0.875rem !important;
+      color: black !important;
+    }
+
+    .print-instructions {
+      display: none !important;
+    }
+
+    /* Hide navigation and footer in print */
+    nav,
+    .navbar,
+    header nav,
+    footer,
+    .footer {
+      display: none !important;
+    }
+
+    /* Typography adjustments for print */
+    h1 {
+      font-size: 1.875rem !important;
+      line-height: 2.25rem !important;
+      color: black !important;
+    }
+
+    h2 {
+      font-size: 1.125rem !important;
+      line-height: 1.75rem !important;
+      color: black !important;
+    }
+
+    h3 {
+      font-size: 1.125rem !important;
+      line-height: 1.75rem !important;
+      color: black !important;
+    }
+
+    h4 {
+      font-size: 1rem !important;
+      line-height: 1.5rem !important;
+      color: black !important;
+    }
+
+    p, li, span {
+      color: black !important;
+      font-size: 0.875rem !important;
+      line-height: 1.3 !important;
+    }
+
+    .experience-date {
+      font-size: 0.75rem !important;
+      color: #4b5563 !important;
+    }
+
+    .skills-used span {
+      font-size: 0.75rem !important;
+    }
+
+    .additional-skills p {
+      font-size: 0.75rem !important;
+      color: #4b5563 !important;
+    }
+
+    /* Remove dark mode and accent colors for print */
+    .text-accent1,
+    .text-accent1-dark {
+      color: #4b5563 !important;
+    }
   }
 
   /* Smooth scrolling */

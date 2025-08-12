@@ -1,0 +1,35 @@
+<svg width="400" height="300" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0b8bd5;stop-opacity:0.1" />
+      <stop offset="100%" style="stop-color:#5b9a63;stop-opacity:0.1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="400" height="300" fill="url(#grad1)" stroke="#e5e7eb" stroke-width="2" rx="8"/>
+  
+  <!-- Icon -->
+  <circle cx="200" cy="120" r="30" fill="#9ca3af" opacity="0.3"/>
+  <rect x="180" y="100" width="40" height="25" fill="#9ca3af" opacity="0.3" rx="3"/>
+  <rect x="185" y="105" width="30" height="15" fill="#ffffff" rx="2"/>
+  <circle cx="190" cy="112" r="2" fill="#9ca3af"/>
+  <rect x="195" y="110" width="15" height="1" fill="#9ca3af"/>
+  <rect x="195" y="113" width="12" height="1" fill="#9ca3af"/>
+  
+  <!-- Text -->
+  <text x="200" y="180" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="600" fill="#6b7280">
+    Project Image
+  </text>
+  <text x="200" y="200" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#9ca3af">
+    Coming Soon
+  </text>
+  
+  <!-- Grid pattern -->
+  <defs>
+    <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#f3f4f6" stroke-width="1" opacity="0.5"/>
+    </pattern>
+  </defs>
+  <rect width="400" height="300" fill="url(#grid)" rx="8"/>
+</svg>

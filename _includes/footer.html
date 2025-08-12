@@ -1,5 +1,5 @@
 <!-- Enhanced Footer -->
-<div id="footer" class="w-full z-10 py-24 text-white bg-accent1 dark:bg-accent1-dark dark:text-white-dark border-t-2 border-accent2 dark:border-accent2">
+<footer class="w-full z-10 py-24 text-white gradient-primary border-t-2 border-accent2 dark:border-accent2">
   <div class="container max-w-3xl mx-auto px-4 text-center">
     <h1 class="text-3xl font-bold mb-4">{{ site.author.name }}</h1>
     <div class="flex justify-center items-center mx-auto w-full max-w-screen-sm">{% include contact-list.html classes="flex justify-center space-x-4" style_variant="footer" show_labels=false %}</div>
@@ -12,4 +12,4 @@
     <!-- Copyright -->
     <div class="mt-4 text-center text-sm text-white dark:text-white-dark opacity-75">© {{ site.time | date: "%Y" }} {{ site.author.name }}. All rights reserved.</div>
   </div>
-</div>
+</footer>

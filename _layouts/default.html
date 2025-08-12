@@ -22,7 +22,12 @@
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧙‍♂️</text></svg>" />
   </head>
   <body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
-    <div class="app-container min-h-screen">
+    <!-- Fixed Three.js Background -->
+    <div id="three-background" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; pointer-events: none">
+      <canvas id="hero-canvas" style="width: 100%; height: 100%"></canvas>
+    </div>
+
+    <div class="app-container min-h-screen" style="position: relative; z-index: 1">
       <!-- Navigation -->
       {% include navbar.html %}
 
@@ -60,15 +65,15 @@
         });
 
         const heroSection = document.getElementById("home");
-        const rect = heroSection.getBoundingClientRect();
 
-        renderer.setSize(rect.width, rect.height);
+        // Size canvas to full viewport since it's now fixed
+        renderer.setSize(window.innerWidth, window.innerHeight);
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
         // Position camera for rail perspective filling entire hero section
         camera.position.set(0, -2, 10); // Further back to capture full width/height
         camera.lookAt(0, 1, 0); // Look slightly up toward vanishing point
-        camera.aspect = rect.width / rect.height;
+        camera.aspect = window.innerWidth / window.innerHeight;
         camera.updateProjectionMatrix();
 
         // Adjust field of view to fill hero section
@@ -78,13 +83,13 @@
         // Helper function to get CSS variable color as hex
         const getCSSColor = (varName) => {
           const color = getComputedStyle(document.documentElement).getPropertyValue(varName).trim();
-          return parseInt(color.replace('#', ''), 16);
+          return parseInt(color.replace("#", ""), 16);
         };
 
         // ===== CONFIGURABLE ANIMATION SETTINGS =====
         const CONFIG = {
           // Particle Settings
-          particleCount: 50,
+          particleCount: 100,
           particleSize: 0.08,
           particleSizeVariation: 1, // Size variance multiplier (0-1, higher = more size difference)
           particleGeometrySegments: 16, // Higher = smoother spheres (perfect circles)
@@ -92,30 +97,24 @@
           speedVariation: 0.0002,
 
           // Trail Settings
-          trailCount: 8,
+          trailCount: 16,
           trailOpacity: 0.12,
           trailResolution: 2, // Lower = better performance
 
-          // Colors - using CSS variables with dark mode support
-          get startColor() { 
-            return window.matchMedia('(prefers-color-scheme: dark)').matches 
-              ? getCSSColor('--carolina-blue-dark') 
-              : getCSSColor('--carolina-blue');
+          // Colors - using CSS variables with dark mode support and muted light mode
+          get startColor() {
+            return window.matchMedia("(prefers-color-scheme: dark)").matches ? getCSSColor("--carolina-blue-dark") : getCSSColor("--carolina-blue-muted");
           },
-          get endColor() { 
-            return window.matchMedia('(prefers-color-scheme: dark)').matches 
-              ? getCSSColor('--russian-green-dark') 
-              : getCSSColor('--russian-green');
+          get endColor() {
+            return window.matchMedia("(prefers-color-scheme: dark)").matches ? getCSSColor("--russian-green-dark") : getCSSColor("--russian-green-muted");
           },
-          get trailColor() { 
-            return window.matchMedia('(prefers-color-scheme: dark)').matches 
-              ? getCSSColor('--carolina-blue-dark') 
-              : getCSSColor('--carolina-blue');
+          get trailColor() {
+            return window.matchMedia("(prefers-color-scheme: dark)").matches ? getCSSColor("--carolina-blue-dark") : getCSSColor("--carolina-blue-muted");
           },
 
           // Perspective & Layout
           raceTrackWidth: 30, // Total width left to right
-          laneSpacing: 4, // Distance between lanes
+          laneSpacing: 2, // Distance between lanes
           vanishingPointY: 8, // Height of vanishing point
           perspectiveIntensity: 0.9, // How much lanes converge (0-1)
 
@@ -208,16 +207,16 @@
         scene.add(particleTrails);
 
         // Simple lighting setup for particle-relative mouse lighting
-        const ambientLight = new THREE.AmbientLight(0xffffff, window.matchMedia('(prefers-color-scheme: dark)').matches ? 0.2 : 0.4);
+        const ambientLight = new THREE.AmbientLight(0xffffff, window.matchMedia("(prefers-color-scheme: dark)").matches ? 0.2 : 0.4);
         scene.add(ambientLight);
 
         // Mouse-following point light for particle interaction
-        const mouseLight = new THREE.PointLight(0xffffff, window.matchMedia('(prefers-color-scheme: dark)').matches ? 1.5 : 2.0, 30);
+        const mouseLight = new THREE.PointLight(0xffffff, window.matchMedia("(prefers-color-scheme: dark)").matches ? 1.5 : 2.0, 30);
         mouseLight.position.set(0, 0, 5); // Start position
         scene.add(mouseLight);
 
         // Additional soft glow light using theme colors
-        const glowLight = new THREE.PointLight(CONFIG.startColor, window.matchMedia('(prefers-color-scheme: dark)').matches ? 0.6 : 0.8, 25);
+        const glowLight = new THREE.PointLight(CONFIG.startColor, window.matchMedia("(prefers-color-scheme: dark)").matches ? 0.6 : 0.8, 25);
         glowLight.position.set(0, 0, 3); // Closer for glow effect
         scene.add(glowLight);
 
@@ -228,8 +227,8 @@
         overlayCanvas.style.left = "0";
         overlayCanvas.style.pointerEvents = "none";
         overlayCanvas.style.zIndex = "5";
-        overlayCanvas.width = rect.width;
-        overlayCanvas.height = rect.height;
+        overlayCanvas.width = window.innerWidth;
+        overlayCanvas.height = window.innerHeight;
         canvas.parentElement.appendChild(overlayCanvas);
 
         const overlayCtx = overlayCanvas.getContext("2d");
@@ -339,14 +338,14 @@
                 // Clear and redraw radius circle
                 overlayCtx.clearRect(0, 0, overlayCanvas.width, overlayCanvas.height);
                 if (canvasMouseX >= 0 && canvasMouseX <= overlayCanvas.width && canvasMouseY >= 0 && canvasMouseY <= overlayCanvas.height) {
-                  const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                  const strokeColor = isDark 
-                    ? getComputedStyle(document.documentElement).getPropertyValue('--carolina-blue-dark').trim() + '80'  // 50% opacity
-                    : getComputedStyle(document.documentElement).getPropertyValue('--carolina-blue').trim() + '66';      // 40% opacity
-                  const fillColor = isDark 
-                    ? getComputedStyle(document.documentElement).getPropertyValue('--carolina-blue-dark').trim() + '0D'   // 5% opacity
-                    : getComputedStyle(document.documentElement).getPropertyValue('--carolina-blue').trim() + '0D';       // 5% opacity
-                    
+                  const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+                  const strokeColor = isDark
+                    ? getComputedStyle(document.documentElement).getPropertyValue("--carolina-blue-dark").trim() + "80" // 50% opacity
+                    : getComputedStyle(document.documentElement).getPropertyValue("--carolina-blue").trim() + "66"; // 40% opacity
+                  const fillColor = isDark
+                    ? getComputedStyle(document.documentElement).getPropertyValue("--carolina-blue-dark").trim() + "0D" // 5% opacity
+                    : getComputedStyle(document.documentElement).getPropertyValue("--carolina-blue").trim() + "0D"; // 5% opacity
+
                   overlayCtx.beginPath();
                   overlayCtx.arc(canvasMouseX, canvasMouseY, CONFIG.mouseInfluenceRadius * 50, 0, 2 * Math.PI);
                   overlayCtx.strokeStyle = strokeColor;
@@ -430,14 +429,13 @@
 
         // Handle window resize
         window.addEventListener("resize", function () {
-          const rect = heroSection.getBoundingClientRect();
-          camera.aspect = rect.width / rect.height;
+          camera.aspect = window.innerWidth / window.innerHeight;
           camera.updateProjectionMatrix();
-          renderer.setSize(rect.width, rect.height);
+          renderer.setSize(window.innerWidth, window.innerHeight);
 
           // Update overlay canvas size
-          overlayCanvas.width = rect.width;
-          overlayCanvas.height = rect.height;
+          overlayCanvas.width = window.innerWidth;
+          overlayCanvas.height = window.innerHeight;
         });
 
         // Start animation
