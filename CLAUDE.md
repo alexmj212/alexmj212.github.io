@@ -1,0 +1,6 @@
+- always use the code review agent to review code changes you make
+- always ask the expert engineer before proposing changes
+- when making adjustments to the content of the resume, consult the career agent
+- use git worktrees for agent tasks
+- each agent will log it's todo items to the markdown file named after the agent name, agents will add work items in a bulleted list and remove the items when completed, each file will have two sections, "Self Assigned Tasks" and "Other Agent Requests", after every task an agent will up their Self Assigned Tasks with what is complete, and read the "Other Agent Requests", each agent will balance their Self Assigned Tasks and the Other Agent Tasks as needed
+- use the playwright mcp to debug the console or dom elements if needed

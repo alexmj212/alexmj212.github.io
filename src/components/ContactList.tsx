@@ -9,6 +9,7 @@ type ContactListProps = {
   iconSize?: string;
   labelSize?: string;
   onDarkBG?: boolean;
+  styleVariant?: "default" | "minimal" | "card" | "footer";
 } & React.HTMLProps<HTMLDivElement>;
 
 type ContactItem = {
@@ -26,7 +27,7 @@ const ContactItems: ContactItem[] = [
     label: "alexmj212@gmail.com",
   },
   {
-    href: "https://www.linkedin.com/in/alex-johnson-077b3564/",
+    href: "https://www.linkedin.com/in/alexmj212",
     title: "LinkedIn: Alex Johnson",
     icon: faLinkedin,
     label: "LinkedIn",
@@ -35,18 +36,36 @@ const ContactItems: ContactItem[] = [
 ];
 
 const ContactList = (props: ContactListProps) => {
-  const { showLabel = false, className, iconSize = "text-base", labelSize = "text-base", onDarkBG = false } = props;
-  let colorStyle = "text-accent1 dark:text-accent1 hover:text-white dark:hover:text-white-dark";
-  if (onDarkBG) {
-    colorStyle = "text-white dark:text-white-dark hover:text-white dark:hover:text-white-dark";
+  const { showLabel = false, className, iconSize = "text-base", labelSize = "text-base", onDarkBG = false, styleVariant = "default" } = props;
+
+  let colorStyle = "";
+
+  switch (styleVariant) {
+    case "card":
+      colorStyle = "contact-link";
+      break;
+    case "footer":
+      colorStyle = "contact-link-footer";
+      break;
+    case "minimal":
+      colorStyle = "contact-link-minimal";
+      break;
+    default:
+      if (onDarkBG) {
+        colorStyle = "text-white dark:text-white-dark hover:text-white dark:hover:text-white-dark";
+      } else {
+        colorStyle = "text-accent1 dark:text-accent1 hover:text-accent2 dark:hover:text-accent2 transition-colors duration-200";
+      }
+      colorStyle += ` ${iconSize}`;
+      break;
   }
   return (
     <List horizontal className={`flex-1 no-style items-center space-x-2 ${className || ""}`}>
       {ContactItems.map((item) => (
         <ListItem key={item.href}>
-          <a href={item.href} title={item.label} className={`${iconSize} ${colorStyle} ${className || ""}`}>
+          <a href={item.href} title={item.label} className={colorStyle}>
             <FontAwesomeIcon icon={item.icon} />
-            {showLabel && <div className={`${labelSize} ml-2 leading-none underline`}>{item.label}</div>}
+            {showLabel && <div className={`${labelSize} ${styleVariant === "card" ? "" : "ml-2 leading-none"}`}>{item.label}</div>}
           </a>
         </ListItem>
       ))}

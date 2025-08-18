@@ -1,124 +1,104 @@
-import React from "react";
 
+import ThreeBackground from "./components/ThreeBackground";
 import Navbar from "./components/Navbar";
-import Section from "./components/Section";
-import Panel from "./components/Panel";
-import Header from "./components/Header";
+import Footer from "./components/Footer";
 import Portfolio from "./components/portfoilo/Portfolio";
 import Skills from "./components/skills/Skills";
 import Experience from "./components/experience/Experience";
-import { Link } from "react-scroll";
 import ContactList from "./components/ContactList";
 
-export type PageDefinition = {
-  [key: string]: {
-    id: string;
-    name: string;
-    href?: string;
-    current?: boolean;
-    disabled?: boolean;
-  };
-};
-
-export const Pages: PageDefinition = {
-  HOME: {
-    id: "home",
-    name: "Home",
-    disabled: true,
-  },
-  ABOUT: {
-    id: "about",
-    name: "About",
-  },
-  PORTFOLIO: {
-    id: "portfolio",
-    name: "Portfolio",
-  },
-  SKILLS: {
-    id: "skills",
-    name: "Skills",
-  },
-  EDUCATION: {
-    id: "education",
-    name: "Education",
-    disabled: true,
-  },
-  EXPERIENCE: {
-    id: "experience",
-    name: "Experience",
-  },
-  BLOG: {
-    id: "blog",
-    name: "Blog",
-    href: "/blog",
-  },
-  FOOTER: {
-    id: "footer",
-    name: "Footer",
-    disabled: true,
-  },
-};
-
 const App = () => {
+  const currentYear = new Date().getFullYear();
+  const yearsExperience = currentYear - 2013;
+
   return (
-    <div className={`app-container`}>
-      <Navbar></Navbar>
-      <Section fullScreen sectionId={Pages.HOME.id} className={`-mt-8`}>
-        <Panel overrideWidth={`max-w-4xl`}>
-          <Header>
-            <div className={`flex md:flex-row flex-col`}>
-              <div className={`container flex justify-center m-0 mr-8 filter drop-shadow`}>
-                <img className={`header-portrait`} alt="Alex Johnson portrait" src="/img/portrait.jpg" />
-                <div className={`md:block hidden text-8xl hand-wave absolute`}>👋</div>
+    <div className="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+      {/* Fixed Three.js Background */}
+      <ThreeBackground />
+
+      <div className="app-container min-h-screen" style={{ position: 'relative', zIndex: 1 }}>
+        {/* Navigation */}
+        <Navbar />
+        {/* Home/Hero Section */}
+        <div id="home" className="w-full h-screen flex justify-center items-center -mt-8 relative">
+          <div className="w-full max-w-[90vw] xl:max-w-[85vw] 2xl:max-w-[80vw] px-4 sm:px-6 lg:px-8">
+            <div className="hero-layout">
+              <div className="hero-title-section">
+                <h1 className="hero-title">Hey, I'm AJ</h1>
               </div>
-              <div>
-                <h1 className={`md:text-7xl text-4xl mb-8`}>Hey, my name is Alex</h1>
-                <p className={`mb-8`}>
-                  I'm a <strong className={`whitespace-nowrap`}>front-end software engineer</strong> based in <i className={`whitespace-nowrap font-light`}>Lexington, KY</i> and I specialize in building (and sometimes designing) experiences for the
-                  web.
+
+              <div className="hero-content">
+                <p className="hero-subtitle mb-8">
+                  I'm a <strong className="whitespace-nowrap font-semibold text-accent2 dark:text-accent2-dark"> senior front-end software engineer</strong> based in
+                  <i className="whitespace-nowrap font-light text-accent1 dark:text-accent1-dark"> Lexington, KY</i> and I specialize in building (and sometimes designing) experiences for the web.
                 </p>
-                <Link to={Pages.PORTFOLIO.id} smooth offset={2} className={`hero-button`}>
-                  Check out my work
-                </Link>
+                <div className="hero-actions">
+                  <a href="#portfolio" className="hero-button group">
+                    <span>Explore My Projects</span>
+                    <i className="fas fa-arrow-down ml-2 transition-transform duration-200 group-hover:translate-y-1"></i>
+                  </a>
+                </div>
               </div>
             </div>
-          </Header>
-        </Panel>
-      </Section>
-      <Section sectionId={Pages.ABOUT.id} className={`text-white bg-accent1 dark:bg-accent1-dark dark:text-white-dark`}>
-        <Panel header="About Me">
-          <p>
-            For 7 years, I have delivered great user experiences using a wide variety of technologies. I have coordinated teams to deliver feature-rich projects from idea to production. I focus on design, usability, and user experience to create
-            products for all audiences using modern concepts and practices.
-          </p>
-          <p>
-            When I was young, I learned how to build basic web pages. This led to learning graphic design and creating images to use in layouts on my personal web pages. Even before finishing high school, I quickly decided that I wanted to pursue a
-            career in front-end web development.
-          </p>
-          <p>
-            Not long after, I graduated from the <strong>University of Kentucky</strong> in 2013 with a <i>B.S. in Computer Science</i>. While I was there, I studied discrete mathmatics, web development, and compilers. I also picked up some helpful
-            skills including regular expressions, databases, and object-oriented programming.
-          </p>
-          <div className="flex justify-center items-center mt-8 mx-auto w-full max-w-screen-sm">
-            <ContactList showLabel iconSize="text-2xl" labelSize="text-lg" onDarkBG className={`flex justify-evenly`}></ContactList>
           </div>
-        </Panel>
-      </Section>
-      <Section sectionId={Pages.PORTFOLIO.id}>
-        <Portfolio></Portfolio>
-      </Section>
-      <Section sectionId={Pages.SKILLS.id} className={`text-white bg-accent1 dark:bg-accent1-dark dark:text-white-dark`}>
-        <Skills></Skills>
-      </Section>
-      <Section sectionId={Pages.EXPERIENCE.id}>
-        <Experience></Experience>
-      </Section>
-      <Section sectionId={Pages.FOOTER.id} className={`text-white bg-accent1 dark:bg-accent1-dark dark:text-white-dark text-center`}>
-        <Panel>
-          <h1>Alex Johnson</h1>
-          <ContactList iconSize="text-4xl" onDarkBG className={`flex justify-center w-full max-width-1/2`}></ContactList>
-        </Panel>
-      </Section>
+        </div>
+
+        {/* About Section */}
+        <div id="about" className="section-bg-alt w-full py-24">
+          <div className="container-responsive">
+            <article className="about-card">
+              <div className="about-header">
+                <h1 className="section-title text-gray-900 dark:text-white">About Me</h1>
+              </div>
+
+              <div className="about-content">
+                <div className="flex md:flex-row flex-col items-start gap-8 xl:gap-12">
+                  {/* Portrait */}
+                  <div className="flex-shrink-0 mx-auto md:mx-0">
+                    <img className="w-48 h-48 md:w-56 md:h-56 xl:w-64 xl:h-64 object-cover rounded-full shadow-xl" alt="Alex Johnson portrait" src="/assets/img/portrait.jpg" />
+                  </div>
+
+                  {/* Content */}
+                  <div className="flex-1 space-y-6">
+                    <div className="text-container-optimal">
+                      <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+                        For {yearsExperience} years, I've built exceptional user experiences and coordinated teams to deliver projects from concept to production. I focus on design, usability, and modern web technologies.
+                      </p>
+
+                      <p className="text-gray-700 dark:text-gray-300 mt-4">
+                        My passion for web development started in high school building basic websites. This led me to graduate from the <strong>University of Kentucky</strong> in 2013 with a <strong>B.S. in Computer Science</strong>, where I studied web
+                        development, algorithms, and software engineering.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="about-contact mt-8">
+                  <ContactList showLabel={true} labelSize="text-base" className="flex flex-col md:flex-row gap-4" />
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        {/* Portfolio Section */}
+        <div id="portfolio">
+          <Portfolio />
+        </div>
+
+        {/* Skills Section */}
+        <div id="skills">
+          <Skills />
+        </div>
+
+        {/* Experience Section */}
+        <div id="experience">
+          <Experience />
+        </div>
+
+        {/* Footer */}
+        <Footer />
+      </div>
     </div>
   );
 };

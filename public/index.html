@@ -1,16 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Alex Johnson - Senior Front-End Software Engineer</title>
+    <meta name="description" content="Front-end software engineer specializing in building experiences for the web. Based in Lexington, KY." />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://alexmj212.dev/" />
+    <meta property="og:title" content="Alex Johnson - Senior Front-End Software Engineer" />
+    <meta property="og:description" content="Front-end software engineer specializing in building experiences for the web. Based in Lexington, KY." />
+    <meta property="og:image" content="https://alexmj212.dev/assets/img/portrait.jpg" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://alexmj212.dev/" />
+    <meta property="twitter:title" content="Alex Johnson - Senior Front-End Software Engineer" />
+    <meta property="twitter:description" content="Front-end software engineer specializing in building experiences for the web. Based in Lexington, KY." />
+    <meta property="twitter:image" content="https://alexmj212.dev/assets/img/portrait.jpg" />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://alexmj212.dev/" />
+
+    <!-- Additional SEO Meta Tags -->
+    <meta name="author" content="Alex Johnson" />
+    <meta name="keywords" content="front-end developer, software engineer, React, TypeScript, JavaScript, web development, UI/UX, Lexington KY" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Performance and Modern Web Features -->
+    <link rel="preconnect" href="https://kit.fontawesome.com" />
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+    <link rel="dns-prefetch" href="https://kit.fontawesome.com" />
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com" />
+
+    <!-- Theme Color for Mobile Browsers -->
+    <meta name="theme-color" content="#0b8bd5" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#38799d" media="(prefers-color-scheme: dark)" />
+
+    <!-- FontAwesome -->
+    <script src="https://kit.fontawesome.com/926bef921d.js" crossorigin="anonymous" defer></script>
+
+    <!-- Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+
+    <!-- Favicon and App Icons -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧙‍♂️</text></svg>" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta name="description" content="Web site created using create-react-app" />
-    <title>alexmj212.dev</title>
-    <script src="https://kit.fontawesome.com/926bef921d.js" crossorigin="anonymous"></script>
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/assets/img/portrait.jpg" />
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Alex Johnson",
+        "jobTitle": "Senior Front-End Software Engineer",
+        "url": "https://alexmj212.dev",
+        "sameAs": ["https://github.com/alexmj212", "https://linkedin.com/in/alexmj212"],
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Lexington",
+          "addressRegion": "KY",
+          "addressCountry": "US"
+        },
+        "alumniOf": {
+          "@type": "EducationalOrganization",
+          "name": "University of Kentucky"
+        },
+        "knowsAbout": ["React", "TypeScript", "JavaScript", "Front-End Development", "Web Development", "UI/UX Design"],
+        "image": "https://alexmj212.dev/assets/img/portrait.jpg"
+      }
+    </script>
   </head>
-  <body>
+  <body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
+    
+    <!-- Smooth scroll behavior -->
+    <script>
+      // Smooth scroll for anchor links
+      document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+          anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute("href"));
+            if (target) {
+              target.scrollIntoView({
+                behavior: "smooth",
+              });
+            }
+          });
+        });
+      });
+    </script>
   </body>
 </html>

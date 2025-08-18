@@ -1,3 +1,7 @@
-@import "@fontsource/open-sans";
-@import "@fontsource/open-sans/300.css";
-@import "@fontsource/exo";
+/* Inter font weights used in this project */
+@import "@fontsource/inter/300.css"; /* font-light */
+@import "@fontsource/inter/400.css"; /* font-normal (default) */
+@import "@fontsource/inter/500.css"; /* font-medium */
+@import "@fontsource/inter/600.css"; /* font-semibold */
+@import "@fontsource/inter/700.css"; /* font-bold */
+@import "@fontsource/inter/900.css"; /* font-black */
