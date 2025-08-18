@@ -1,5 +1,6 @@
 
 import ThreeBackground from "./components/ThreeBackground";
+import ErrorBoundary from "./components/ErrorBoundary";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Portfolio from "./components/portfoilo/Portfolio";
@@ -13,8 +14,10 @@ const App = () => {
 
   return (
     <div className="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
-      {/* Fixed Three.js Background */}
-      <ThreeBackground />
+      {/* Fixed Three.js Background with Error Boundary */}
+      <ErrorBoundary>
+        <ThreeBackground />
+      </ErrorBoundary>
 
       <div className="app-container min-h-screen" style={{ position: 'relative', zIndex: 1 }}>
         {/* Navigation */}

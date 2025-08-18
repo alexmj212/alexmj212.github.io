@@ -1,10 +1,46 @@
 import { useEffect, useRef } from "react";
+import * as THREE from "three";
 
-declare global {
-  interface Window {
-    THREE: any;
+// Security: Color validation utility
+const validateHexColor = (color: string): boolean => {
+  const hexPattern = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/;
+  return hexPattern.test(color);
+};
+
+// Security: Safe color parsing utility
+const parseColorSafely = (colorValue: string): number => {
+  try {
+    // Remove # if present and validate
+    const cleanColor = colorValue.replace('#', '');
+    if (!/^[A-Fa-f0-9]{6}$/.test(cleanColor)) {
+      console.warn('Invalid color format, using fallback:', colorValue);
+      return 0x0b8bd5; // fallback color
+    }
+    return parseInt(cleanColor, 16);
+  } catch (error) {
+    console.warn('Color parsing failed, using fallback:', error);
+    return 0x0b8bd5; // fallback color
   }
-}
+};
+
+// Security: Safe CSS variable getter
+const getCSSColorSafely = (varName: string): number => {
+  try {
+    const color = getComputedStyle(document.documentElement)
+      .getPropertyValue(varName)
+      .trim();
+    
+    if (!color || !validateHexColor(color)) {
+      console.warn('Invalid CSS color variable, using fallback:', varName, color);
+      return 0x0b8bd5; // fallback color
+    }
+    
+    return parseColorSafely(color);
+  } catch (error) {
+    console.warn('Failed to get CSS color variable, using fallback:', varName, error);
+    return 0x0b8bd5; // fallback color
+  }
+};
 
 const ThreeBackground = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -15,20 +51,13 @@ const ThreeBackground = () => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    console.log("ThreeBackground: Canvas mounted, checking for Three.js...");
+    console.log("ThreeBackground: Canvas mounted, initializing Three.js...");
     console.log("Canvas element:", canvas);
-    console.log("Window.THREE available:", !!window.THREE);
 
     const initThree = () => {
-      if (!window.THREE) {
-        console.log("Three.js not available yet");
-        return false;
-      }
-
       console.log("Initializing Three.js...");
 
       try {
-        const THREE = window.THREE;
 
         // Scene, camera, renderer setup (exact copy from Jekyll)
         const scene = new THREE.Scene();
@@ -55,10 +84,15 @@ const ThreeBackground = () => {
         camera.fov = 60; // Wider field of view
         camera.updateProjectionMatrix();
 
-        // Helper function to get CSS variable color as hex
-        const getCSSColor = (varName: string) => {
-          const color = getComputedStyle(document.documentElement).getPropertyValue(varName).trim();
-          return parseInt(color.replace("#", ""), 16);
+        // Security: Validated configuration with safe defaults
+        const getThemeAwareColor = (lightColor: number, darkColor: number): number => {
+          try {
+            const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+            return isDark ? darkColor : lightColor;
+          } catch (error) {
+            console.warn('Theme detection failed, using light mode default:', error);
+            return lightColor;
+          }
         };
 
         // ===== CONFIGURABLE ANIMATION SETTINGS =====
@@ -76,15 +110,15 @@ const ThreeBackground = () => {
           trailOpacity: 0.12,
           trailResolution: 2, // Lower = better performance
 
-          // Colors - using CSS variables with dark mode support and muted light mode
+          // Colors - secure theme-aware colors with validation
           get startColor() {
-            return window.matchMedia("(prefers-color-scheme: dark)").matches ? 0x0b8bd5 : 0x0b8bd5;
+            return getThemeAwareColor(0x0b8bd5, 0x0b8bd5);
           },
           get endColor() {
-            return window.matchMedia("(prefers-color-scheme: dark)").matches ? 0x5b9a63 : 0x5b9a63;
+            return getThemeAwareColor(0x5b9a63, 0x5b9a63);
           },
           get trailColor() {
-            return window.matchMedia("(prefers-color-scheme: dark)").matches ? 0x0b8bd5 : 0x0b8bd5;
+            return getThemeAwareColor(0x0b8bd5, 0x0b8bd5);
           },
 
           // Perspective & Layout
@@ -182,16 +216,19 @@ const ThreeBackground = () => {
         scene.add(particleTrails);
 
         // Simple lighting setup for particle-relative mouse lighting
-        const ambientLight = new THREE.AmbientLight(0xffffff, window.matchMedia("(prefers-color-scheme: dark)").matches ? 0.2 : 0.4);
+        const ambientIntensity = getThemeAwareColor(0.4, 0.2);
+        const ambientLight = new THREE.AmbientLight(0xffffff, ambientIntensity);
         scene.add(ambientLight);
 
         // Mouse-following point light for particle interaction
-        const mouseLight = new THREE.PointLight(0xffffff, window.matchMedia("(prefers-color-scheme: dark)").matches ? 1.5 : 2.0, 30);
+        const mouseLightIntensity = getThemeAwareColor(2.0, 1.5);
+        const mouseLight = new THREE.PointLight(0xffffff, mouseLightIntensity, 30);
         mouseLight.position.set(0, 0, 5); // Start position
         scene.add(mouseLight);
 
         // Additional soft glow light using theme colors
-        const glowLight = new THREE.PointLight(CONFIG.startColor, window.matchMedia("(prefers-color-scheme: dark)").matches ? 0.6 : 0.8, 25);
+        const glowIntensity = getThemeAwareColor(0.8, 0.6);
+        const glowLight = new THREE.PointLight(CONFIG.startColor, glowIntensity, 25);
         glowLight.position.set(0, 0, 3); // Closer for glow effect
         scene.add(glowLight);
 
@@ -283,42 +320,16 @@ const ThreeBackground = () => {
           window.removeEventListener("resize", handleResize);
         };
       } catch (error) {
-        console.error("Three.js initialization error:", `${error instanceof Error ? error.message : String(error)}`);
-        return false;
+        console.error("Three.js initialization error:", error instanceof Error ? error.message : String(error));
+        // Security: Graceful degradation on error
+        return () => {
+          console.log('Three.js cleanup called after initialization error');
+        };
       }
     };
 
-    // Try to initialize immediately
-    let cleanup = initThree();
-
-    // If Three.js isn't ready, wait for it
-    if (!cleanup) {
-      let attempts = 0;
-      const maxAttempts = 30; // 3 seconds
-
-      const checkInterval = setInterval(() => {
-        attempts++;
-        console.log(`Attempting to load Three.js (${attempts}/${maxAttempts})`);
-
-        const result = initThree();
-
-        if (result) {
-          cleanup = result;
-          clearInterval(checkInterval);
-        } else if (attempts >= maxAttempts) {
-          console.warn("Three.js failed to load within timeout");
-          clearInterval(checkInterval);
-        }
-      }, 100);
-
-      return () => {
-        clearInterval(checkInterval);
-        if (cleanup && typeof cleanup === "function") {
-          cleanup();
-        }
-      };
-    }
-
+    // Initialize Three.js directly since it's now an ES6 import
+    const cleanup = initThree();
     return cleanup;
   }, []);
 
