@@ -25,3 +25,4 @@ yarn-error.log*
 /public/blog/*
 _site
 assets/css/main.css
+.playwright-mcp
