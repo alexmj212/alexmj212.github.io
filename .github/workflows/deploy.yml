@@ -1,4 +1,4 @@
-name: Deploy Jekyll site to GitHub Pages
+name: Deploy React Vite site to GitHub Pages
 
 on:
   push:
@@ -20,12 +20,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        
-      - name: Setup Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: '3.2'
-          bundler-cache: true
           
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -36,19 +30,30 @@ jobs:
       - name: Install dependencies
         run: npm ci
         
-      - name: Build Tailwind CSS
-        run: npm run build:css
+      - name: Type check
+        run: npx tsc --noEmit
         
+      - name: Build with Vite
+        run: npm run build
+        env:
+          NODE_ENV: production
+          
+      - name: Verify build output
+        run: |
+          if [ ! -f "build/index.html" ]; then
+            echo "Build failed: index.html not found in build directory"
+            exit 1
+          fi
+          echo "Build verification passed"
+          ls -la build/
+          
       - name: Setup Pages
         uses: actions/configure-pages@v4
         
-      - name: Build with Jekyll
-        run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
-        env:
-          JEKYLL_ENV: production
-          
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
+        with:
+          path: 'build'
 
   deploy:
     environment:
