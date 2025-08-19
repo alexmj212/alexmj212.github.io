@@ -79,12 +79,19 @@ const PortfolioDialog: React.FC<PortfolioDialogProps> = ({ item, isOpen, onClose
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.3 }}
+          transition={{ 
+            layout: { duration: 0.6, ease: "easeInOut" },
+            opacity: { duration: 0.3 }
+          }}
           className="backdrop:bg-black backdrop:bg-opacity-50 backdrop:backdrop-blur-sm bg-transparent p-4 max-w-4xl w-full h-[90vh]"
         >
           <motion.div
             layoutId={`portfolio-card-${item.project}`}
             className="bg-white dark:bg-gray-900 rounded-xl shadow-2xl w-full h-full overflow-hidden relative flex flex-col"
+            transition={{ 
+              layout: { duration: 0.6, ease: "easeInOut" },
+              opacity: { duration: 0.3 }
+            }}
           >
             <motion.button 
               className="absolute top-4 right-4 w-8 h-8 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 rounded-full flex justify-center items-center text-gray-600 dark:text-gray-400 text-xl font-bold cursor-pointer transition-colors duration-200 z-10"
@@ -191,9 +198,9 @@ const PortfolioDialog: React.FC<PortfolioDialogProps> = ({ item, isOpen, onClose
                     key={index} 
                     className="badge text-xs py-2 px-4"
                     layoutId={`portfolio-badge-${item.project}-${index}`}
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    transition={{ delay: 0.6 + index * 0.05, duration: 0.2 }}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.4 + index * 0.03, duration: 0.2 }}
                   >
                     {badge}
                   </motion.span>
@@ -248,8 +255,8 @@ const Portfolio = () => {
               className="portfolio-card" 
               data-project={index + 1}
               onClick={() => openDialog(portfolioItem)}
-              layoutId={selectedItem?.project === portfolioItem.project ? `portfolio-card-${portfolioItem.project}` : undefined}
-              initial={{ opacity: 0, y: 50 }}
+              layoutId={`portfolio-card-${portfolioItem.project}`}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ 
                 opacity: selectedItem?.project === portfolioItem.project ? 0 : 1, 
                 y: 0 
@@ -260,13 +267,11 @@ const Portfolio = () => {
                 margin: "-50px 0px -50px 0px"
               }}
               transition={{ 
-                type: "spring",
-                damping: 20,
-                stiffness: 100,
-                delay: index * 0.08
+                duration: 0.5,
+                delay: index * 0.05
               }}
               whileHover={{ 
-                scale: 1.02,
+                scale: 1.01,
                 transition: { type: "spring", damping: 15, stiffness: 400 }
               }}
               whileTap={{ scale: 0.98 }}
@@ -274,13 +279,9 @@ const Portfolio = () => {
               <div className="portfolio-header">
                 {portfolioItem.images && portfolioItem.images.length > 0 && (
                   <div className="portfolio-image-container">
-                    <motion.div 
-                      className="portfolio-image"
-                      whileHover={{ scale: 1.05 }}
-                      transition={{ duration: 0.3 }}
-                    >
+                    <div className="portfolio-image">
                       <img src={portfolioItem.images[0]} alt={portfolioItem.project} />
-                    </motion.div>
+                    </div>
                   </div>
                 )}
                 <div className="portfolio-title-section">
@@ -301,7 +302,7 @@ const Portfolio = () => {
 
               <motion.div 
                 className="portfolio-content"
-                layoutId={selectedItem?.project === portfolioItem.project ? `portfolio-content-${portfolioItem.project}` : undefined}
+                layoutId={`portfolio-content-${portfolioItem.project}`}
               >
                 <div className="portfolio-section">
                   <h4 className="portfolio-section-title">Challenge</h4>
@@ -332,28 +333,14 @@ const Portfolio = () => {
 
               <motion.div 
                 className="portfolio-footer"
-                layoutId={selectedItem?.project === portfolioItem.project ? `portfolio-footer-${portfolioItem.project}` : undefined}
+                layoutId={`portfolio-footer-${portfolioItem.project}`}
               >
                 <div className="portfolio-badges">
                   {portfolioItem.badges.map((badge, badgeIndex) => (
                     <motion.span 
                       key={badgeIndex} 
                       className="badge"
-                      layoutId={selectedItem?.project === portfolioItem.project ? `portfolio-badge-${portfolioItem.project}-${badgeIndex}` : undefined}
-                      initial={{ opacity: 0, scale: 0 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      viewport={{ 
-                        once: true, 
-                        amount: 0.8 
-                      }}
-                      transition={{ 
-                        delay: (index * 0.08) + (badgeIndex * 0.05) + 0.2,
-                        duration: 0.2,
-                        type: "spring",
-                        damping: 15,
-                        stiffness: 300
-                      }}
-                      whileHover={{ scale: 1.05 }}
+                      layoutId={`portfolio-badge-${portfolioItem.project}-${badgeIndex}`}
                     >
                       {badge}
                     </motion.span>
