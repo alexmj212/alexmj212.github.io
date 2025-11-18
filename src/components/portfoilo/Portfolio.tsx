@@ -1,28 +1,20 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-import portfolioData from "../portfoilo/PortfolioData";
-
-interface PortfolioItemType {
-  project: string;
-  images?: string[];
-  date: string;
-  company: string;
-  caption: string;
-  challenge: string;
-  solution: string;
-  impact: string;
-  technical_highlights: string[];
-  badges: string[];
-  demo_url?: string;
-  github_url?: string;
-}
+import portfolioData, { PortfolioItem } from "../../data/portfolioData";
 
 interface PortfolioDialogProps {
-  item: PortfolioItemType | null;
+  item: PortfolioItem | null;
   isOpen: boolean;
   onClose: () => void;
 }
+
+// Animation constants for consistency
+const ANIMATION_CONFIG = {
+  duration: 0.5,
+  ease: "easeInOut",
+  layoutEase: [0.4, 0.0, 0.2, 1], // Custom cubic-bezier for smooth expansion
+} as const;
 
 const PortfolioDialog: React.FC<PortfolioDialogProps> = ({ item, isOpen, onClose }) => {
   const dialogRef = React.useRef<HTMLDialogElement>(null);
@@ -33,16 +25,17 @@ const PortfolioDialog: React.FC<PortfolioDialogProps> = ({ item, isOpen, onClose
 
     if (isOpen) {
       dialog.showModal();
-    } else {
-      dialog.close();
     }
+    // Don't call dialog.close() here - let AnimatePresence handle the exit
   }, [isOpen]);
 
   React.useEffect(() => {
     const dialog = dialogRef.current;
     if (!dialog) return;
 
-    const handleClose = () => {
+    const handleClose = (e: Event) => {
+      // Prevent the default close behavior to allow animations
+      e.preventDefault();
       onClose();
     };
 
@@ -58,12 +51,21 @@ const PortfolioDialog: React.FC<PortfolioDialogProps> = ({ item, isOpen, onClose
       }
     };
 
+    const handleEscapeKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        onClose();
+      }
+    };
+
     dialog.addEventListener('close', handleClose);
     dialog.addEventListener('click', handleBackdropClick);
+    dialog.addEventListener('keydown', handleEscapeKey);
 
     return () => {
       dialog.removeEventListener('close', handleClose);
       dialog.removeEventListener('click', handleBackdropClick);
+      dialog.removeEventListener('keydown', handleEscapeKey);
     };
   }, [onClose]);
 
@@ -71,7 +73,11 @@ const PortfolioDialog: React.FC<PortfolioDialogProps> = ({ item, isOpen, onClose
 
   return (
     <AnimatePresence onExitComplete={() => {
-      // Additional cleanup can be done here if needed
+      // Close the native dialog after the exit animation completes
+      const dialog = dialogRef.current;
+      if (dialog && dialog.open) {
+        dialog.close();
+      }
     }}>
       {isOpen && (
         <motion.dialog
@@ -80,8 +86,8 @@ const PortfolioDialog: React.FC<PortfolioDialogProps> = ({ item, isOpen, onClose
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ 
-            layout: { duration: 0.6, ease: "easeInOut" },
-            opacity: { duration: 0.3 }
+            duration: ANIMATION_CONFIG.duration,
+            ease: ANIMATION_CONFIG.ease
           }}
           className="backdrop:bg-black backdrop:bg-opacity-50 backdrop:backdrop-blur-sm bg-transparent p-4 max-w-4xl w-full h-[90vh]"
         >
@@ -89,8 +95,11 @@ const PortfolioDialog: React.FC<PortfolioDialogProps> = ({ item, isOpen, onClose
             layoutId={`portfolio-card-${item.project}`}
             className="bg-white dark:bg-gray-900 rounded-xl shadow-2xl w-full h-full overflow-hidden relative flex flex-col"
             transition={{ 
-              layout: { duration: 0.6, ease: "easeInOut" },
-              opacity: { duration: 0.3 }
+              layout: { 
+                duration: ANIMATION_CONFIG.duration, 
+                ease: ANIMATION_CONFIG.layoutEase,
+                type: "tween"
+              }
             }}
           >
             <motion.button 
@@ -98,6 +107,10 @@ const PortfolioDialog: React.FC<PortfolioDialogProps> = ({ item, isOpen, onClose
               onClick={onClose}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
+              transition={{
+                duration: ANIMATION_CONFIG.duration,
+                ease: ANIMATION_CONFIG.ease
+              }}
             >
               ×
             </motion.button>
@@ -108,9 +121,8 @@ const PortfolioDialog: React.FC<PortfolioDialogProps> = ({ item, isOpen, onClose
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ 
-                type: "spring",
-                damping: 20,
-                stiffness: 200,
+                duration: ANIMATION_CONFIG.duration,
+                ease: ANIMATION_CONFIG.ease,
                 delay: 0.1
               }}
             >
@@ -123,6 +135,14 @@ const PortfolioDialog: React.FC<PortfolioDialogProps> = ({ item, isOpen, onClose
                 <motion.h2 
                   className="content-h2"
                   layoutId={`portfolio-title-${item.project}`}
+                  layout
+                  transition={{
+                    layout: {
+                      duration: ANIMATION_CONFIG.duration,
+                      ease: ANIMATION_CONFIG.layoutEase,
+                      type: "tween"
+                    }
+                  }}
                 >
                   {item.project}
                 </motion.h2>
@@ -141,7 +161,11 @@ const PortfolioDialog: React.FC<PortfolioDialogProps> = ({ item, isOpen, onClose
               layoutId={`portfolio-content-${item.project}`}
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.3, duration: 0.3 }}
+              transition={{ 
+                duration: ANIMATION_CONFIG.duration,
+                ease: ANIMATION_CONFIG.ease,
+                delay: 0.2
+              }}
             >
               <div className="space-y-2">
                 <h4 className="subsection-header gradient-border-left">Challenge</h4>
@@ -169,10 +193,9 @@ const PortfolioDialog: React.FC<PortfolioDialogProps> = ({ item, isOpen, onClose
                         initial={{ x: -20, opacity: 0 }}
                         animate={{ x: 0, opacity: 1 }}
                         transition={{ 
-                          type: "spring",
-                          damping: 18,
-                          stiffness: 150,
-                          delay: 0.3 + index * 0.08
+                          duration: ANIMATION_CONFIG.duration,
+                          ease: ANIMATION_CONFIG.ease,
+                          delay: 0.3 + index * 0.05
                         }}
                       >
                         <span className="text-accent2 mr-3 font-bold flex-shrink-0 mt-0.5">▸</span>
@@ -190,7 +213,11 @@ const PortfolioDialog: React.FC<PortfolioDialogProps> = ({ item, isOpen, onClose
               layoutId={`portfolio-footer-${item.project}`}
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.5, duration: 0.3 }}
+              transition={{ 
+                duration: ANIMATION_CONFIG.duration,
+                ease: ANIMATION_CONFIG.ease,
+                delay: 0.3
+              }}
             >
               <div className="flex flex-wrap gap-2">
                 {item.badges.map((badge, index) => (
@@ -200,7 +227,11 @@ const PortfolioDialog: React.FC<PortfolioDialogProps> = ({ item, isOpen, onClose
                     layoutId={`portfolio-badge-${item.project}-${index}`}
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    transition={{ delay: 0.4 + index * 0.03, duration: 0.2 }}
+                    transition={{ 
+                      duration: ANIMATION_CONFIG.duration,
+                      ease: ANIMATION_CONFIG.ease,
+                      delay: 0.4 + index * 0.05
+                    }}
                   >
                     {badge}
                   </motion.span>
@@ -215,10 +246,10 @@ const PortfolioDialog: React.FC<PortfolioDialogProps> = ({ item, isOpen, onClose
 };
 
 const Portfolio = () => {
-  const [selectedItem, setSelectedItem] = useState<PortfolioItemType | null>(null);
+  const [selectedItem, setSelectedItem] = useState<PortfolioItem | null>(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
-  const openDialog = (item: PortfolioItemType) => {
+  const openDialog = (item: PortfolioItem) => {
     // Prevent body scroll when dialog is open
     document.body.style.overflow = 'hidden';
     
@@ -237,7 +268,7 @@ const Portfolio = () => {
     // This ensures the card keeps its layoutId during the transition
     setTimeout(() => {
       setSelectedItem(null);
-    }, 300); // Match the dialog exit animation duration
+    }, ANIMATION_CONFIG.duration * 1000); // Convert to milliseconds
   };
 
   return (
@@ -266,15 +297,33 @@ const Portfolio = () => {
                 amount: 0.3,
                 margin: "-50px 0px -50px 0px"
               }}
+              layout
               transition={{ 
-                duration: 0.5,
-                delay: index * 0.05
+                layout: {
+                  duration: ANIMATION_CONFIG.duration,
+                  ease: ANIMATION_CONFIG.layoutEase,
+                  type: "tween"
+                },
+                default: {
+                  duration: ANIMATION_CONFIG.duration,
+                  ease: ANIMATION_CONFIG.ease,
+                  delay: index * 0.05
+                }
               }}
               whileHover={{ 
                 scale: 1.01,
-                transition: { type: "spring", damping: 15, stiffness: 400 }
+                transition: { 
+                  duration: ANIMATION_CONFIG.duration,
+                  ease: ANIMATION_CONFIG.ease
+                }
               }}
-              whileTap={{ scale: 0.98 }}
+              whileTap={{ 
+                scale: 0.98,
+                transition: { 
+                  duration: ANIMATION_CONFIG.duration,
+                  ease: ANIMATION_CONFIG.ease
+                }
+              }}
             >
               <div className="portfolio-header">
                 {portfolioItem.images && portfolioItem.images.length > 0 && (
@@ -288,6 +337,14 @@ const Portfolio = () => {
                   <motion.h2 
                     className="content-h2"
                     layoutId={`portfolio-title-${portfolioItem.project}`}
+                    layout
+                    transition={{
+                      layout: {
+                        duration: ANIMATION_CONFIG.duration,
+                        ease: ANIMATION_CONFIG.layoutEase,
+                        type: "tween"
+                      }
+                    }}
                   >
                     {portfolioItem.project}
                   </motion.h2>
@@ -303,6 +360,14 @@ const Portfolio = () => {
               <motion.div 
                 className="portfolio-content"
                 layoutId={`portfolio-content-${portfolioItem.project}`}
+                layout
+                transition={{
+                  layout: {
+                    duration: ANIMATION_CONFIG.duration,
+                    ease: ANIMATION_CONFIG.layoutEase,
+                    type: "tween"
+                  }
+                }}
               >
                 <div className="portfolio-section">
                   <h4 className="portfolio-section-title">Challenge</h4>
@@ -334,6 +399,14 @@ const Portfolio = () => {
               <motion.div 
                 className="portfolio-footer"
                 layoutId={`portfolio-footer-${portfolioItem.project}`}
+                layout
+                transition={{
+                  layout: {
+                    duration: ANIMATION_CONFIG.duration,
+                    ease: ANIMATION_CONFIG.layoutEase,
+                    type: "tween"
+                  }
+                }}
               >
                 <div className="portfolio-badges">
                   {portfolioItem.badges.map((badge, badgeIndex) => (
@@ -341,6 +414,14 @@ const Portfolio = () => {
                       key={badgeIndex} 
                       className="badge"
                       layoutId={`portfolio-badge-${portfolioItem.project}-${badgeIndex}`}
+                      layout
+                      transition={{
+                        layout: {
+                          duration: ANIMATION_CONFIG.duration,
+                          ease: ANIMATION_CONFIG.layoutEase,
+                          type: "tween"
+                        }
+                      }}
                     >
                       {badge}
                     </motion.span>
