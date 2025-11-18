@@ -1,4 +1,4 @@
-type PortfolioType = {
+export interface PortfolioItem {
   project: string;
   images?: string[];
   date: string;
@@ -11,54 +11,9 @@ type PortfolioType = {
   badges: string[];
   demo_url?: string;
   github_url?: string;
-}[];
+}
 
-const portfolioData: PortfolioType = [
-  {
-    project: "Xometry Quoting Platform",
-    date: "2023 - 2024",
-    company: "Xometry, Inc.",
-    caption: "PLACEHOLDER: Add caption for platform architecture work",
-    challenge: "PLACEHOLDER: Add details about the challenge or problem you solved",
-    solution: "PLACEHOLDER: Add details about your solution and approach",
-    impact: "PLACEHOLDER: Add measurable impact and results",
-    technical_highlights: [
-      "PLACEHOLDER: Add technical highlight 1",
-      "PLACEHOLDER: Add technical highlight 2", 
-      "PLACEHOLDER: Add technical highlight 3"
-    ],
-    badges: ["React", "TypeScript", "GraphQL", "Node.js", "AWS"]
-  },
-  {
-    project: "Xometry Design System",
-    date: "2022 - 2023",
-    company: "Xometry, Inc.",
-    caption: "PLACEHOLDER: Add caption for design system work",
-    challenge: "PLACEHOLDER: Add details about the challenge or problem you solved",
-    solution: "PLACEHOLDER: Add details about your solution and approach",
-    impact: "PLACEHOLDER: Add measurable impact and results",
-    technical_highlights: [
-      "PLACEHOLDER: Add technical highlight 1",
-      "PLACEHOLDER: Add technical highlight 2",
-      "PLACEHOLDER: Add technical highlight 3"
-    ],
-    badges: ["React", "TypeScript", "Storybook", "CSS3", "Design Systems"]
-  },
-  {
-    project: "Xometry Finance Dashboard",
-    date: "2021 - 2022",
-    company: "Xometry, Inc.",
-    caption: "PLACEHOLDER: Add caption for mobile experience work",
-    challenge: "PLACEHOLDER: Add details about the challenge or problem you solved",
-    solution: "PLACEHOLDER: Add details about your solution and approach",
-    impact: "PLACEHOLDER: Add measurable impact and results",
-    technical_highlights: [
-      "PLACEHOLDER: Add technical highlight 1",
-      "PLACEHOLDER: Add technical highlight 2",
-      "PLACEHOLDER: Add technical highlight 3"
-    ],
-    badges: ["React", "TypeScript", "Mobile", "Responsive Design"]
-  },
+export const portfolioData: PortfolioItem[] = [
   {
     project: "TwinSpires Dark Mode",
     images: [
@@ -130,21 +85,6 @@ const portfolioData: PortfolioType = [
       "Designed persistent game state using local storage with statistics tracking and streak management"
     ],
     badges: ["React", "TypeScript", "Tailwind CSS", "Game Development", "Personal Project"]
-  },
-  {
-    project: "Pixel Bot",
-    date: "2023",
-    company: "Personal",
-    caption: "PLACEHOLDER: Add caption for personal project",
-    challenge: "PLACEHOLDER: Add details about the challenge or problem you solved",
-    solution: "PLACEHOLDER: Add details about your solution and approach",
-    impact: "PLACEHOLDER: Add measurable impact and results",
-    technical_highlights: [
-      "PLACEHOLDER: Add technical highlight 1",
-      "PLACEHOLDER: Add technical highlight 2",
-      "PLACEHOLDER: Add technical highlight 3"
-    ],
-    badges: ["JavaScript", "CSS3", "HTML5", "Personal Project"]
   },
   {
     project: "TwinSpires Video",
