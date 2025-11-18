@@ -104,7 +104,7 @@ const Navbar = () => {
       role="navigation"
       aria-label="Main navigation"
     >
-      <div className="w-full px-4 sm:px-6 lg:px-8 md:bg-transparent gradient-primary md:gradient-none shadow-2xl md:shadow-none md:rounded-none border-b-2 md:border-none border-accent2 dark:border-accent2 md:nav-shadow">
+      <div className="w-full px-4 sm:px-6 lg:px-8 md:bg-transparent bg-gray-900 dark:bg-gray-950 md:gradient-none shadow-2xl md:shadow-none md:rounded-none border-b-2 md:border-none border-accent2 dark:border-accent2 md:nav-shadow">
         <div className="flex items-center justify-between h-16">
           {/* Enhanced Logo/Name */}
           <div className="flex items-center">
