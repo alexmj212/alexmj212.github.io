@@ -67,7 +67,6 @@
   .card-base {
     @apply bg-white dark:bg-gray-900;
     @apply rounded-xl shadow-lg;
-    @apply hover:shadow-xl transition-all duration-300;
   }
 
   /* Enhanced padding for cards on large screens */
@@ -80,7 +79,6 @@
     @apply bg-gradient-to-br from-gray-50/60 to-slate-100/60 dark:from-gray-800/80 dark:to-gray-700/80;
     @apply border border-gray-200 dark:border-gray-700;
     @apply rounded-xl shadow-lg;
-    @apply hover:shadow-xl hover:scale-[1.005] transition-all duration-300;
     backdrop-filter: blur(5px);
   }
 
@@ -137,20 +135,6 @@
     @apply gradient-primary;
     @apply text-white font-bold;
     @apply px-6 py-3 rounded-lg;
-    @apply transition-all duration-200;
-    @apply hover:bg-opacity-90;
-    @apply relative;
-  }
-
-  .btn-gradient::after {
-    content: "";
-    @apply absolute bottom-0 left-1/2 w-0 h-0.5;
-    @apply bg-white transition-all duration-200;
-    @apply transform -translate-x-1/2;
-  }
-
-  .btn-gradient:hover::after {
-    @apply w-3/4;
   }
 
   .timeline-line {
@@ -345,7 +329,6 @@
       @apply mb-3 py-2 px-4;
       @apply shadow-sm;
       @apply tracking-wider;
-      @apply transition-all duration-200;
     }
 
     & .experience-header {
@@ -449,26 +432,23 @@
     @apply inline-flex items-center justify-center;
     @apply px-8 py-4 text-lg;
     @apply rounded-lg;
-    @apply transition-all duration-200;
-    @apply hover:bg-opacity-90;
   }
 
   /* Enhanced Navigation Styles */
+  .nav-shadow {
+    background: radial-gradient(ellipse at top, rgba(17, 24, 39, 0.4) 0%, transparent 70%);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .nav-shadow {
+      background: radial-gradient(ellipse at top, rgba(0, 0, 0, 0.6) 0%, transparent 70%);
+    }
+  }
+
   .nav-link {
     @apply text-white md:text-gray-900 md:dark:text-white;
     @apply hover:text-gray-200 md:hover:text-gray-700 md:dark:hover:text-gray-200;
-    @apply transition-all duration-200 ease-out;
     @apply relative;
-
-    &::after {
-      content: "";
-      @apply absolute bottom-0 left-0 w-0 h-0.5;
-      @apply bg-white md:bg-gray-900 md:dark:bg-white transition-all duration-200;
-    }
-
-    &:hover::after {
-      @apply w-full;
-    }
   }
 
   nav {
@@ -479,7 +459,6 @@
     & .page-link {
       @apply px-4 py-2 rounded;
       @apply hover:bg-white hover:text-accent1-dark;
-      @apply transition-all duration-200;
     }
   }
 
@@ -505,12 +484,6 @@
     @apply mr-2 mb-2 py-2 px-4;
     @apply shadow-sm;
     @apply tracking-wider;
-    @apply transition-all duration-200;
-
-    &:hover {
-      @apply bg-gray-300 dark:bg-gray-600;
-      @apply shadow-md;
-    }
   }
 
   /* Portrait & Images */
@@ -548,7 +521,6 @@
   .contact-link-minimal {
     @apply text-white md:text-gray-900 md:dark:text-white;
     @apply hover:text-gray-200 md:hover:text-gray-700 md:dark:hover:text-gray-200;
-    @apply transition-colors duration-200;
     @apply p-2 rounded;
     @apply hover:bg-white hover:bg-opacity-10 md:hover:bg-gray-100 md:hover:bg-opacity-50 md:dark:hover:bg-gray-800 md:dark:hover:bg-opacity-50;
   }
@@ -558,34 +530,22 @@
     @apply text-2xl p-3 rounded-full;
     @apply hover:text-gray-200 dark:hover:text-gray-300;
     @apply hover:bg-white hover:bg-opacity-10;
-    @apply transition-all duration-200;
   }
 
   /* Light Link Styles */
   .light-link {
     & a {
-      @apply cursor-pointer transition duration-100;
+      @apply cursor-pointer;
       @apply text-white dark:text-white-dark;
       @apply hover:text-white dark:hover:text-white-dark;
-
-      &:hover {
-        @apply filter drop-shadow;
-      }
     }
   }
 
-  /* Fade In Animation */
+  /* Fade In Section - Simplified */
   .fade-in-section {
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 2s ease-out;
-    will-change: opacity, visibility;
-
-    &.is-visible {
-      opacity: 1;
-      visibility: visible;
-      display: flex;
-    }
+    opacity: 1;
+    visibility: visible;
+    display: flex;
   }
 
   /* Portfolio Grid */
@@ -596,8 +556,7 @@
   /* Portfolio Showcase Styles */
 
   .portfolio-card {
-    @apply relative content-panel cursor-pointer transition-all duration-500 ease-in-out;
-    @apply hover:shadow-xl hover:scale-[1.02];
+    @apply relative content-panel cursor-pointer;
 
     /* Compact card state */
     & .portfolio-header {
@@ -612,7 +571,7 @@
       @apply w-full h-full flex items-center justify-center p-4;
 
       & img {
-        @apply w-full h-full object-cover rounded-lg transition-transform duration-300;
+        @apply w-full h-full object-cover rounded-lg;
       }
     }
 
@@ -661,22 +620,12 @@
   .portfolio-dialog {
     @apply fixed inset-0 z-50 flex items-center justify-center p-4;
     @apply bg-black bg-opacity-50 backdrop-blur-sm;
-    @apply opacity-0 invisible transition-all duration-300;
-  }
-
-  .portfolio-dialog.open {
-    @apply opacity-100 visible;
   }
 
   .portfolio-dialog-content {
     @apply bg-white dark:bg-gray-900 rounded-xl shadow-2xl;
     @apply max-w-4xl w-full max-h-[90vh] overflow-hidden;
-    @apply transform scale-95 transition-transform duration-300;
     @apply relative;
-  }
-
-  .portfolio-dialog.open .portfolio-dialog-content {
-    @apply scale-100;
   }
 
   .portfolio-dialog-header {
@@ -756,7 +705,7 @@
     @apply bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600;
     @apply rounded-full flex justify-center;
     @apply text-gray-600 dark:text-gray-400 text-xl font-bold uppercase;
-    @apply cursor-pointer transition-colors duration-200;
+    @apply cursor-pointer;
     z-index: 10;
   }
 
