@@ -1,7 +1,7 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import "./styles/tailwind.css";
+import "../tailwind-input.css";
 import "./styles/resume.css";
 import App from "./App";
 import Resume from "./components/Resume";
