@@ -98,7 +98,7 @@ const ThreeBackground = () => {
         // ===== CONFIGURABLE ANIMATION SETTINGS =====
         const CONFIG = {
           // Particle Settings
-          particleCount: 100,
+          particleCount: 50,
           particleSize: 0.08,
           particleSizeVariation: 1, // Size variance multiplier (0-1, higher = more size difference)
           particleGeometrySegments: 16, // Higher = smoother spheres (perfect circles)
@@ -140,6 +140,10 @@ const ThreeBackground = () => {
           enableMouseInteraction: false, // Temporarily disable for debugging
           mouseInfluenceRadius: 2,
           mouseSpeedBoost: 0,
+          
+          // Accessibility
+          prefersReducedMotion: window.matchMedia('(prefers-reduced-motion: reduce)').matches,
+          reducedMotionSpeedMultiplier: 0.3, // Speed reduction for accessibility
 
           // Hero Content Effects (Rotation Only)
           contentRotationIntensity: 4, // Content rotation strength (degrees)
