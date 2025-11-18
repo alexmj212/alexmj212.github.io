@@ -63,7 +63,7 @@ const ContactList = (props: ContactListProps) => {
     <List horizontal className={`flex-1 no-style items-center space-x-2 ${className || ""}`}>
       {ContactItems.map((item) => (
         <ListItem key={item.href}>
-          <a href={item.href} title={item.label} className={colorStyle}>
+          <a href={item.href} title={item.label} className={`${colorStyle} ${showLabel ? "flex items-center" : ""}`}>
             <FontAwesomeIcon icon={item.icon} />
             {showLabel && <div className={`${labelSize} ${styleVariant === "card" ? "" : "ml-2 leading-none"}`}>{item.label}</div>}
           </a>
