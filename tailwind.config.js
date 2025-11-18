@@ -5,7 +5,7 @@ export default {
     "./index.html",
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
-  darkMode: "media", // or 'media' or 'class'
+  darkMode: "class", // Enable class-based dark mode for toggle
   theme: {
     extend: {
       screens: {
