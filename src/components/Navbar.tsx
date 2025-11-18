@@ -1,10 +1,35 @@
 import { useState, useEffect, useRef } from 'react';
 import ContactList from './ContactList';
 
+const useDarkMode = () => {
+  const [isDark, setIsDark] = useState(() => {
+    // Check localStorage first, then system preference
+    const stored = localStorage.getItem('theme');
+    if (stored) {
+      return stored === 'dark';
+    }
+    return window.matchMedia('(prefers-color-scheme: dark)').matches;
+  });
+
+  useEffect(() => {
+    const root = document.documentElement;
+    if (isDark) {
+      root.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      root.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
+    }
+  }, [isDark]);
+
+  return [isDark, setIsDark] as const;
+};
+
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isNavbarVisible, setIsNavbarVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [isDarkMode, setIsDarkMode] = useDarkMode();
   const firstMenuItemRef = useRef<HTMLAnchorElement>(null);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
 
@@ -138,12 +163,26 @@ const Navbar = () => {
 
               {/* Contact Icons */}
               <div className="hidden md:flex space-x-2 ml-4" role="navigation" aria-label="Social media and contact links">
-                <ContactList 
-                  iconSize="text-lg" 
-                  className="flex space-x-2" 
+                <ContactList
+                  iconSize="text-lg"
+                  className="flex space-x-2"
                   styleVariant="minimal"
                 />
               </div>
+
+              {/* Dark Mode Toggle */}
+              <button
+                onClick={() => setIsDarkMode(!isDarkMode)}
+                className="hidden md:block ml-4 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-accent2 dark:focus:ring-accent2-dark transition-colors"
+                aria-label={isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'}
+                title={isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'}
+              >
+                {isDarkMode ? (
+                  <i className="fas fa-sun text-xl text-yellow-500"></i>
+                ) : (
+                  <i className="fas fa-moon text-xl text-gray-700"></i>
+                )}
+              </button>
             </div>
           </div>
 
@@ -228,12 +267,33 @@ const Navbar = () => {
 
             {/* Mobile Contact Icons */}
             <div className="pt-2" role="navigation" aria-label="Social media and contact links">
-              <ContactList 
-                iconSize="text-xl" 
-                className="flex space-x-4 justify-center" 
+              <ContactList
+                iconSize="text-xl"
+                className="flex space-x-4 justify-center"
                 styleVariant="minimal"
               />
             </div>
+
+            {/* Mobile Dark Mode Toggle */}
+            <button
+              onClick={() => setIsDarkMode(!isDarkMode)}
+              className="mt-3 w-full p-3 rounded-lg bg-white bg-opacity-10 hover:bg-opacity-20 focus:outline-none focus:ring-2 focus:ring-white transition-colors"
+              aria-label={isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'}
+            >
+              <span className="flex items-center justify-center">
+                {isDarkMode ? (
+                  <>
+                    <i className="fas fa-sun text-xl text-yellow-400 mr-2"></i>
+                    <span className="text-white">Light Mode</span>
+                  </>
+                ) : (
+                  <>
+                    <i className="fas fa-moon text-xl text-white mr-2"></i>
+                    <span className="text-white">Dark Mode</span>
+                  </>
+                )}
+              </span>
+            </button>
           </div>
         </div>
       </div>

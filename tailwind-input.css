@@ -38,25 +38,25 @@
    REUSABLE UTILITY CLASSES
    ================================== */
 @layer components {
-  /* Common Gradient Themes */
+  /* Solid Color Themes */
   .gradient-primary {
-    @apply bg-gradient-to-r from-accent1 dark:from-accent1-dark to-accent2 dark:to-accent2-dark;
+    @apply bg-accent2 dark:bg-accent2-dark;
   }
 
   .gradient-primary-reverse {
-    @apply bg-gradient-to-r from-accent2 dark:from-accent2-dark to-accent1 dark:to-accent1-dark;
+    @apply bg-accent2 dark:bg-accent2-dark;
   }
 
   .gradient-primary-vertical {
-    @apply bg-gradient-to-b from-accent1 dark:from-accent1-dark to-accent2 dark:to-accent2-dark;
+    @apply bg-accent2 dark:bg-accent2-dark;
   }
 
   .gradient-primary-diagonal {
-    @apply bg-gradient-to-br from-accent1 dark:from-accent1-dark to-accent2 dark:to-accent2-dark;
+    @apply bg-accent2 dark:bg-accent2-dark;
   }
 
   .gradient-subtle {
-    @apply bg-gradient-to-br from-gray-50/60 to-slate-100/60 dark:from-gray-800/80 dark:to-gray-700/80;
+    @apply bg-gray-50/60 dark:bg-gray-800/80;
   }
 
   .gradient-none {
@@ -76,7 +76,7 @@
 
   /* Consistent Panel Class for all content cards */
   .content-panel {
-    @apply bg-gradient-to-br from-gray-50/60 to-slate-100/60 dark:from-gray-800/80 dark:to-gray-700/80;
+    @apply bg-gray-50/60 dark:bg-gray-800/80;
     @apply border border-gray-200 dark:border-gray-700;
     @apply rounded-xl shadow-lg;
     backdrop-filter: blur(5px);
@@ -97,7 +97,7 @@
   .card-gradient-top::before {
     content: "";
     @apply absolute top-0 left-0 w-full h-1;
-    @apply gradient-primary;
+    @apply bg-accent2 dark:bg-accent2-dark;
   }
 
   /* Section Headers */
@@ -112,34 +112,27 @@
     @apply text-gray-800 dark:text-gray-200;
   }
 
-  /* Gradient Accents */
+  /* Accent Underlines */
   .gradient-underline::after {
     content: "";
     @apply absolute -bottom-2 left-0 w-12 h-1;
-    @apply gradient-primary rounded-full;
+    @apply bg-accent2 dark:bg-accent2-dark rounded-full;
   }
 
   .gradient-border-left {
-    @apply border-l-4 pl-3;
-    border-image: linear-gradient(to bottom, var(--carolina-blue), var(--russian-green)) 1;
-  }
-
-  @media (prefers-color-scheme: dark) {
-    .gradient-border-left {
-      border-image: linear-gradient(to bottom, var(--carolina-blue-dark), var(--russian-green-dark)) 1;
-    }
+    @apply border-l-4 border-accent2 dark:border-accent2-dark pl-3;
   }
 
   /* Button Styles */
   .btn-gradient {
-    @apply gradient-primary;
+    @apply bg-accent2 dark:bg-accent2-dark;
     @apply text-white font-bold;
     @apply px-6 py-3 rounded-lg;
   }
 
   .timeline-line {
     @apply w-0.5;
-    @apply gradient-primary-vertical;
+    @apply bg-accent2 dark:bg-accent2-dark;
   }
 
   /* Content Containers */
@@ -217,17 +210,14 @@
   /* ==================================
    TYPOGRAPHY
    ================================== */
-  /* Gradient Text Effects */
+  /* Text Color Effects */
   .gradient-text {
-    @apply bg-gradient-to-r from-accent1 dark:from-accent1-dark to-accent2 dark:to-accent2-dark;
-    @apply bg-clip-text text-transparent;
+    @apply text-accent2 dark:text-accent2-dark;
     @apply font-bold tracking-tight;
   }
 
   .gradient-text-subtle {
-    @apply bg-gradient-to-r from-gray-900 via-gray-700 to-gray-900;
-    @apply dark:from-white dark:via-gray-200 dark:to-white;
-    @apply bg-clip-text text-transparent;
+    @apply text-gray-900 dark:text-white;
   }
 
   /* Text Effects & Shadows */
@@ -251,7 +241,7 @@
   .hero-title {
     @apply font-display text-fluid-hero font-black;
     @apply tracking-tighter;
-    @apply gradient-text;
+    @apply text-accent2 dark:text-accent2-dark;
     @apply text-shadow-lg;
   }
 
@@ -264,7 +254,7 @@
   /* Section Headers */
   .section-title {
     @apply font-display text-fluid-3xl font-bold;
-    @apply gradient-text-subtle;
+    @apply text-gray-900 dark:text-white;
     @apply tracking-tight leading-tight;
     @apply mb-6;
   }
@@ -281,7 +271,7 @@
   .content-h2::after {
     content: "";
     @apply absolute -bottom-2 left-0 w-12 h-1;
-    @apply bg-gradient-to-r from-accent1 dark:from-accent1-dark to-accent2 dark:to-accent2-dark;
+    @apply bg-accent2 dark:bg-accent2-dark;
     @apply rounded-full;
   }
 
@@ -306,7 +296,7 @@
     &::before {
       content: "";
       @apply absolute left-2 md:left-2 top-0 bottom-0;
-      @apply timeline-line;
+      @apply w-0.5 bg-accent2 dark:bg-accent2-dark;
     }
   }
 
@@ -427,7 +417,7 @@
 
   /* Hero Button - simplified */
   .hero-button {
-    @apply gradient-primary;
+    @apply bg-accent2 dark:bg-accent2-dark;
     @apply text-white font-semibold;
     @apply inline-flex items-center justify-center;
     @apply px-8 py-4 text-lg;
@@ -436,12 +426,12 @@
 
   /* Enhanced Navigation Styles */
   .nav-shadow {
-    background: radial-gradient(ellipse at top, rgba(17, 24, 39, 0.4) 0%, transparent 70%);
+    background: linear-gradient(to bottom, rgba(17, 24, 39, 0.3) 0%, transparent 100%);
   }
 
   @media (prefers-color-scheme: dark) {
     .nav-shadow {
-      background: radial-gradient(ellipse at top, rgba(0, 0, 0, 0.6) 0%, transparent 70%);
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, transparent 100%);
     }
   }
 
