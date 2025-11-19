@@ -16,24 +16,36 @@ export interface PortfolioItem {
 export const portfolioData: PortfolioItem[] = [
   {
     project: "Xometry Quoting Platform",
-    date: "2023 - 2024",
+    date: "2023 - 2025",
     company: "Xometry, Inc.",
-    caption: "PLACEHOLDER: Add caption for platform architecture work",
-    challenge: "PLACEHOLDER: Add details about the challenge or problem you solved",
-    solution: "PLACEHOLDER: Add details about your solution and approach",
-    impact: "PLACEHOLDER: Add measurable impact and results",
-    technical_highlights: ["PLACEHOLDER: Add technical highlight 1", "PLACEHOLDER: Add technical highlight 2", "PLACEHOLDER: Add technical highlight 3"],
-    badges: ["React", "TypeScript", "GraphQL", "Node.js", "AWS"],
+    caption: "Advanced Quoting Features for Manufacturing Marketplace",
+    challenge:
+      "Building and maintaining sophisticated quoting features for a complex manufacturing marketplace required handling diverse material specifications, and manufacturing processes. The technical complexity involved managing real-time pricing calculations across thousands of manufacturing partners while maintaining rapid response times for customer-facing quote requests.",
+    solution:
+      "Architected and implemented React-based quoting workflows leveraging GraphQL for efficient data fetching and TypeScript for type-safe quote modeling. Built reusable component libraries for configuring manufacturing specifications and developed state management patterns to handle complex multi-step quoting flows with validation at each stage.",
+    impact:
+      "Improved quote generation speed and user experience, enabling customers to receive accurate pricing faster. Enhanced quote accuracy through better validation and specification capture, contributing to increased conversion rates and customer satisfaction across the platform's enterprise customer base.",
+    technical_highlights: [
+      "Designed complex form architecture handling 50+ manufacturing parameters with real-time validation",
+      "Implemented GraphQL query optimization reducing quote load times by leveraging efficient data fetching patterns",
+      "Built reusable component system for manufacturing specifications used across multiple product teams",
+    ],
+    badges: ["React", "TypeScript", "GraphQL"],
   },
   {
-    project: "Xometry Design System",
+    project: "Loft Design System",
     date: "2022 - 2023",
     company: "Xometry, Inc.",
-    caption: "PLACEHOLDER: Add caption for design system work",
-    challenge: "PLACEHOLDER: Add details about the challenge or problem you solved",
-    solution: "PLACEHOLDER: Add details about your solution and approach",
-    impact: "PLACEHOLDER: Add measurable impact and results",
-    technical_highlights: ["PLACEHOLDER: Add technical highlight 1", "PLACEHOLDER: Add technical highlight 2", "PLACEHOLDER: Add technical highlight 3"],
+    caption: "Enterprise Design System for Manufacturing Platform",
+    challenge: "Building flexible, reusable components that could adapt to diverse product needs across Xometry's platform required solving complex technical architecture challenges. Components needed to support multiple use cases while maintaining consistent APIs, handle varying data structures, and scale across teams without creating tight coupling or limiting future extensibility.",
+    solution: "Enhanced and evolved the Loft design system by architecting highly composable React components with flexible prop APIs and TypeScript generics for type-safe reusability. Leveraged Storybook for comprehensive component documentation and visual testing, creating a robust development workflow. Implemented CSS-in-JS patterns and design tokens for consistent theming across all product surfaces.",
+    impact: "Improved UI consistency across the entire Xometry platform and significantly increased component reuse, reducing duplicate code across product teams. The enhanced system enabled faster feature development through shared, well-tested components and established a single source of truth for design patterns.",
+    technical_highlights: [
+      "Architected composable component APIs supporting diverse product requirements with TypeScript generics",
+      "Built comprehensive Storybook documentation with interactive examples and usage guidelines",
+      "Implemented design token system ensuring visual consistency across platform",
+      "Created reusable form components and data display patterns adopted by multiple product teams"
+    ],
     badges: ["React", "TypeScript", "Storybook", "CSS3", "Design Systems"],
   },
   {
@@ -50,7 +62,7 @@ export const portfolioData: PortfolioItem[] = [
       "A complex table component that included pagination, filtering, and sorting supporting thousands of transactions.",
       "A unique drilldown UX design that allowed staff to start at a high level and drill-down to singular transactions",
     ],
-    badges: ["React", "TypeScript", "Mobile", "Responsive Design"],
+    badges: ["React", "TypeScript", "Tanstack Table", "Graphql"],
   },
   {
     project: "TwinSpires Dark Mode",
