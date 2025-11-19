@@ -137,6 +137,17 @@ const PortfolioDialog: React.FC<PortfolioDialogProps> = ({ item, isOpen, onClose
               </span>
             ))}
           </div>
+          {item.link && (
+            <a
+              href={item.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-accent2 dark:text-accent2-dark hover:underline text-sm font-medium flex items-center gap-2 whitespace-nowrap"
+            >
+              Visit Project
+              <i className="fas fa-external-link-alt text-xs"></i>
+            </a>
+          )}
         </div>
       </div>
     </dialog>
@@ -202,6 +213,18 @@ const Portfolio = () => {
                     </span>
                   ))}
                 </div>
+                {portfolioItem.link && (
+                  <a
+                    href={portfolioItem.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-accent2 dark:text-accent2-dark hover:underline text-sm font-medium flex items-center gap-1"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    Visit Project
+                    <i className="fas fa-external-link-alt text-xs"></i>
+                  </a>
+                )}
               </div>
             </article>
           ))}

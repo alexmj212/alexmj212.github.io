@@ -11,6 +11,7 @@ export interface PortfolioItem {
   badges: string[];
   demo_url?: string;
   github_url?: string;
+  link?: string;
 }
 
 export const portfolioData: PortfolioItem[] = [
@@ -118,6 +119,7 @@ export const portfolioData: PortfolioItem[] = [
     date: "2025",
     company: "Personal",
     caption: "Full-Stack Twitch Stream Overlay with Real-Time Game System",
+    link: "https://pixelbot.exogenesis.gg/",
     challenge: "Building a scalable system that manages real-time Twitch chat interactions, game state, and progressive reveal mechanics across multiple streams simultaneously while maintaining low latency and data persistence.",
     solution:
       "Architected a full-stack application deployed on Render.com with separate Twitch bot server and frontend overlay server. Built Twitch bot using Node.js to monitor chat and process commands, SQLite database for game state and statistics, and browser-source overlay with progressive pixel reveal animations. Designed as turnkey solution requiring zero streamer configuration.",
@@ -136,6 +138,7 @@ export const portfolioData: PortfolioItem[] = [
     date: "2022",
     company: "Personal",
     caption: "A Wordle-Inspired Word Guessing Game Built with React and TypeScript",
+    link: "https://alexmj212.dev/word-guess/",
     demo_url: "https://alexmj212.dev/word-guess",
     github_url: "https://github.com/alexmj212/word-guess",
     challenge:
