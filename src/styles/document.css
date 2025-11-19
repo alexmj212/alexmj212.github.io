@@ -1,14 +1,27 @@
-/* Cover Letter specific styles */
+/* Shared document styles for Resume and Cover Letter pages */
+/* Note: Inter font is already imported via @fontsource in tailwind-input.css */
+
+/* Base wrapper styles */
+.resume-wrapper,
 .cover-letter-wrapper {
   font-family: "Inter", system-ui, -apple-system, sans-serif;
+}
+
+.resume-wrapper {
+  font-size: 13px;
+}
+
+.cover-letter-wrapper {
   font-size: 14px;
   line-height: 1.6;
 }
 
+.resume-content,
 .cover-letter-content {
   @apply gap-2;
 }
 
+/* Reset heading styles */
 h1,
 h2,
 h3,
@@ -21,19 +34,25 @@ h6 {
 }
 
 h1 {
-  font-size: 2rem;
-  line-height: 2.25rem;
+  font-size: 2.25rem;
+  line-height: 2.5rem;
   font-weight: 700;
 }
 
-h2 {
+/* Cover letter specific h1 override */
+.cover-letter-wrapper h1 {
+  font-size: 2rem;
+  line-height: 2.25rem;
+}
+
+.cover-letter-wrapper h2 {
   font-size: 1.125rem;
   line-height: 1.5rem;
   font-weight: 500;
   color: #4b5563;
 }
 
-/* Editable field styling for customization */
+/* Editable field styling for customization (cover letter only) */
 .editable-field {
   @apply inline-block;
   background-color: rgba(59, 130, 246, 0.05);
@@ -44,6 +63,7 @@ h2 {
 
 /* Screen styles */
 @media screen {
+  .resume-container,
   .cover-letter-container {
     max-width: 8.5in;
   }
@@ -60,12 +80,26 @@ h2 {
 /* Print-specific styles */
 @media print {
   @page {
-    margin: 1in;
     size: letter;
+  }
+
+  /* Resume uses smaller margins */
+  .resume-wrapper {
+    @page {
+      margin: 0.5in;
+    }
+  }
+
+  /* Cover letter uses larger margins */
+  .cover-letter-wrapper {
+    @page {
+      margin: 1in;
+    }
   }
 
   body {
     @apply m-0 p-0 bg-white text-black;
+    line-height: 1.4;
   }
 
   /* Hide non-print elements */
@@ -75,11 +109,13 @@ h2 {
   }
 
   /* Reset container styles for print */
+  .resume-wrapper,
   .cover-letter-wrapper {
     @apply bg-white min-h-0;
     font-size: 12px;
   }
 
+  .resume-container,
   .cover-letter-container {
     @apply max-w-full shadow-none;
   }
@@ -104,9 +140,20 @@ h2 {
     @apply text-black no-underline;
   }
 
+  /* Prevent page breaks inside sections */
+  article,
+  .relative {
+    page-break-inside: avoid;
+  }
+
   /* Prevent page breaks inside paragraphs */
   p {
     page-break-inside: avoid;
+  }
+
+  /* Force page break for very long sections if needed */
+  section + section {
+    page-break-before: auto;
   }
 
   /* Ensure proper link display */

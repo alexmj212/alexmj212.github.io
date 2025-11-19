@@ -2,7 +2,6 @@ import React from "react";
 import { createRoot } from "react-dom/client";
 import { HashRouter, Routes, Route } from "react-router-dom";
 import "../tailwind-input.css";
-import "./styles/resume.css";
 import App from "./App";
 import Resume from "./components/Resume";
 import CoverLetter from "./components/CoverLetter";
