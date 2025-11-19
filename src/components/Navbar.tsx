@@ -160,14 +160,6 @@ const Navbar = () => {
               >
                 Resume
               </a>
-              <a
-                href="#/cover-letter"
-                className="nav-link px-3 py-2 rounded-md text-sm font-medium focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent"
-                role="menuitem"
-                tabIndex={0}
-              >
-                Cover Letter
-              </a>
 
               {/* Contact Icons */}
               <div className="hidden md:flex space-x-2 ml-4" role="navigation" aria-label="Social media and contact links">
@@ -271,15 +263,6 @@ const Navbar = () => {
               tabIndex={isMenuOpen ? 0 : -1}
             >
               Resume
-            </a>
-            <a
-              href="#/cover-letter"
-              className="nav-link block px-3 py-2 rounded-md text-base font-medium focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent"
-              onClick={handleLinkClick}
-              role="menuitem"
-              tabIndex={isMenuOpen ? 0 : -1}
-            >
-              Cover Letter
             </a>
 
             {/* Mobile Contact Icons */}
