@@ -9,8 +9,6 @@ export interface PortfolioItem {
   impact: string;
   technical_highlights: string[];
   badges: string[];
-  demo_url?: string;
-  github_url?: string;
   link?: string;
 }
 
@@ -139,8 +137,6 @@ export const portfolioData: PortfolioItem[] = [
     company: "Personal",
     caption: "A Wordle-Inspired Word Guessing Game Built with React and TypeScript",
     link: "https://alexmj212.dev/word-guess/",
-    demo_url: "https://alexmj212.dev/word-guess",
-    github_url: "https://github.com/alexmj212/word-guess",
     challenge:
       "Wordle's viral success demonstrated the appeal of simple, shareable word games. However, the original game's client-side architecture, limited daily puzzles, and validation logic presented opportunities for enhancement. The challenge was to recreate the core mechanics while adding features like difficulty modes, unlimited play options, and improved hint accuracy for duplicate letters.",
     solution:

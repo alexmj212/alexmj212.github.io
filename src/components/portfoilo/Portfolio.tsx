@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import portfolioData, { PortfolioItem } from "../../data/portfolioData";
 
 interface PortfolioDialogProps {
@@ -79,7 +79,14 @@ const PortfolioDialog: React.FC<PortfolioDialogProps> = ({ item, isOpen, onClose
         <div className="flex flex-col lg:flex-row gap-6 p-6 flex-shrink-0">
           {item.images && item.images.length > 0 && (
             <div className="w-full lg:w-80 h-48 lg:h-64 flex-shrink-0 rounded-lg overflow-hidden bg-gray-100 dark:bg-gray-800">
-              <img src={item.images[0]} alt={item.project} className="w-full h-full object-contain" />
+              <img
+                src={item.images[0]}
+                alt={item.project}
+                className="w-full h-full object-contain"
+                onError={(e) => {
+                  e.currentTarget.style.display = 'none';
+                }}
+              />
             </div>
           )}
           <div className="flex-1">
@@ -142,10 +149,10 @@ const PortfolioDialog: React.FC<PortfolioDialogProps> = ({ item, isOpen, onClose
               href={item.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-accent2 dark:text-accent2-dark hover:underline text-sm font-medium flex items-center gap-2 whitespace-nowrap"
+              className="hero-button text-sm px-4 py-2 whitespace-nowrap"
             >
               Visit Project
-              <i className="fas fa-external-link-alt text-xs"></i>
+              <i className="fas fa-external-link-alt ml-2"></i>
             </a>
           )}
         </div>
@@ -164,11 +171,18 @@ const Portfolio = () => {
     setIsDialogOpen(true);
   };
 
-  const closeDialog = () => {
+  const closeDialog = useCallback(() => {
     document.body.classList.remove('overflow-hidden');
     setIsDialogOpen(false);
     setSelectedItem(null);
-  };
+  }, []);
+
+  // Cleanup effect to prevent body overflow memory leak
+  useEffect(() => {
+    return () => {
+      document.body.classList.remove('overflow-hidden');
+    };
+  }, []);
 
   return (
     <div className="w-full py-24">
@@ -190,7 +204,13 @@ const Portfolio = () => {
                 {portfolioItem.images && portfolioItem.images.length > 0 && (
                   <div className="portfolio-image-container">
                     <div className="portfolio-image">
-                      <img src={portfolioItem.images[0]} alt={portfolioItem.project} />
+                      <img
+                        src={portfolioItem.images[0]}
+                        alt={portfolioItem.project}
+                        onError={(e) => {
+                          e.currentTarget.style.display = 'none';
+                        }}
+                      />
                     </div>
                   </div>
                 )}
@@ -218,11 +238,11 @@ const Portfolio = () => {
                     href={portfolioItem.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-accent2 dark:text-accent2-dark hover:underline text-sm font-medium flex items-center gap-1"
+                    className="hero-button text-sm px-4 py-2"
                     onClick={(e) => e.stopPropagation()}
                   >
                     Visit Project
-                    <i className="fas fa-external-link-alt text-xs"></i>
+                    <i className="fas fa-external-link-alt ml-2"></i>
                   </a>
                 )}
               </div>
