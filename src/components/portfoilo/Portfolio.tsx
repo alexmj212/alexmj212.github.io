@@ -84,11 +84,11 @@ const PortfolioDialog: React.FC<PortfolioDialogProps> = ({ item, isOpen, onClose
           )}
           <div className="flex-1">
             <h2 className="content-h2">{item.project}</h2>
-            <p className="text-lg mb-3">{item.caption}</p>
+            <p className="text-lg mb-3 text-gray-700 dark:text-gray-300">{item.caption}</p>
             <div className="text-sm mb-4">
               <span className="font-semibold text-accent1 dark:text-accent1-dark">{item.company}</span>
-              <span className="text-gray-400 mx-2">•</span>
-              <span>{item.date}</span>
+              <span className="text-gray-400 dark:text-gray-500 mx-2">•</span>
+              <span className="text-gray-600 dark:text-gray-400">{item.date}</span>
             </div>
           </div>
         </div>
