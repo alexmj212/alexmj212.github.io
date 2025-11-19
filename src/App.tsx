@@ -35,10 +35,15 @@ const App = () => {
                   <i className="whitespace-nowrap font-light text-accent1 dark:text-accent1-dark"> Lexington, KY</i> and I specialize in building (and sometimes designing) experiences for the web.
                 </p>
                 <div className="hero-actions">
-                  <a href="#portfolio" className="hero-button">
+                  <button
+                    onClick={() => {
+                      document.getElementById('portfolio')?.scrollIntoView({ behavior: 'smooth' });
+                    }}
+                    className="hero-button"
+                  >
                     <span>Explore My Projects</span>
                     <i className="fas fa-arrow-down ml-2"></i>
-                  </a>
+                  </button>
                 </div>
               </div>
             </div>
