@@ -15,23 +15,6 @@ export interface PortfolioItem {
 
 export const portfolioData: PortfolioItem[] = [
   {
-    project: "Pixel Bot",
-    date: "2025",
-    company: "Personal",
-    caption: "Full-Stack Twitch Stream Overlay with Real-Time Game System",
-    challenge: "Building a scalable system that manages real-time Twitch chat interactions, game state, and progressive reveal mechanics across multiple streams simultaneously while maintaining low latency and data persistence.",
-    solution:
-      "Architected a full-stack application deployed on Render.com with separate Twitch bot server and frontend overlay server. Built Twitch bot using Node.js to monitor chat and process commands, SQLite database for game state and statistics, and browser-source overlay with progressive pixel reveal animations. Designed as turnkey solution requiring zero streamer configuration.",
-    impact: "Drives chat participation through competitive guessing while progressive reveal creates natural suspense. Enables streamers to add interactive elements to their streams with simple OBS browser source setup.",
-    technical_highlights: [
-      "Architected dual-server system on Render.com: Twitch bot and frontend overlay",
-      "Implemented SQLite database for persistent game state and viewer statistics",
-      "Built Node.js Twitch bot for real-time chat monitoring and command processing",
-      "Designed browser-source overlay with real-time winner announcements and game feedback",
-    ],
-    badges: ["Node.js", "Twitch API", "SQLite"],
-  },
-  {
     project: "Xometry Quoting Platform",
     date: "2023 - 2025",
     company: "Xometry, Inc.",
@@ -57,29 +40,6 @@ export const portfolioData: PortfolioItem[] = [
       "Created reusable form and data display patterns adopted by multiple teams",
     ],
     badges: ["React", "TypeScript", "Storybook", "CSS3", "Design Systems"],
-  },
-  {
-    project: "Word Guess",
-    images: ["assets/img/word-guess/screenshot-2022-02-07-012424.png", "assets/img/word-guess/screenshot-2022-01-16-163037.png", "assets/img/word-guess/screenshot-2022-01-16-145020.png", "assets/img/word-guess/screenshot-2022-01-16-162606.png"],
-    date: "2022",
-    company: "Personal",
-    caption: "A Wordle-Inspired Word Guessing Game Built with React and TypeScript",
-    demo_url: "https://alexmj212.dev/word-guess",
-    github_url: "https://github.com/alexmj212/word-guess",
-    challenge:
-      "Wordle's viral success demonstrated the appeal of simple, shareable word games. However, the original game's client-side architecture, limited daily puzzles, and validation logic presented opportunities for enhancement. The challenge was to recreate the core mechanics while adding features like difficulty modes, unlimited play options, and improved hint accuracy for duplicate letters.",
-    solution:
-      "Built a comprehensive React-based word game that reverse-engineered Wordle's mechanics through careful analysis. Implemented a sophisticated validation system handling edge cases like duplicate letters, created a dual-dictionary system (2,316 puzzle words + 10,000 valid guesses), and added features beyond the original including difficulty modes, dark/light themes, and both daily and random puzzle options. The architecture uses TypeScript for type safety and local storage for persistent game state.",
-    impact:
-      "Successfully deployed reaching 3,400+ unique users since launch. Generated 180,000+ game interactions with 34,000+ puzzles solved and an average of 72 guesses per active user. The project served as a deep technical exploration documented in a 3-part blog series, demonstrating expertise in React state management, complex string validation algorithms, and user experience design. User engagement metrics show strong retention with features like difficulty modes (300+ uses) and theme switching (300+ uses) being actively utilized.",
-    technical_highlights: [
-      "Engineered dual-dictionary validation system with 12,000+ words for accurate guess validation",
-      "Implemented complex letter hint algorithm handling duplicate letters and position matching with proper state management",
-      "Built responsive keyboard component with visual hint preservation across guesses using TypeScript interfaces",
-      "Created shareable emoji grid generation matching Wordle's viral sharing mechanism",
-      "Designed persistent game state using local storage with statistics tracking and streak management",
-    ],
-    badges: ["React", "TypeScript", "Tailwind CSS", "Game Development", "Personal Project"],
   },
   {
     project: "Xometry Partner Finance",
@@ -152,6 +112,46 @@ export const portfolioData: PortfolioItem[] = [
       "Led cross-browser compatibility testing across 20+ device/OS combinations",
     ],
     badges: ["Angular", "TypeScript", "Mobile", "CSS3"],
+  },
+  {
+    project: "Pixel Bot",
+    date: "2025",
+    company: "Personal",
+    caption: "Full-Stack Twitch Stream Overlay with Real-Time Game System",
+    challenge: "Building a scalable system that manages real-time Twitch chat interactions, game state, and progressive reveal mechanics across multiple streams simultaneously while maintaining low latency and data persistence.",
+    solution:
+      "Architected a full-stack application deployed on Render.com with separate Twitch bot server and frontend overlay server. Built Twitch bot using Node.js to monitor chat and process commands, SQLite database for game state and statistics, and browser-source overlay with progressive pixel reveal animations. Designed as turnkey solution requiring zero streamer configuration.",
+    impact: "Drives chat participation through competitive guessing while progressive reveal creates natural suspense. Enables streamers to add interactive elements to their streams with simple OBS browser source setup.",
+    technical_highlights: [
+      "Architected dual-server system on Render.com: Twitch bot and frontend overlay",
+      "Implemented SQLite database for persistent game state and viewer statistics",
+      "Built Node.js Twitch bot for real-time chat monitoring and command processing",
+      "Designed browser-source overlay with real-time winner announcements and game feedback",
+    ],
+    badges: ["Node.js", "Twitch API", "SQLite"],
+  },
+  {
+    project: "Word Guess",
+    images: ["assets/img/word-guess/screenshot-2022-02-07-012424.png", "assets/img/word-guess/screenshot-2022-01-16-163037.png", "assets/img/word-guess/screenshot-2022-01-16-145020.png", "assets/img/word-guess/screenshot-2022-01-16-162606.png"],
+    date: "2022",
+    company: "Personal",
+    caption: "A Wordle-Inspired Word Guessing Game Built with React and TypeScript",
+    demo_url: "https://alexmj212.dev/word-guess",
+    github_url: "https://github.com/alexmj212/word-guess",
+    challenge:
+      "Wordle's viral success demonstrated the appeal of simple, shareable word games. However, the original game's client-side architecture, limited daily puzzles, and validation logic presented opportunities for enhancement. The challenge was to recreate the core mechanics while adding features like difficulty modes, unlimited play options, and improved hint accuracy for duplicate letters.",
+    solution:
+      "Built a comprehensive React-based word game that reverse-engineered Wordle's mechanics through careful analysis. Implemented a sophisticated validation system handling edge cases like duplicate letters, created a dual-dictionary system (2,316 puzzle words + 10,000 valid guesses), and added features beyond the original including difficulty modes, dark/light themes, and both daily and random puzzle options. The architecture uses TypeScript for type safety and local storage for persistent game state.",
+    impact:
+      "Successfully deployed reaching 3,400+ unique users since launch. Generated 180,000+ game interactions with 34,000+ puzzles solved and an average of 72 guesses per active user. The project served as a deep technical exploration documented in a 3-part blog series, demonstrating expertise in React state management, complex string validation algorithms, and user experience design. User engagement metrics show strong retention with features like difficulty modes (300+ uses) and theme switching (300+ uses) being actively utilized.",
+    technical_highlights: [
+      "Engineered dual-dictionary validation system with 12,000+ words for accurate guess validation",
+      "Implemented complex letter hint algorithm handling duplicate letters and position matching with proper state management",
+      "Built responsive keyboard component with visual hint preservation across guesses using TypeScript interfaces",
+      "Created shareable emoji grid generation matching Wordle's viral sharing mechanism",
+      "Designed persistent game state using local storage with statistics tracking and streak management",
+    ],
+    badges: ["React", "TypeScript", "Tailwind CSS", "Game Development", "Personal Project"],
   },
 ];
 
