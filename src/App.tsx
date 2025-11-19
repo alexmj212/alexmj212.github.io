@@ -11,14 +11,6 @@ const App = () => {
   const currentYear = new Date().getFullYear();
   const yearsExperience = currentYear - 2013;
 
-  const scrollToPortfolio = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    const portfolioSection = document.getElementById('portfolio');
-    if (portfolioSection) {
-      portfolioSection.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   return (
     <div className="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
       {/* Fixed Three.js Background with Error Boundary */}
@@ -43,7 +35,7 @@ const App = () => {
                   <i className="whitespace-nowrap font-light text-accent1 dark:text-accent1-dark"> Lexington, KY</i> and I specialize in building (and sometimes designing) experiences for the web.
                 </p>
                 <div className="hero-actions">
-                  <a href="#portfolio" onClick={scrollToPortfolio} className="hero-button">
+                  <a href="#portfolio" className="hero-button">
                     <span>Explore My Projects</span>
                     <i className="fas fa-arrow-down ml-2"></i>
                   </a>

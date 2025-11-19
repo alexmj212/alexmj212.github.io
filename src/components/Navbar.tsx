@@ -120,32 +120,32 @@ const Navbar = () => {
           {/* Desktop Navigation */}
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-4" role="menubar" aria-label="Desktop navigation menu">
-              <a 
-                href="/#about" 
+              <a
+                href="#about"
                 className="nav-link px-3 py-2 rounded-md text-sm font-medium focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent"
                 role="menuitem"
                 tabIndex={0}
               >
                 About
               </a>
-              <a 
-                href="/#portfolio" 
+              <a
+                href="#portfolio"
                 className="nav-link px-3 py-2 rounded-md text-sm font-medium focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent"
                 role="menuitem"
                 tabIndex={0}
               >
                 Portfolio
               </a>
-              <a 
-                href="/#skills" 
+              <a
+                href="#skills"
                 className="nav-link px-3 py-2 rounded-md text-sm font-medium focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent"
                 role="menuitem"
                 tabIndex={0}
               >
                 Skills
               </a>
-              <a 
-                href="/#experience" 
+              <a
+                href="#experience"
                 className="nav-link px-3 py-2 rounded-md text-sm font-medium focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent"
                 role="menuitem"
                 tabIndex={0}
@@ -218,9 +218,9 @@ const Navbar = () => {
           aria-hidden={!isMenuOpen}
         >
           <div className="px-2 pt-2 pb-3 space-y-1">
-            <a 
+            <a
               ref={firstMenuItemRef}
-              href="/#about" 
+              href="#about"
               className="nav-link block px-3 py-2 rounded-md text-base font-medium focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent"
               onClick={handleLinkClick}
               role="menuitem"
@@ -228,8 +228,8 @@ const Navbar = () => {
             >
               About
             </a>
-            <a 
-              href="/#portfolio" 
+            <a
+              href="#portfolio"
               className="nav-link block px-3 py-2 rounded-md text-base font-medium focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent"
               onClick={handleLinkClick}
               role="menuitem"
@@ -237,8 +237,8 @@ const Navbar = () => {
             >
               Portfolio
             </a>
-            <a 
-              href="/#skills" 
+            <a
+              href="#skills"
               className="nav-link block px-3 py-2 rounded-md text-base font-medium focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent"
               onClick={handleLinkClick}
               role="menuitem"
@@ -246,8 +246,8 @@ const Navbar = () => {
             >
               Skills
             </a>
-            <a 
-              href="/#experience" 
+            <a
+              href="#experience"
               className="nav-link block px-3 py-2 rounded-md text-base font-medium focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent"
               onClick={handleLinkClick}
               role="menuitem"
