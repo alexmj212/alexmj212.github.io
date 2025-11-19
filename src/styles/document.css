@@ -5,15 +5,7 @@
 .resume-wrapper,
 .cover-letter-wrapper {
   font-family: "Inter", system-ui, -apple-system, sans-serif;
-}
-
-.resume-wrapper {
   font-size: 13px;
-}
-
-.cover-letter-wrapper {
-  font-size: 14px;
-  line-height: 1.6;
 }
 
 .resume-content,
@@ -37,19 +29,6 @@ h1 {
   font-size: 2.25rem;
   line-height: 2.5rem;
   font-weight: 700;
-}
-
-/* Cover letter specific h1 override */
-.cover-letter-wrapper h1 {
-  font-size: 2rem;
-  line-height: 2.25rem;
-}
-
-.cover-letter-wrapper h2 {
-  font-size: 1.125rem;
-  line-height: 1.5rem;
-  font-weight: 500;
-  color: #4b5563;
 }
 
 /* Editable field styling for customization (cover letter only) */
@@ -80,21 +59,8 @@ h1 {
 /* Print-specific styles */
 @media print {
   @page {
+    margin: 0.5in;
     size: letter;
-  }
-
-  /* Resume uses smaller margins */
-  .resume-wrapper {
-    @page {
-      margin: 0.5in;
-    }
-  }
-
-  /* Cover letter uses larger margins */
-  .cover-letter-wrapper {
-    @page {
-      margin: 1in;
-    }
   }
 
   body {
