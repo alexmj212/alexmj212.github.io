@@ -39,6 +39,18 @@
     <!-- FontAwesome (only remaining CDN dependency - secure and necessary) -->
     <script src="https://kit.fontawesome.com/926bef921d.js" crossorigin="anonymous" defer></script>
 
+    <!-- GitHub Pages SPA Redirect Script -->
+    <script>
+      // Restore the path from 404.html redirect
+      (function() {
+        var redirect = sessionStorage.redirect;
+        delete sessionStorage.redirect;
+        if (redirect && redirect !== location.href) {
+          history.replaceState(null, null, redirect);
+        }
+      })();
+    </script>
+
     <!-- Dark Mode Initialization - Prevents Flash -->
     <script>
       // Initialize dark mode before page render to prevent flash
