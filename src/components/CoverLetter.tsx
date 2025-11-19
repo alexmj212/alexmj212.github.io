@@ -56,48 +56,37 @@ const CoverLetter = () => {
           {/* Letter body */}
           <section className="space-y-4 text-gray-700 leading-relaxed">
             <p>
-              I am writing to express my strong interest in the{" "}
+              I am writing to express my interest in the{" "}
               <span className="editable-field font-semibold">[Position Title]</span> position at{" "}
-              <span className="editable-field font-semibold">[Company Name]</span>. As a Senior Software Engineer with 11+ years of progressive
-              experience in front-end development, I bring a proven track record of architecting scalable web applications, leading
-              cross-functional teams, and delivering high-impact user experiences that drive business growth and customer satisfaction.
+              <span className="editable-field font-semibold">[Company Name]</span>. With over 11 years of experience in front-end development,
+              I have built a career around creating scalable web applications and leading teams to deliver exceptional user experiences.
             </p>
 
             <p>
-              In my current role as Senior Software Engineer at Xometry, Inc. (2021-Present), I spearhead frontend development for an
-              enterprise B2B manufacturing marketplace platform serving thousands of active customers. I architect and implement production-grade
-              React applications leveraging TypeScript, GraphQL, Node.js, and AWS cloud services. My technical leadership encompasses mentoring
-              development teams, establishing CI/CD pipelines, implementing automated testing frameworks (Jest, Storybook), and optimizing
-              application performance and Web Vitals metrics. I collaborate with product managers, UX designers, and backend engineers in an
-              Agile environment to deliver responsive, accessible, and SEO-optimized interfaces. Key technologies include React, TypeScript,
-              GraphQL, Node.js, AWS (Lambda, S3, CloudFront), Docker, Webpack, Git, and RESTful APIs.
+              Currently, as a Senior Software Engineer at Xometry, I lead frontend development for an enterprise manufacturing marketplace
+              serving thousands of customers. I work primarily with React, TypeScript, and GraphQL to build production applications on AWS
+              infrastructure. Beyond writing code, I mentor junior developers, establish testing practices with Jest and Storybook, and work
+              closely with product and design teams to ship features that balance user needs with business objectives. The role has given me
+              experience with modern tooling like Docker and Webpack, and taught me how to maintain performance and accessibility standards at
+              scale.
             </p>
 
             <p>
-              Previously, as Software Engineer at Churchill Downs Incorporated (2017-2021), I led frontend initiatives for the TwinSpires
-              wagering platform, implementing dark mode theming, responsive mobile-first design, WCAG 2.1 AA accessibility compliance, and
-              performance optimizations that improved page load times and user engagement metrics. I coordinated agile development teams,
-              conducted code reviews, and maintained high code quality standards across Angular/AngularJS applications. I successfully migrated
-              legacy systems to modern frameworks, integrated third-party APIs, and implemented A/B testing for feature validation.
+              Before Xometry, I spent four years at Churchill Downs Incorporated working on the TwinSpires platform. I led several major
+              frontend initiatives there, including implementing dark mode, improving mobile responsiveness, and bringing the application up to
+              WCAG accessibility standards. I also coordinated with multiple development teams on site-wide projects and helped migrate parts of
+              our legacy Angular codebase to more modern patterns.
             </p>
 
             <p>
-              My technical expertise spans the complete frontend stack: HTML5, CSS3, JavaScript (ES6+), React, Angular, TypeScript, SASS/LESS,
-              responsive design, mobile development, progressive web apps (PWA), state management (Redux, Context API), component libraries
-              (Material-UI, Tailwind CSS), build tools (Webpack, Vite), version control (Git, GitHub), and modern development workflows.
+              What draws me to <span className="editable-field font-semibold">[Company Name]</span> is{" "}
+              <span className="editable-field">[specific reason related to company mission, products, or culture]</span>. I'm looking for
+              opportunities to tackle interesting technical challenges while working with people who care about building quality software.
             </p>
 
             <p>
-              What particularly excites me about <span className="editable-field font-semibold">[Company Name]</span> is{" "}
-              <span className="editable-field">[specific reason related to company mission, products, or culture]</span>. I am drawn to
-              opportunities where I can leverage my technical expertise in React, TypeScript, and cloud architecture while collaborating with
-              talented teams to solve complex engineering challenges and create scalable, user-centric solutions.
-            </p>
-
-            <p>
-              I would welcome the opportunity to discuss how my experience architecting enterprise-scale React applications, leading frontend
-              initiatives, and driving technical innovation aligns with your team's objectives. Thank you for considering my application. I look
-              forward to contributing to <span className="editable-field font-semibold">[Company Name]</span>'s continued success.
+              I'd welcome the chance to discuss how my experience might fit with what your team is building. Thank you for considering my
+              application.
             </p>
           </section>
 
