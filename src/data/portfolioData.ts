@@ -15,21 +15,31 @@ export interface PortfolioItem {
 
 export const portfolioData: PortfolioItem[] = [
   {
+    project: "Pixel Bot",
+    date: "2025",
+    company: "Personal",
+    caption: "Full-Stack Twitch Stream Overlay with Real-Time Game System",
+    challenge: "Building a scalable system that manages real-time Twitch chat interactions, game state, and progressive reveal mechanics across multiple streams simultaneously while maintaining low latency and data persistence.",
+    solution:
+      "Architected a full-stack application deployed on Render.com with separate Twitch bot server and frontend overlay server. Built Twitch bot using Node.js to monitor chat and process commands, SQLite database for game state and statistics, and browser-source overlay with progressive pixel reveal animations. Designed as turnkey solution requiring zero streamer configuration.",
+    impact: "Drives chat participation through competitive guessing while progressive reveal creates natural suspense. Enables streamers to add interactive elements to their streams with simple OBS browser source setup.",
+    technical_highlights: [
+      "Architected dual-server system on Render.com: Twitch bot and frontend overlay",
+      "Implemented SQLite database for persistent game state and viewer statistics",
+      "Built Node.js Twitch bot for real-time chat monitoring and command processing",
+      "Designed browser-source overlay with real-time winner announcements and game feedback",
+    ],
+    badges: ["Node.js", "Twitch API", "SQLite"],
+  },
+  {
     project: "Xometry Quoting Platform",
     date: "2023 - 2025",
     company: "Xometry, Inc.",
     caption: "Advanced Quoting Features for Manufacturing Marketplace",
-    challenge:
-      "Managing real-time pricing calculations across thousands of manufacturing partners while handling diverse material specifications and maintaining rapid response times for customer quote requests.",
-    solution:
-      "Built React-based quoting workflows with GraphQL data fetching and TypeScript type safety. Created reusable component libraries for manufacturing specifications and multi-step flows with validation.",
-    impact:
-      "Improved quote generation speed and accuracy, enabling faster pricing delivery and increased conversion rates across the enterprise customer base.",
-    technical_highlights: [
-      "Designed form architecture handling 50+ manufacturing parameters with real-time validation",
-      "Optimized GraphQL queries to reduce quote load times",
-      "Built reusable component system used across multiple product teams",
-    ],
+    challenge: "Managing real-time pricing calculations across thousands of manufacturing partners while handling diverse material specifications and maintaining rapid response times for customer quote requests.",
+    solution: "Built React-based quoting workflows with GraphQL data fetching and TypeScript type safety. Created reusable component libraries for manufacturing specifications and multi-step flows with validation.",
+    impact: "Improved quote generation speed and accuracy, enabling faster pricing delivery and increased conversion rates across the enterprise customer base.",
+    technical_highlights: ["Designed form architecture handling 50+ manufacturing parameters with real-time validation", "Optimized GraphQL queries to reduce quote load times", "Built reusable component system used across multiple product teams"],
     badges: ["React", "TypeScript", "GraphQL"],
   },
   {
@@ -44,9 +54,32 @@ export const portfolioData: PortfolioItem[] = [
       "Architected composable component APIs with TypeScript generics supporting diverse product requirements",
       "Built comprehensive Storybook documentation with interactive examples",
       "Implemented design token system ensuring visual consistency across platform",
-      "Created reusable form and data display patterns adopted by multiple teams"
+      "Created reusable form and data display patterns adopted by multiple teams",
     ],
     badges: ["React", "TypeScript", "Storybook", "CSS3", "Design Systems"],
+  },
+  {
+    project: "Word Guess",
+    images: ["assets/img/word-guess/screenshot-2022-02-07-012424.png", "assets/img/word-guess/screenshot-2022-01-16-163037.png", "assets/img/word-guess/screenshot-2022-01-16-145020.png", "assets/img/word-guess/screenshot-2022-01-16-162606.png"],
+    date: "2022",
+    company: "Personal",
+    caption: "A Wordle-Inspired Word Guessing Game Built with React and TypeScript",
+    demo_url: "https://alexmj212.dev/word-guess",
+    github_url: "https://github.com/alexmj212/word-guess",
+    challenge:
+      "Wordle's viral success demonstrated the appeal of simple, shareable word games. However, the original game's client-side architecture, limited daily puzzles, and validation logic presented opportunities for enhancement. The challenge was to recreate the core mechanics while adding features like difficulty modes, unlimited play options, and improved hint accuracy for duplicate letters.",
+    solution:
+      "Built a comprehensive React-based word game that reverse-engineered Wordle's mechanics through careful analysis. Implemented a sophisticated validation system handling edge cases like duplicate letters, created a dual-dictionary system (2,316 puzzle words + 10,000 valid guesses), and added features beyond the original including difficulty modes, dark/light themes, and both daily and random puzzle options. The architecture uses TypeScript for type safety and local storage for persistent game state.",
+    impact:
+      "Successfully deployed reaching 3,400+ unique users since launch. Generated 180,000+ game interactions with 34,000+ puzzles solved and an average of 72 guesses per active user. The project served as a deep technical exploration documented in a 3-part blog series, demonstrating expertise in React state management, complex string validation algorithms, and user experience design. User engagement metrics show strong retention with features like difficulty modes (300+ uses) and theme switching (300+ uses) being actively utilized.",
+    technical_highlights: [
+      "Engineered dual-dictionary validation system with 12,000+ words for accurate guess validation",
+      "Implemented complex letter hint algorithm handling duplicate letters and position matching with proper state management",
+      "Built responsive keyboard component with visual hint preservation across guesses using TypeScript interfaces",
+      "Created shareable emoji grid generation matching Wordle's viral sharing mechanism",
+      "Designed persistent game state using local storage with statistics tracking and streak management",
+    ],
+    badges: ["React", "TypeScript", "Tailwind CSS", "Game Development", "Personal Project"],
   },
   {
     project: "Xometry Partner Finance",
@@ -91,6 +124,18 @@ export const portfolioData: PortfolioItem[] = [
     badges: ["Angular", "SASS", "Mobile", "CSS3"],
   },
   {
+    project: "TwinSpires Video",
+    images: ["assets/img/twinspires/video/video-desktop-thumb.png", "assets/img/twinspires/video/video-desktop-light.png", "assets/img/twinspires/video/video-mobile-light.png"],
+    date: "2018 - 2020",
+    company: "TwinSpires.com",
+    caption: "Live and Replayable Video of Racing Content",
+    challenge: "Multiple third-party video providers with different APIs, inconsistent user experience, and complex requirements for live racing video with betting integration during events.",
+    solution: "Built unified video frontend component layer supporting multiple providers and created seamless betting-while-watching experience with synchronized data overlays.",
+    impact: "Increased user engagement during live events, and supported a video user experience for 10k daily active users.",
+    technical_highlights: ["Architected provider-agnostic video component system", "Implemented real-time data synchronization with live video streams", "Built custom video controls optimized for racing content"],
+    badges: ["Angular", "HTML5", "Mobile", "Multimedia"],
+  },
+  {
     project: "TwinSpires Responsive",
     images: ["assets/img/twinspires/responsive/program-mobile-thumb.png", "assets/img/twinspires/responsive/program-light.png", "assets/img/twinspires/responsive/landing-light.png", "assets/img/twinspires/responsive/calendar-light.png"],
     date: "2018",
@@ -107,58 +152,6 @@ export const portfolioData: PortfolioItem[] = [
       "Led cross-browser compatibility testing across 20+ device/OS combinations",
     ],
     badges: ["Angular", "TypeScript", "Mobile", "CSS3"],
-  },
-  {
-    project: "Word Guess",
-    images: ["assets/img/word-guess/screenshot-2022-02-07-012424.png", "assets/img/word-guess/screenshot-2022-01-16-163037.png", "assets/img/word-guess/screenshot-2022-01-16-145020.png", "assets/img/word-guess/screenshot-2022-01-16-162606.png"],
-    date: "2022",
-    company: "Personal",
-    caption: "A Wordle-Inspired Word Guessing Game Built with React and TypeScript",
-    demo_url: "https://alexmj212.dev/word-guess",
-    github_url: "https://github.com/alexmj212/word-guess",
-    challenge:
-      "Wordle's viral success demonstrated the appeal of simple, shareable word games. However, the original game's client-side architecture, limited daily puzzles, and validation logic presented opportunities for enhancement. The challenge was to recreate the core mechanics while adding features like difficulty modes, unlimited play options, and improved hint accuracy for duplicate letters.",
-    solution:
-      "Built a comprehensive React-based word game that reverse-engineered Wordle's mechanics through careful analysis. Implemented a sophisticated validation system handling edge cases like duplicate letters, created a dual-dictionary system (2,316 puzzle words + 10,000 valid guesses), and added features beyond the original including difficulty modes, dark/light themes, and both daily and random puzzle options. The architecture uses TypeScript for type safety and local storage for persistent game state.",
-    impact:
-      "Successfully deployed reaching 3,400+ unique users since launch. Generated 180,000+ game interactions with 34,000+ puzzles solved and an average of 72 guesses per active user. The project served as a deep technical exploration documented in a 3-part blog series, demonstrating expertise in React state management, complex string validation algorithms, and user experience design. User engagement metrics show strong retention with features like difficulty modes (300+ uses) and theme switching (300+ uses) being actively utilized.",
-    technical_highlights: [
-      "Engineered dual-dictionary validation system with 12,000+ words for accurate guess validation",
-      "Implemented complex letter hint algorithm handling duplicate letters and position matching with proper state management",
-      "Built responsive keyboard component with visual hint preservation across guesses using TypeScript interfaces",
-      "Created shareable emoji grid generation matching Wordle's viral sharing mechanism",
-      "Designed persistent game state using local storage with statistics tracking and streak management",
-    ],
-    badges: ["React", "TypeScript", "Tailwind CSS", "Game Development", "Personal Project"],
-  },
-  {
-    project: "Pixel Bot",
-    date: "2023",
-    company: "Personal",
-    caption: "Interactive Twitch Stream Overlay for Viewer Engagement",
-    challenge: "Creating a seamless hosted overlay that monitors Twitch chat in real-time and manages a progressive reveal game where pixels slowly uncover an image, without requiring backend infrastructure.",
-    solution: "Built a hosted browser-source overlay with a pixel grid that gradually reveals an image. Integrated Twitch chat API to monitor viewer guesses in real-time and determine winners. Designed as a turnkey solution streamers add to OBS without configuration.",
-    impact: "Drives chat participation through competitive guessing while the progressive reveal creates natural suspense. Eliminated technical barriers with zero setup or backend management required.",
-    technical_highlights: [
-      "Implemented progressive pixel reveal animation with configurable timing and patterns",
-      "Integrated Twitch chat API for real-time guess monitoring and winner determination",
-      "Built hosted overlay compatible with OBS and streaming software as browser source",
-      "Created chat command parsing validating viewer guesses against correct answers",
-      "Designed visual feedback for game progress and winner announcements"
-    ],
-    badges: ["JavaScript", "Twitch API", "HTML5 Canvas", "CSS3", "Personal Project"],
-  },
-  {
-    project: "TwinSpires Video",
-    images: ["assets/img/twinspires/video/video-desktop-thumb.png", "assets/img/twinspires/video/video-desktop-light.png", "assets/img/twinspires/video/video-mobile-light.png"],
-    date: "2018 - 2020",
-    company: "TwinSpires.com",
-    caption: "Live and Replayable Video of Racing Content",
-    challenge: "Multiple third-party video providers with different APIs, inconsistent user experience, and complex requirements for live racing video with betting integration during events.",
-    solution: "Built unified video frontend component layer supporting multiple providers and created seamless betting-while-watching experience with synchronized data overlays.",
-    impact: "Increased user engagement during live events, and supported a video user experience for 10k daily active users.",
-    technical_highlights: ["Architected provider-agnostic video component system", "Implemented real-time data synchronization with live video streams", "Built custom video controls optimized for racing content"],
-    badges: ["Angular", "HTML5", "Mobile", "Multimedia"],
   },
 ];
 
