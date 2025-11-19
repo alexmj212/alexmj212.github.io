@@ -120,40 +120,40 @@ const Navbar = () => {
           {/* Desktop Navigation */}
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-4" role="menubar" aria-label="Desktop navigation menu">
-              <button
-                onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
+              <a
+                href="#about"
                 className="nav-link px-3 py-2 rounded-md text-sm font-medium focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent"
                 role="menuitem"
                 tabIndex={0}
               >
                 About
-              </button>
-              <button
-                onClick={() => document.getElementById('portfolio')?.scrollIntoView({ behavior: 'smooth' })}
+              </a>
+              <a
+                href="#portfolio"
                 className="nav-link px-3 py-2 rounded-md text-sm font-medium focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent"
                 role="menuitem"
                 tabIndex={0}
               >
                 Portfolio
-              </button>
-              <button
-                onClick={() => document.getElementById('skills')?.scrollIntoView({ behavior: 'smooth' })}
+              </a>
+              <a
+                href="#skills"
                 className="nav-link px-3 py-2 rounded-md text-sm font-medium focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent"
                 role="menuitem"
                 tabIndex={0}
               >
                 Skills
-              </button>
-              <button
-                onClick={() => document.getElementById('experience')?.scrollIntoView({ behavior: 'smooth' })}
+              </a>
+              <a
+                href="#experience"
                 className="nav-link px-3 py-2 rounded-md text-sm font-medium focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent"
                 role="menuitem"
                 tabIndex={0}
               >
                 Experience
-              </button>
+              </a>
               <a
-                href="#/resume"
+                href="/resume"
                 className="nav-link px-3 py-2 rounded-md text-sm font-medium focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent"
                 role="menuitem"
                 tabIndex={0}
@@ -218,53 +218,45 @@ const Navbar = () => {
           aria-hidden={!isMenuOpen}
         >
           <div className="px-2 pt-2 pb-3 space-y-1">
-            <button
+            <a
               ref={firstMenuItemRef}
-              onClick={() => {
-                document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
-                handleLinkClick();
-              }}
-              className="nav-link block px-3 py-2 rounded-md text-base font-medium focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent w-full text-left"
+              href="#about"
+              className="nav-link block px-3 py-2 rounded-md text-base font-medium focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent"
+              onClick={handleLinkClick}
               role="menuitem"
               tabIndex={isMenuOpen ? 0 : -1}
             >
               About
-            </button>
-            <button
-              onClick={() => {
-                document.getElementById('portfolio')?.scrollIntoView({ behavior: 'smooth' });
-                handleLinkClick();
-              }}
-              className="nav-link block px-3 py-2 rounded-md text-base font-medium focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent w-full text-left"
+            </a>
+            <a
+              href="#portfolio"
+              className="nav-link block px-3 py-2 rounded-md text-base font-medium focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent"
+              onClick={handleLinkClick}
               role="menuitem"
               tabIndex={isMenuOpen ? 0 : -1}
             >
               Portfolio
-            </button>
-            <button
-              onClick={() => {
-                document.getElementById('skills')?.scrollIntoView({ behavior: 'smooth' });
-                handleLinkClick();
-              }}
-              className="nav-link block px-3 py-2 rounded-md text-base font-medium focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent w-full text-left"
+            </a>
+            <a
+              href="#skills"
+              className="nav-link block px-3 py-2 rounded-md text-base font-medium focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent"
+              onClick={handleLinkClick}
               role="menuitem"
               tabIndex={isMenuOpen ? 0 : -1}
             >
               Skills
-            </button>
-            <button
-              onClick={() => {
-                document.getElementById('experience')?.scrollIntoView({ behavior: 'smooth' });
-                handleLinkClick();
-              }}
-              className="nav-link block px-3 py-2 rounded-md text-base font-medium focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent w-full text-left"
+            </a>
+            <a
+              href="#experience"
+              className="nav-link block px-3 py-2 rounded-md text-base font-medium focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent"
+              onClick={handleLinkClick}
               role="menuitem"
               tabIndex={isMenuOpen ? 0 : -1}
             >
               Experience
-            </button>
+            </a>
             <a
-              href="#/resume"
+              href="/resume"
               className="nav-link block px-3 py-2 rounded-md text-base font-medium focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent"
               onClick={handleLinkClick}
               role="menuitem"
