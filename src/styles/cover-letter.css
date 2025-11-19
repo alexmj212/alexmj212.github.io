@@ -1,0 +1,117 @@
+/* Cover Letter specific styles */
+.cover-letter-wrapper {
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.cover-letter-content {
+  @apply gap-2;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-size: revert;
+  font-weight: revert;
+}
+
+h1 {
+  font-size: 2rem;
+  line-height: 2.25rem;
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 1.125rem;
+  line-height: 1.5rem;
+  font-weight: 500;
+  color: #4b5563;
+}
+
+/* Editable field styling for customization */
+.editable-field {
+  @apply inline-block;
+  background-color: rgba(59, 130, 246, 0.05);
+  padding: 0 0.25rem;
+  border-radius: 0.125rem;
+  border-bottom: 1px dashed rgba(59, 130, 246, 0.3);
+}
+
+/* Screen styles */
+@media screen {
+  .cover-letter-container {
+    max-width: 8.5in;
+  }
+
+  .editable-field {
+    cursor: text;
+  }
+
+  .editable-field:hover {
+    background-color: rgba(59, 130, 246, 0.1);
+  }
+}
+
+/* Print-specific styles */
+@media print {
+  @page {
+    margin: 1in;
+    size: letter;
+  }
+
+  body {
+    @apply m-0 p-0 bg-white text-black;
+  }
+
+  /* Hide non-print elements */
+  .no-print,
+  nav {
+    @apply hidden;
+  }
+
+  /* Reset container styles for print */
+  .cover-letter-wrapper {
+    @apply bg-white min-h-0;
+    font-size: 12px;
+  }
+
+  .cover-letter-container {
+    @apply max-w-full shadow-none;
+  }
+
+  /* Remove editable field styling for print */
+  .editable-field {
+    @apply bg-transparent border-none;
+    padding: 0;
+  }
+
+  /* Ensure text is black for printing */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  li,
+  span,
+  a {
+    @apply text-black no-underline;
+  }
+
+  /* Prevent page breaks inside paragraphs */
+  p {
+    page-break-inside: avoid;
+  }
+
+  /* Ensure proper link display */
+  a[href^="http"]:after,
+  a[href^="mailto"]:after {
+    content: none;
+  }
+}

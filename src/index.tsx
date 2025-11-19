@@ -5,6 +5,7 @@ import "../tailwind-input.css";
 import "./styles/resume.css";
 import App from "./App";
 import Resume from "./components/Resume";
+import CoverLetter from "./components/CoverLetter";
 
 const container = document.getElementById("root");
 if (!container) throw new Error("Failed to find the root element");
@@ -16,6 +17,7 @@ root.render(
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/resume" element={<Resume />} />
+        <Route path="/cover-letter" element={<CoverLetter />} />
       </Routes>
     </HashRouter>
   </React.StrictMode>
