@@ -26,8 +26,8 @@ const Resume = () => {
 
   return (
     <main className="resume-wrapper min-h-screen text-gray-900 font-sans">
-      <article className="resume-container mx-auto bg-white shadow-xl m-8 md:p-8">
-        <div className="resume-content flex flex-col m-8">
+      <article className="resume-container mx-auto bg-white shadow-xl m-8 md:p-8 print:m-0">
+        <div className="resume-content flex flex-col m-8 print:m-0">
           {/* Header */}
           <header className="relative">
             {/* Gradient accent bar */}
@@ -98,12 +98,8 @@ const Resume = () => {
             <dl className="grid grid-cols-[auto_1fr] gap-x-6 gap-y-2">
               {Object.entries(skillsData).map(([key, category]) => (
                 <Fragment key={key}>
-                  <dt className="font-semibold">
-                    {category.title}:
-                  </dt>
-                  <dd className="leading-relaxed">
-                    {category.skills.map((skill) => skill.name).join(" • ")}
-                  </dd>
+                  <dt className="font-semibold">{category.title}:</dt>
+                  <dd className="leading-relaxed">{category.skills.map((skill) => skill.name).join(" • ")}</dd>
                 </Fragment>
               ))}
             </dl>
@@ -158,11 +154,6 @@ const Resume = () => {
               </p>
             </article>
           </section>
-
-          {/* Print-only footer */}
-          <footer className="hidden print:block mt-8 pt-4 border-t border-gray-200 text-center text-gray-500">
-            <p>Latest version available at alexmj212.dev/resume</p>
-          </footer>
         </div>
       </article>
     </main>

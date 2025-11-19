@@ -23,10 +23,6 @@ export const skillsData: Record<string, SkillCategory> = {
         description: "Static typing, interfaces, generics, advanced type systems",
       },
       {
-        name: "Angular",
-        description: "Component-based architecture, RxJS, dependency injection",
-      },
-      {
         name: "JavaScript (ES6+)",
         description: "Modern JavaScript, async/await, modules, DOM APIs",
       },
@@ -40,7 +36,7 @@ export const skillsData: Record<string, SkillCategory> = {
       },
       {
         name: "GraphQL",
-        description: "Query language, Apollo Client, schema design, resolvers",
+        description: "Query language, Apollo Client, resolvers",
       },
       {
         name: "TanStack Query / React Query",
@@ -55,10 +51,6 @@ export const skillsData: Record<string, SkillCategory> = {
       {
         name: "Tailwind CSS",
         description: "Utility-first CSS, responsive design, component styling",
-      },
-      {
-        name: "Material UI",
-        description: "React component library, Material Design, theming, accessibility",
       },
       {
         name: "Styled Components",
@@ -141,10 +133,6 @@ export const skillsData: Record<string, SkillCategory> = {
         description: "Core Web Vitals, Lighthouse optimization, lazy loading, bundle analysis",
       },
       {
-        name: "Progressive Web Apps",
-        description: "Service workers, offline functionality, app-like experiences",
-      },
-      {
         name: "Micro-Frontends",
         description: "Module federation, independent deployments, scalable architecture",
       },
@@ -164,10 +152,6 @@ export const skillsData: Record<string, SkillCategory> = {
         name: "SEO Optimization",
         description: "Meta tags, structured data, sitemap generation, performance",
       },
-      {
-        name: "User Experience",
-        description: "UX research implementation, user-centered design, usability testing",
-      },
     ],
   },
   backend: {
@@ -179,10 +163,6 @@ export const skillsData: Record<string, SkillCategory> = {
         description: "Object storage, static hosting, CDN integration, bucket policies",
       },
       {
-        name: "AWS Lambda",
-        description: "Frontend integrations, serverless functions for UI features",
-      },
-      {
         name: "AWS DynamoDB",
         description: "Frontend data integration, NoSQL queries, data fetching",
       },
@@ -191,7 +171,7 @@ export const skillsData: Record<string, SkillCategory> = {
         description: "Build tools, frontend tooling, development servers, npm scripts",
       },
       {
-        name: "Sentry",
+        name: "Logging and Monitoring",
         description: "Error tracking, performance monitoring, release tracking",
       },
       {
@@ -204,7 +184,7 @@ export const skillsData: Record<string, SkillCategory> = {
       },
       {
         name: "Content Management",
-        description: "Headless CMS, Drupal, content APIs, structured content",
+        description: "Prismic, Headless CMS, Drupal, content APIs, structured content",
       },
     ],
   },
