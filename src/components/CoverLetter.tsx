@@ -64,11 +64,19 @@ const CoverLetter = () => {
             </p>
 
             <p>
-              Throughout my career, I have specialized in building modern, scalable web applications using React, TypeScript, and cutting-edge
-              front-end technologies. At Churchill Downs Incorporated, I have led critical frontend initiatives including dark mode
-              implementation, responsive design overhauls, and accessibility improvements that have directly enhanced user engagement and
-              satisfaction. My work on the TwinSpires platform has given me extensive experience in high-performance, user-focused development
-              in a fast-paced environment.
+              In my current role as Senior Software Engineer at Xometry, Inc., I lead frontend development for an enterprise manufacturing
+              marketplace platform that serves thousands of customers. I architect and implement scalable React applications using TypeScript,
+              GraphQL, and modern AWS infrastructure. My responsibilities extend beyond technical implementation to include mentoring junior
+              developers, establishing engineering best practices, and driving initiatives that improve performance, accessibility, and overall
+              user experience. Working with technologies such as Docker, Jest, Storybook, and Webpack, I collaborate closely with
+              cross-functional teams to deliver both customer-facing features and internal tools that power our platform.
+            </p>
+
+            <p>
+              Prior to Xometry, I spent four years at Churchill Downs Incorporated's TwinSpires platform, where I led critical frontend
+              initiatives including dark mode implementation, responsive design overhauls, and accessibility improvements. During this time, I
+              coordinated multiple delivery teams and organized developers across site-wide projects, gaining extensive experience in
+              high-performance, user-focused development within a fast-paced, high-stakes environment.
             </p>
 
             <p>
@@ -79,15 +87,9 @@ const CoverLetter = () => {
             </p>
 
             <p>
-              Beyond my technical skills, I bring strong leadership capabilities, having mentored junior developers and coordinated
-              cross-functional teams to deliver projects from concept to production. I am passionate about code quality, design systems, and
-              creating maintainable, accessible interfaces that delight users while meeting business objectives.
-            </p>
-
-            <p>
-              I would welcome the opportunity to discuss how my experience and skills align with your team's needs. Thank you for considering my
-              application. I look forward to the possibility of contributing to{" "}
-              <span className="editable-field font-semibold">[Company Name]</span>'s continued success.
+              I would welcome the opportunity to discuss how my experience leading enterprise-scale React applications and driving technical
+              initiatives aligns with your team's needs. Thank you for considering my application. I look forward to the possibility of
+              contributing to <span className="editable-field font-semibold">[Company Name]</span>'s continued success.
             </p>
           </section>
 
