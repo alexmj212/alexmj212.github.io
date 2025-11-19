@@ -20,15 +20,15 @@ export const portfolioData: PortfolioItem[] = [
     company: "Xometry, Inc.",
     caption: "Advanced Quoting Features for Manufacturing Marketplace",
     challenge:
-      "Building and maintaining sophisticated quoting features for a complex manufacturing marketplace required handling diverse material specifications, and manufacturing processes. The technical complexity involved managing real-time pricing calculations across thousands of manufacturing partners while maintaining rapid response times for customer-facing quote requests.",
+      "Managing real-time pricing calculations across thousands of manufacturing partners while handling diverse material specifications and maintaining rapid response times for customer quote requests.",
     solution:
-      "Architected and implemented React-based quoting workflows leveraging GraphQL for efficient data fetching and TypeScript for type-safe quote modeling. Built reusable component libraries for configuring manufacturing specifications and developed state management patterns to handle complex multi-step quoting flows with validation at each stage.",
+      "Built React-based quoting workflows with GraphQL data fetching and TypeScript type safety. Created reusable component libraries for manufacturing specifications and multi-step flows with validation.",
     impact:
-      "Improved quote generation speed and user experience, enabling customers to receive accurate pricing faster. Enhanced quote accuracy through better validation and specification capture, contributing to increased conversion rates and customer satisfaction across the platform's enterprise customer base.",
+      "Improved quote generation speed and accuracy, enabling faster pricing delivery and increased conversion rates across the enterprise customer base.",
     technical_highlights: [
-      "Designed complex form architecture handling 50+ manufacturing parameters with real-time validation",
-      "Implemented GraphQL query optimization reducing quote load times by leveraging efficient data fetching patterns",
-      "Built reusable component system for manufacturing specifications used across multiple product teams",
+      "Designed form architecture handling 50+ manufacturing parameters with real-time validation",
+      "Optimized GraphQL queries to reduce quote load times",
+      "Built reusable component system used across multiple product teams",
     ],
     badges: ["React", "TypeScript", "GraphQL"],
   },
@@ -37,14 +37,14 @@ export const portfolioData: PortfolioItem[] = [
     date: "2022 - 2023",
     company: "Xometry, Inc.",
     caption: "Enterprise Design System for Manufacturing Platform",
-    challenge: "Building flexible, reusable components that could adapt to diverse product needs across Xometry's platform required solving complex technical architecture challenges. Components needed to support multiple use cases while maintaining consistent APIs, handle varying data structures, and scale across teams without creating tight coupling or limiting future extensibility.",
-    solution: "Enhanced and evolved the Loft design system by architecting highly composable React components with flexible prop APIs and TypeScript generics for type-safe reusability. Leveraged Storybook for comprehensive component documentation and visual testing, creating a robust development workflow. Implemented CSS-in-JS patterns and design tokens for consistent theming across all product surfaces.",
-    impact: "Improved UI consistency across the entire Xometry platform and significantly increased component reuse, reducing duplicate code across product teams. The enhanced system enabled faster feature development through shared, well-tested components and established a single source of truth for design patterns.",
+    challenge: "Building flexible components that adapt to diverse product needs while maintaining consistent APIs and scaling across teams without tight coupling.",
+    solution: "Architected composable React components with flexible prop APIs and TypeScript generics. Built comprehensive Storybook documentation and implemented design tokens for consistent theming.",
+    impact: "Improved UI consistency across the platform and increased component reuse, reducing duplicate code and enabling faster feature development.",
     technical_highlights: [
-      "Architected composable component APIs supporting diverse product requirements with TypeScript generics",
-      "Built comprehensive Storybook documentation with interactive examples and usage guidelines",
+      "Architected composable component APIs with TypeScript generics supporting diverse product requirements",
+      "Built comprehensive Storybook documentation with interactive examples",
       "Implemented design token system ensuring visual consistency across platform",
-      "Created reusable form components and data display patterns adopted by multiple product teams"
+      "Created reusable form and data display patterns adopted by multiple teams"
     ],
     badges: ["React", "TypeScript", "Storybook", "CSS3", "Design Systems"],
   },
@@ -135,12 +135,18 @@ export const portfolioData: PortfolioItem[] = [
     project: "Pixel Bot",
     date: "2023",
     company: "Personal",
-    caption: "PLACEHOLDER: Add caption for personal project",
-    challenge: "PLACEHOLDER: Add details about the challenge or problem you solved",
-    solution: "PLACEHOLDER: Add details about your solution and approach",
-    impact: "PLACEHOLDER: Add measurable impact and results",
-    technical_highlights: ["PLACEHOLDER: Add technical highlight 1", "PLACEHOLDER: Add technical highlight 2", "PLACEHOLDER: Add technical highlight 3"],
-    badges: ["JavaScript", "CSS3", "HTML5", "Personal Project"],
+    caption: "Interactive Twitch Stream Overlay for Viewer Engagement",
+    challenge: "Creating a seamless hosted overlay that monitors Twitch chat in real-time and manages a progressive reveal game where pixels slowly uncover an image, without requiring backend infrastructure.",
+    solution: "Built a hosted browser-source overlay with a pixel grid that gradually reveals an image. Integrated Twitch chat API to monitor viewer guesses in real-time and determine winners. Designed as a turnkey solution streamers add to OBS without configuration.",
+    impact: "Drives chat participation through competitive guessing while the progressive reveal creates natural suspense. Eliminated technical barriers with zero setup or backend management required.",
+    technical_highlights: [
+      "Implemented progressive pixel reveal animation with configurable timing and patterns",
+      "Integrated Twitch chat API for real-time guess monitoring and winner determination",
+      "Built hosted overlay compatible with OBS and streaming software as browser source",
+      "Created chat command parsing validating viewer guesses against correct answers",
+      "Designed visual feedback for game progress and winner announcements"
+    ],
+    badges: ["JavaScript", "Twitch API", "HTML5 Canvas", "CSS3", "Personal Project"],
   },
   {
     project: "TwinSpires Video",
