@@ -16,6 +16,13 @@ export default defineConfig({
   build: {
     outDir: 'build',
     sourcemap: true,
+    minify: 'esbuild',
+    esbuild: {
+      // Remove console.log, console.debug, console.info, console.warn in production
+      // KEEP console.error for production error tracking
+      drop: ['debugger'],
+      pure: ['console.log', 'console.debug', 'console.info', 'console.warn'],
+    },
   },
   server: {
     port: 3000,
