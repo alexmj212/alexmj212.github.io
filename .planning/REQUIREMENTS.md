@@ -131,13 +131,75 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| (To be filled by roadmapper) | | |
+| MEM-01 | Phase 1 | Pending |
+| MEM-02 | Phase 1 | Pending |
+| MEM-03 | Phase 2 | Pending |
+| MEM-04 | Phase 1 | Pending |
+| ERR-01 | Phase 1 | Pending |
+| ERR-02 | Phase 1 | Pending |
+| DEBT-01 | Phase 1 | Pending |
+| DEBT-02 | Phase 1 | Pending |
+| DEBT-03 | Phase 1 | Pending |
+| TEST-01 | Phase 2 | Pending |
+| TEST-02 | Phase 2 | Pending |
+| TEST-03 | Phase 2 | Pending |
+| TEST-04 | Phase 2 | Pending |
+| TEST-05 | Phase 2 | Pending |
+| TEST-06 | Phase 2 | Pending |
+| TEST-07 | Phase 2 | Pending |
+| TEST-08 | Phase 2 | Pending |
+| TEST-09 | Phase 2 | Pending |
+| E2E-01 | Phase 4 | Pending |
+| E2E-02 | Phase 4 | Pending |
+| E2E-03 | Phase 4 | Pending |
+| E2E-04 | Phase 4 | Pending |
+| E2E-05 | Phase 4 | Pending |
+| A11Y-01 | Phase 3 | Pending |
+| A11Y-02 | Phase 3 | Pending |
+| A11Y-03 | Phase 3 | Pending |
+| A11Y-04 | Phase 3 | Pending |
+| A11Y-05 | Phase 3 | Pending |
+| A11Y-06 | Phase 3 | Pending |
+| A11Y-07 | Phase 3 | Pending |
+| A11Y-08 | Phase 3 | Pending |
+| A11Y-09 | Phase 3 | Pending |
+| A11Y-10 | Phase 3 | Pending |
+| A11Y-11 | Phase 3 | Pending |
+| A11Y-12 | Phase 3 | Pending |
+| A11Y-13 | Phase 3 | Pending |
+| PERF-01 | Phase 4 | Pending |
+| PERF-02 | Phase 4 | Pending |
+| PERF-03 | Phase 4 | Pending |
+| PERF-04 | Phase 4 | Pending |
+| PERF-05 | Phase 4 | Pending |
+| PERF-06 | Phase 4 | Pending |
+| CI-01 | Phase 4 | Pending |
+| CI-02 | Phase 4 | Pending |
+| CI-03 | Phase 4 | Pending |
+| CI-04 | Phase 4 | Pending |
+| CI-05 | Phase 4 | Pending |
+| CI-06 | Phase 4 | Pending |
+| CI-07 | Phase 4 | Pending |
+| CI-08 | Phase 4 | Pending |
+| CI-09 | Phase 4 | Pending |
+| CI-10 | Phase 4 | Pending |
+| CI-11 | Phase 4 | Pending |
+| BUG-01 | Phase 1 | Pending |
+| BUG-02 | Phase 1 | Pending |
+| BUG-03 | Phase 1 | Pending |
+| BUG-04 | Phase 1 | Pending |
 
 **Coverage:**
 - v1 requirements: 60 total
-- Mapped to phases: 0 (pending roadmap)
-- Unmapped: 60 ⚠️
+- Mapped to phases: 60/60 ✓
+- Unmapped: 0
+
+**Phase Distribution:**
+- Phase 1 (Critical Fixes & Code Cleanup): 12 requirements
+- Phase 2 (Testing Infrastructure & Coverage): 10 requirements
+- Phase 3 (Accessibility Compliance): 13 requirements
+- Phase 4 (Performance & CI Integration): 25 requirements
 
 ---
 *Requirements defined: 2026-01-27*
-*Last updated: 2026-01-27 after initial definition*
+*Last updated: 2026-01-27 after roadmap creation*
