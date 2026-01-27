@@ -54,21 +54,19 @@ const ThreeBackground = () => {
     console.log("ThreeBackground: Canvas mounted, initializing Three.js...");
     console.log("Canvas element:", canvas);
 
-    const initThree = () => {
+    try {
       console.log("Initializing Three.js...");
 
-      try {
+      // Scene, camera, renderer setup (exact copy from Jekyll)
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+      const renderer = new THREE.WebGLRenderer({
+        canvas: canvas,
+        alpha: true,
+        antialias: true,
+      });
 
-        // Scene, camera, renderer setup (exact copy from Jekyll)
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer({
-          canvas: canvas,
-          alpha: true,
-          antialias: true,
-        });
-
-        rendererRef.current = renderer;
+      rendererRef.current = renderer;
 
         // Size canvas to full viewport since it's now fixed
         renderer.setSize(window.innerWidth, window.innerHeight);
@@ -316,37 +314,54 @@ const ThreeBackground = () => {
 
         window.addEventListener("resize", handleResize);
 
-        // Start animation
-        animate();
-        console.log("Three.js background animation started successfully");
+      // Start animation
+      animate();
+      console.log("Three.js background animation started successfully");
 
-        return () => {
-          window.removeEventListener("resize", handleResize);
-        };
-      } catch (error) {
-        console.error("Three.js initialization error:", error instanceof Error ? error.message : String(error));
-        // Security: Graceful degradation on error
-        return () => {
-          console.log('Three.js cleanup called after initialization error');
-        };
-      }
-    };
+      // Cleanup function
+      return () => {
+        // 1. Cancel animation frame FIRST
+        if (animationIdRef.current !== undefined) {
+          cancelAnimationFrame(animationIdRef.current);
+        }
 
-    // Initialize Three.js directly since it's now an ES6 import
-    const cleanup = initThree();
-    return cleanup;
-  }, []);
+        // 2. Remove resize event listener
+        window.removeEventListener("resize", handleResize);
 
-  // Cleanup on unmount
-  useEffect(() => {
-    return () => {
-      if (animationIdRef.current) {
-        cancelAnimationFrame(animationIdRef.current);
-      }
-      if (rendererRef.current) {
-        rendererRef.current.dispose();
-      }
-    };
+        // 3. Traverse scene and dispose ALL meshes and lines
+        scene.traverse((object) => {
+          if (object instanceof THREE.Mesh) {
+            object.geometry?.dispose();
+            if (Array.isArray(object.material)) {
+              object.material.forEach(m => m.dispose());
+            } else if (object.material) {
+              (object.material as THREE.Material).dispose();
+            }
+          }
+          if (object instanceof THREE.Line) {
+            object.geometry?.dispose();
+            if (object.material instanceof THREE.Material) {
+              object.material.dispose();
+            }
+          }
+        });
+
+        // 4. Clear the scene
+        scene.clear();
+
+        // 5. Dispose the renderer LAST
+        renderer.dispose();
+
+        // 6. Nullify refs
+        rendererRef.current = null;
+      };
+    } catch (error) {
+      console.error("Three.js initialization error:", error instanceof Error ? error.message : String(error));
+      // Security: Graceful degradation on error
+      return () => {
+        console.log('Three.js cleanup called after initialization error');
+      };
+    }
   }, []);
 
   return (
