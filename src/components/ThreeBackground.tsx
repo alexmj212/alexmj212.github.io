@@ -61,40 +61,40 @@ const ThreeBackground = () => {
       const scene = new THREE.Scene();
       const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
       const renderer = new THREE.WebGLRenderer({
-        canvas: canvas,
-        alpha: true,
-        antialias: true,
+      canvas: canvas,
+      alpha: true,
+      antialias: true,
       });
 
       rendererRef.current = renderer;
 
-        // Size canvas to full viewport since it's now fixed
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      // Size canvas to full viewport since it's now fixed
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-        // Position camera for rail perspective filling entire hero section
-        camera.position.set(0, -2, 10); // Further back to capture full width/height
-        camera.lookAt(0, 1, 0); // Look slightly up toward vanishing point
-        camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
+      // Position camera for rail perspective filling entire hero section
+      camera.position.set(0, -2, 10); // Further back to capture full width/height
+      camera.lookAt(0, 1, 0); // Look slightly up toward vanishing point
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
 
-        // Adjust field of view to fill hero section
-        camera.fov = 60; // Wider field of view
-        camera.updateProjectionMatrix();
+      // Adjust field of view to fill hero section
+      camera.fov = 60; // Wider field of view
+      camera.updateProjectionMatrix();
 
-        // Security: Validated configuration with safe defaults
-        const getThemeAwareColor = (lightColor: number, darkColor: number): number => {
-          try {
-            const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-            return isDark ? darkColor : lightColor;
-          } catch (error) {
-            console.warn('Theme detection failed, using light mode default:', error);
-            return lightColor;
-          }
-        };
+      // Security: Validated configuration with safe defaults
+      const getThemeAwareColor = (lightColor: number, darkColor: number): number => {
+      try {
+          const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+          return isDark ? darkColor : lightColor;
+      } catch (error) {
+          console.warn('Theme detection failed, using light mode default:', error);
+          return lightColor;
+      }
+      };
 
-        // ===== CONFIGURABLE ANIMATION SETTINGS =====
-        const CONFIG = {
+      // ===== CONFIGURABLE ANIMATION SETTINGS =====
+      const CONFIG = {
           // Particle Settings
           particleCount: 50,
           particleSize: 0.08,
@@ -146,33 +146,33 @@ const ThreeBackground = () => {
           // Hero Content Effects (Rotation Only)
           contentRotationIntensity: 4, // Content rotation strength (degrees)
           wobbleSmoothing: 1, // Smoothness of rotation transitions (0-1)
-        };
+      };
 
-        // Derived values for optimization
-        const particles: any[] = [];
-        const mouse = { x: 0, y: 0, screenX: 0, screenY: 0 };
-        const smoothMouse = { x: 0, y: 0 }; // Smoothed mouse for wobble effect
-        const halfTrackWidth = CONFIG.raceTrackWidth / 2;
+      // Derived values for optimization
+      const particles: any[] = [];
+      const mouse = { x: 0, y: 0, screenX: 0, screenY: 0 };
+      const smoothMouse = { x: 0, y: 0 }; // Smoothed mouse for wobble effect
+      const halfTrackWidth = CONFIG.raceTrackWidth / 2;
 
-        // Optimized geometry - reuse for all particles (with global scale)
-        const particleGeometry = new THREE.SphereGeometry(CONFIG.particleSize * CONFIG.globalScale, CONFIG.particleGeometrySegments, CONFIG.particleGeometrySegments);
+      // Optimized geometry - reuse for all particles (with global scale)
+      const particleGeometry = new THREE.SphereGeometry(CONFIG.particleSize * CONFIG.globalScale, CONFIG.particleGeometrySegments, CONFIG.particleGeometrySegments);
 
-        // Use MeshLambertMaterial for better distance-based lighting control
-        const particleMaterial = new THREE.MeshLambertMaterial({
+      // Use MeshLambertMaterial for better distance-based lighting control
+      const particleMaterial = new THREE.MeshLambertMaterial({
           color: CONFIG.startColor,
           transparent: true,
           opacity: 0.6,
-        });
+      });
 
-        // Perspective object with scale and position offsets
-        const PERSPECTIVE = {
+      // Perspective object with scale and position offsets
+      const PERSPECTIVE = {
           startX: -halfTrackWidth * CONFIG.globalScale + CONFIG.horizontalOffset,
           endX: halfTrackWidth * CONFIG.globalScale + CONFIG.horizontalOffset,
           vanishingPointY: CONFIG.vanishingPointY * CONFIG.globalScale + CONFIG.verticalOffset,
-        };
+      };
 
-        // Create optimized particle trail lines
-        const createParticleTrails = () => {
+      // Create optimized particle trail lines
+      const createParticleTrails = () => {
           const trailGroup = new THREE.Group();
 
           // Optimized trail material
@@ -211,31 +211,31 @@ const ThreeBackground = () => {
           }
 
           return trailGroup;
-        };
+      };
 
-        // Add particle trails to scene
-        const particleTrails = createParticleTrails();
-        scene.add(particleTrails);
+      // Add particle trails to scene
+      const particleTrails = createParticleTrails();
+      scene.add(particleTrails);
 
-        // Simple lighting setup for particle-relative mouse lighting
-        const ambientIntensity = getThemeAwareColor(0.4, 0.2);
-        const ambientLight = new THREE.AmbientLight(0xffffff, ambientIntensity);
-        scene.add(ambientLight);
+      // Simple lighting setup for particle-relative mouse lighting
+      const ambientIntensity = getThemeAwareColor(0.4, 0.2);
+      const ambientLight = new THREE.AmbientLight(0xffffff, ambientIntensity);
+      scene.add(ambientLight);
 
-        // Mouse-following point light for particle interaction
-        const mouseLightIntensity = getThemeAwareColor(2.0, 1.5);
-        const mouseLight = new THREE.PointLight(0xffffff, mouseLightIntensity, 30);
-        mouseLight.position.set(0, 0, 5); // Start position
-        scene.add(mouseLight);
+      // Mouse-following point light for particle interaction
+      const mouseLightIntensity = getThemeAwareColor(2.0, 1.5);
+      const mouseLight = new THREE.PointLight(0xffffff, mouseLightIntensity, 30);
+      mouseLight.position.set(0, 0, 5); // Start position
+      scene.add(mouseLight);
 
-        // Additional soft glow light using theme colors
-        const glowIntensity = getThemeAwareColor(0.8, 0.6);
-        const glowLight = new THREE.PointLight(CONFIG.startColor, glowIntensity, 25);
-        glowLight.position.set(0, 0, 3); // Closer for glow effect
-        scene.add(glowLight);
+      // Additional soft glow light using theme colors
+      const glowIntensity = getThemeAwareColor(0.8, 0.6);
+      const glowLight = new THREE.PointLight(CONFIG.startColor, glowIntensity, 25);
+      glowLight.position.set(0, 0, 3); // Closer for glow effect
+      scene.add(glowLight);
 
-        // Create optimized particles using config values
-        for (let i = 0; i < CONFIG.particleCount; i++) {
+      // Create optimized particles using config values
+      for (let i = 0; i < CONFIG.particleCount; i++) {
           const particle = new THREE.Mesh(particleGeometry, particleMaterial.clone());
 
           // Configurable color gradient
@@ -264,10 +264,10 @@ const ThreeBackground = () => {
 
           scene.add(particle);
           particles.push(particle);
-        }
+      }
 
-        // Animation loop with perspective-skewed racing motion
-        const animate = () => {
+      // Animation loop with perspective-skewed racing motion
+      const animate = () => {
           animationIdRef.current = requestAnimationFrame(animate);
 
           // Optimized animation loop using config values
@@ -303,16 +303,16 @@ const ThreeBackground = () => {
           });
 
           renderer.render(scene, camera);
-        };
+      };
 
-        // Handle resize
-        const handleResize = () => {
+      // Handle resize
+      const handleResize = () => {
           camera.aspect = window.innerWidth / window.innerHeight;
           camera.updateProjectionMatrix();
           renderer.setSize(window.innerWidth, window.innerHeight);
-        };
+      };
 
-        window.addEventListener("resize", handleResize);
+      window.addEventListener("resize", handleResize);
 
       // Start animation
       animate();
@@ -320,16 +320,20 @@ const ThreeBackground = () => {
 
       // Cleanup function
       return () => {
-        // 1. Cancel animation frame FIRST
-        if (animationIdRef.current !== undefined) {
+      if (process.env.NODE_ENV === 'development') {
+          console.log('[ThreeBackground] Cleanup starting - disposing resources');
+      }
+
+      // 1. Cancel animation frame FIRST
+      if (animationIdRef.current !== undefined) {
           cancelAnimationFrame(animationIdRef.current);
-        }
+      }
 
-        // 2. Remove resize event listener
-        window.removeEventListener("resize", handleResize);
+      // 2. Remove resize event listener
+      window.removeEventListener("resize", handleResize);
 
-        // 3. Traverse scene and dispose ALL meshes and lines
-        scene.traverse((object) => {
+      // 3. Traverse scene and dispose ALL meshes and lines
+      scene.traverse((object) => {
           if (object instanceof THREE.Mesh) {
             object.geometry?.dispose();
             if (Array.isArray(object.material)) {
@@ -344,22 +348,37 @@ const ThreeBackground = () => {
               object.material.dispose();
             }
           }
-        });
+      });
 
-        // 4. Clear the scene
-        scene.clear();
+      if (process.env.NODE_ENV === 'development') {
+          let meshCount = 0;
+          let lineCount = 0;
+          scene.traverse((obj) => {
+            if (obj instanceof THREE.Mesh) meshCount++;
+            if (obj instanceof THREE.Line) lineCount++;
+          });
+          // This will log 0, 0 after disposal
+          console.log(`[ThreeBackground] Disposed meshes: ${meshCount}, lines: ${lineCount}`);
+      }
 
-        // 5. Dispose the renderer LAST
-        renderer.dispose();
+      // 4. Clear the scene
+      scene.clear();
 
-        // 6. Nullify refs
-        rendererRef.current = null;
+      // 5. Dispose the renderer LAST
+      renderer.dispose();
+
+      // 6. Nullify refs
+      rendererRef.current = null;
+
+      if (process.env.NODE_ENV === 'development') {
+          console.log('[ThreeBackground] Cleanup complete - all resources disposed');
+      }
       };
     } catch (error) {
       console.error("Three.js initialization error:", error instanceof Error ? error.message : String(error));
       // Security: Graceful degradation on error
       return () => {
-        console.log('Three.js cleanup called after initialization error');
+      console.log('Three.js cleanup called after initialization error');
       };
     }
   }, []);
@@ -368,24 +387,24 @@ const ThreeBackground = () => {
     <div
       id="three-background"
       style={{
-        position: "fixed",
-        top: 0,
-        left: 0,
-        width: "100vw",
-        height: "100vh",
-        zIndex: 0,
-        pointerEvents: "none",
-        background: "linear-gradient(135deg, rgba(11, 139, 213, 0.03) 0%, rgba(91, 154, 99, 0.03) 100%)",
+      position: "fixed",
+      top: 0,
+      left: 0,
+      width: "100vw",
+      height: "100vh",
+      zIndex: 0,
+      pointerEvents: "none",
+      background: "linear-gradient(135deg, rgba(11, 139, 213, 0.03) 0%, rgba(91, 154, 99, 0.03) 100%)",
       }}
     >
       <canvas
-        ref={canvasRef}
-        id="hero-canvas"
-        style={{
+      ref={canvasRef}
+      id="hero-canvas"
+      style={{
           width: "100%",
           height: "100%",
           display: "block",
-        }}
+      }}
       />
     </div>
   );
