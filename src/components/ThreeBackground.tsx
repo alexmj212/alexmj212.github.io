@@ -150,6 +150,7 @@ const ThreeBackground = () => {
 
       // Derived values for optimization
       const particles: any[] = [];
+      const clonedMaterials: THREE.Material[] = []; // Track all cloned materials for disposal
       const mouse = { x: 0, y: 0, screenX: 0, screenY: 0 };
       const smoothMouse = { x: 0, y: 0 }; // Smoothed mouse for wobble effect
       const halfTrackWidth = CONFIG.raceTrackWidth / 2;
@@ -236,7 +237,9 @@ const ThreeBackground = () => {
 
       // Create optimized particles using config values
       for (let i = 0; i < CONFIG.particleCount; i++) {
-          const particle = new THREE.Mesh(particleGeometry, particleMaterial.clone());
+          const clonedMaterial = particleMaterial.clone();
+          clonedMaterials.push(clonedMaterial); // Track for disposal
+          const particle = new THREE.Mesh(particleGeometry, clonedMaterial);
 
           // Configurable color gradient
           const gradientFactor = i / (CONFIG.particleCount - 1);
@@ -327,12 +330,29 @@ const ThreeBackground = () => {
       // 1. Cancel animation frame FIRST
       if (animationIdRef.current !== undefined) {
           cancelAnimationFrame(animationIdRef.current);
+          animationIdRef.current = undefined;
       }
 
       // 2. Remove resize event listener
       window.removeEventListener("resize", handleResize);
 
-      // 3. Traverse scene and dispose ALL meshes and lines
+      // 3. Dispose all cloned materials explicitly
+      if (process.env.NODE_ENV === 'development') {
+          console.log(`[ThreeBackground] Disposing ${clonedMaterials.length} cloned materials`);
+      }
+      clonedMaterials.forEach(material => {
+          material.dispose();
+      });
+      clonedMaterials.length = 0; // Clear the array
+
+      // 4. Dispose base material and geometry
+      particleMaterial.dispose();
+      particleGeometry.dispose();
+
+      // 5. Clear particles array to release references
+      particles.length = 0;
+
+      // 6. Traverse scene and dispose ALL remaining meshes and lines
       scene.traverse((object) => {
           if (object instanceof THREE.Mesh) {
             object.geometry?.dispose();
@@ -361,17 +381,25 @@ const ThreeBackground = () => {
           console.log(`[ThreeBackground] Disposed meshes: ${meshCount}, lines: ${lineCount}`);
       }
 
-      // 4. Clear the scene
+      // 7. Clear the scene
       scene.clear();
 
-      // 5. Dispose the renderer LAST
+      // 8. Dispose the renderer
       renderer.dispose();
 
-      // 6. Nullify refs
+      // 9. Force WebGL context loss
+      renderer.forceContextLoss();
+
+      // 10. Remove canvas from DOM
+      if (renderer.domElement && renderer.domElement.parentNode) {
+          renderer.domElement.parentNode.removeChild(renderer.domElement);
+      }
+
+      // 11. Nullify all refs
       rendererRef.current = null;
 
       if (process.env.NODE_ENV === 'development') {
-          console.log('[ThreeBackground] Cleanup complete - all resources disposed');
+          console.log('[ThreeBackground] Cleanup complete - all resources disposed, WebGL context lost');
       }
       };
     } catch (error) {
