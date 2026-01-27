@@ -27,6 +27,8 @@ const PortfolioDialog: React.FC<PortfolioDialogProps> = ({ item, isOpen, onClose
     }
   }, [isOpen]);
 
+  // Effect for dialog event listeners
+  // Cleanup ensures no stale handlers when dialog closes or onClose changes
   React.useEffect(() => {
     const dialog = dialogRef.current;
     if (!dialog) return;
