@@ -49,10 +49,13 @@ Plans:
   3. Portfolio modal tests verify open/close/keyboard navigation without memory leaks
   4. Theme switching tests confirm dark mode persistence works
   5. Coverage reports show statements, branches, functions, and lines metrics
-**Plans**: TBD
+**Plans**: 4 plans in 2 waves
 
 Plans:
-- [ ] TBD
+- [ ] 02-01-PLAN.md — Upgrade TypeScript/Vite, configure Vitest with coverage and test utilities
+- [ ] 02-02-PLAN.md — Unit tests for ErrorBoundary and dark mode theme switching
+- [ ] 02-03-PLAN.md — Unit tests for Portfolio modal interactions
+- [ ] 02-04-PLAN.md — Browser-mode tests for ThreeBackground WebGL and memory leak verification
 
 ### Phase 3: Accessibility Compliance
 **Goal**: Achieve WCAG 2.1 AA compliance demonstrating inclusive design expertise
@@ -92,10 +95,10 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Critical Fixes & Code Cleanup | 6/6 | Complete | 2026-01-27 |
-| 2. Testing Infrastructure & Coverage | 0/TBD | Not started | - |
+| 2. Testing Infrastructure & Coverage | 0/4 | Ready | - |
 | 3. Accessibility Compliance | 0/TBD | Not started | - |
 | 4. Performance & CI Integration | 0/TBD | Not started | - |
 
 ---
 *Roadmap created: 2026-01-27*
-*Last updated: 2026-01-27 (Phase 1 complete)*
+*Last updated: 2026-01-27 (Phase 2 planned)*
