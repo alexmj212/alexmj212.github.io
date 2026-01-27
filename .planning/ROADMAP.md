@@ -29,10 +29,14 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. Error boundaries catch and display errors gracefully across all routes
   4. Console shows zero warnings or errors in production build
   5. Portfolio section displays correctly without layout bugs
-**Plans**: TBD
+**Plans**: 5 plans in 3 waves
 
 Plans:
-- [ ] TBD
+- [ ] 01-01-PLAN.md — Three.js memory leak fix (GPU resource disposal)
+- [ ] 01-02-PLAN.md — Technical debt: console removal, theme detection fix
+- [ ] 01-03-PLAN.md — Error boundaries for sections, image fallback UI
+- [ ] 01-04-PLAN.md — Dialog cleanup audit, layout verification
+- [ ] 01-05-PLAN.md — Memory verification with Chrome DevTools
 
 ### Phase 2: Testing Infrastructure & Coverage
 **Goal**: Establish comprehensive test foundation enabling confidence in all future changes
@@ -82,11 +86,11 @@ Plans:
 ## Progress
 
 **Execution Order:**
-Phases execute in numeric order: 1 → 2 → 3 → 4
+Phases execute in numeric order: 1 -> 2 -> 3 -> 4
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Critical Fixes & Code Cleanup | 0/TBD | Not started | - |
+| 1. Critical Fixes & Code Cleanup | 0/5 | Planned | - |
 | 2. Testing Infrastructure & Coverage | 0/TBD | Not started | - |
 | 3. Accessibility Compliance | 0/TBD | Not started | - |
 | 4. Performance & CI Integration | 0/TBD | Not started | - |
