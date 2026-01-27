@@ -9,6 +9,12 @@ interface PortfolioDialogProps {
 
 const PortfolioDialog: React.FC<PortfolioDialogProps> = ({ item, isOpen, onClose }) => {
   const dialogRef = React.useRef<HTMLDialogElement>(null);
+  const [dialogImageError, setDialogImageError] = useState(false);
+
+  // Reset image error state when item changes
+  React.useEffect(() => {
+    setDialogImageError(false);
+  }, [item]);
 
   React.useEffect(() => {
     const dialog = dialogRef.current;
@@ -79,14 +85,19 @@ const PortfolioDialog: React.FC<PortfolioDialogProps> = ({ item, isOpen, onClose
         <div className="flex flex-col lg:flex-row gap-6 p-6 flex-shrink-0">
           {item.images && item.images.length > 0 && (
             <div className="w-full lg:w-80 h-48 lg:h-64 flex-shrink-0 rounded-lg overflow-hidden bg-gray-100 dark:bg-gray-800">
-              <img
-                src={item.images[0]}
-                alt={item.project}
-                className="w-full h-full object-contain"
-                onError={(e) => {
-                  e.currentTarget.style.display = 'none';
-                }}
-              />
+              {!dialogImageError ? (
+                <img
+                  src={item.images[0]}
+                  alt={item.project}
+                  className="w-full h-full object-contain"
+                  onError={() => setDialogImageError(true)}
+                />
+              ) : (
+                <div className="w-full h-full flex flex-col items-center justify-center text-gray-400 dark:text-gray-500">
+                  <span className="text-4xl mb-2">📷</span>
+                  <p className="text-sm">Image not available</p>
+                </div>
+              )}
             </div>
           )}
           <div className="flex-1">
@@ -161,6 +172,27 @@ const PortfolioDialog: React.FC<PortfolioDialogProps> = ({ item, isOpen, onClose
   );
 };
 
+const PortfolioImage: React.FC<{ src: string; alt: string }> = ({ src, alt }) => {
+  const [hasError, setHasError] = useState(false);
+
+  if (hasError) {
+    return (
+      <div className="w-full h-full flex flex-col items-center justify-center text-gray-400 dark:text-gray-500 bg-gray-100 dark:bg-gray-800">
+        <span className="text-3xl mb-1">📷</span>
+        <p className="text-xs">Image not available</p>
+      </div>
+    );
+  }
+
+  return (
+    <img
+      src={src}
+      alt={alt}
+      onError={() => setHasError(true)}
+    />
+  );
+};
+
 const Portfolio = () => {
   const [selectedItem, setSelectedItem] = useState<PortfolioItem | null>(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -204,12 +236,9 @@ const Portfolio = () => {
                 {portfolioItem.images && portfolioItem.images.length > 0 && (
                   <div className="portfolio-image-container">
                     <div className="portfolio-image">
-                      <img
+                      <PortfolioImage
                         src={portfolioItem.images[0]}
                         alt={portfolioItem.project}
-                        onError={(e) => {
-                          e.currentTarget.style.display = 'none';
-                        }}
                       />
                     </div>
                   </div>
