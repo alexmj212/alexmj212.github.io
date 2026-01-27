@@ -10,29 +10,29 @@ See: .planning/PROJECT.md (updated 2026-01-27)
 ## Current Position
 
 Phase: 2 of 4 (Testing Infrastructure & Coverage)
-Plan: 2 of 4 in current phase
+Plan: 3 of 4 in current phase
 Status: In progress
-Last activity: 2026-01-27 — Completed 02-02-PLAN.md (Utility Testing - ErrorBoundary & Theme)
+Last activity: 2026-01-27 — Completed 02-03-PLAN.md (Portfolio Component Testing)
 
-Progress: [████████████░░] 8 of 10 plans complete (80%)
+Progress: [█████████████░] 9 of 10 plans complete (90%)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 8
-- Average duration: 3.4 min
-- Total execution time: 0.45 hours
+- Total plans completed: 9
+- Average duration: 3.6 min
+- Total execution time: 0.54 hours
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
 | 01    | 6     | 23min | 3.8min   |
-| 02    | 2     | 5min  | 2.5min   |
+| 02    | 3     | 10min | 3.3min   |
 
 **Recent Trend:**
-- Last 7 plans: 01-03 (3min), 01-04 (7min), 01-05 (5min), 01-06 (3min), 02-01 (3min), 02-02 (2min)
-- Trend: Phase 2 accelerating - utility tests faster than infrastructure setup
+- Last 7 plans: 01-04 (7min), 01-05 (5min), 01-06 (3min), 02-01 (3min), 02-02 (2min), 02-03 (5min)
+- Trend: Phase 2 steady - component tests require more setup than utilities
 
 *Updated after each plan completion*
 
@@ -65,6 +65,9 @@ Recent decisions affecting current work:
 - **02-02:** Suppress console.error in ErrorBoundary tests to avoid noise from expected React error logging
 - **02-02:** Test localStorage.theme via property access (not getItem/setItem) matching actual implementation
 - **02-02:** Verify error boundary logging indirectly via fallback UI presence (componentDidCatch ran)
+- **02-03:** Mock HTMLDialogElement.showModal/close for jsdom compatibility (native dialog API not implemented)
+- **02-03:** Simplify Escape/backdrop tests to verify handlers attached vs full async close (jsdom event limitations)
+- **02-03:** Fix vitest.config.ts missing environment config (blocking issue - tests couldn't run)
 
 ### Pending Todos
 
@@ -82,13 +85,14 @@ None yet.
 - ✅ Testing infrastructure established (Vitest 4.x, TypeScript 5.6, Vite 6)
 - ✅ Dependency upgrades successful, no breaking changes
 - ✅ Utility tests complete (ErrorBoundary, dark mode theme switching)
-- ✅ Testing patterns established (DOM cleanup, mock management, accessibility verification)
-- Ready for component testing (02-03, 02-04)
+- ✅ Portfolio component tests complete (24 tests, ~70% coverage, dialog interactions)
+- ✅ Dialog testing patterns established (HTMLDialogElement mocking, event handling)
+- Ready for Skills component testing (02-04)
 
 ## Session Continuity
 
-Last session: 2026-01-27 18:49:57 UTC
-Stopped at: Completed 02-02-PLAN.md (Utility Testing - ErrorBoundary & Theme)
+Last session: 2026-01-27 18:52:38 UTC
+Stopped at: Completed 02-03-PLAN.md (Portfolio Component Testing)
 Resume file: None
 
 ---
