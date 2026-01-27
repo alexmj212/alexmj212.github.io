@@ -131,15 +131,15 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| MEM-01 | Phase 1 | Pending |
-| MEM-02 | Phase 1 | Pending |
+| MEM-01 | Phase 1 | Complete |
+| MEM-02 | Phase 1 | Complete |
 | MEM-03 | Phase 2 | Pending |
-| MEM-04 | Phase 1 | Pending |
-| ERR-01 | Phase 1 | Pending |
-| ERR-02 | Phase 1 | Pending |
-| DEBT-01 | Phase 1 | Pending |
-| DEBT-02 | Phase 1 | Pending |
-| DEBT-03 | Phase 1 | Pending |
+| MEM-04 | Phase 1 | Complete |
+| ERR-01 | Phase 1 | Complete |
+| ERR-02 | Phase 1 | Complete |
+| DEBT-01 | Phase 1 | Complete |
+| DEBT-02 | Phase 1 | Complete |
+| DEBT-03 | Phase 1 | Complete |
 | TEST-01 | Phase 2 | Pending |
 | TEST-02 | Phase 2 | Pending |
 | TEST-03 | Phase 2 | Pending |
@@ -184,10 +184,10 @@ Which phases cover which requirements. Updated during roadmap creation.
 | CI-09 | Phase 4 | Pending |
 | CI-10 | Phase 4 | Pending |
 | CI-11 | Phase 4 | Pending |
-| BUG-01 | Phase 1 | Pending |
-| BUG-02 | Phase 1 | Pending |
-| BUG-03 | Phase 1 | Pending |
-| BUG-04 | Phase 1 | Pending |
+| BUG-01 | Phase 1 | Complete |
+| BUG-02 | Phase 1 | Complete |
+| BUG-03 | Phase 1 | Complete |
+| BUG-04 | Phase 1 | Complete |
 
 **Coverage:**
 - v1 requirements: 60 total

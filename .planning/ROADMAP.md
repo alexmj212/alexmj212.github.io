@@ -12,7 +12,7 @@ This roadmap transforms the portfolio site into production-quality code demonstr
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [ ] **Phase 1: Critical Fixes & Code Cleanup** - Fix production stability issues and eliminate technical debt
+- [x] **Phase 1: Critical Fixes & Code Cleanup** - Fix production stability issues and eliminate technical debt
 - [ ] **Phase 2: Testing Infrastructure & Coverage** - Establish test foundation with Vitest and comprehensive unit tests
 - [ ] **Phase 3: Accessibility Compliance** - Achieve WCAG 2.1 AA standards with automated and manual validation
 - [ ] **Phase 4: Performance & CI Integration** - Add production monitoring and automated quality gates
@@ -37,7 +37,7 @@ Plans:
 - [x] 01-03-PLAN.md — Error boundaries for sections, image fallback UI
 - [x] 01-04-PLAN.md — Dialog cleanup audit, layout verification
 - [x] 01-05-PLAN.md — Memory verification with Chrome DevTools
-- [ ] 01-06-PLAN.md — Gap closure: comprehensive memory disposal (forceContextLoss, cloned materials)
+- [x] 01-06-PLAN.md — Gap closure: comprehensive memory disposal (forceContextLoss, cloned materials, Playwright automation)
 
 ### Phase 2: Testing Infrastructure & Coverage
 **Goal**: Establish comprehensive test foundation enabling confidence in all future changes
@@ -91,11 +91,11 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Critical Fixes & Code Cleanup | 0/5 | Planned | - |
+| 1. Critical Fixes & Code Cleanup | 6/6 | Complete | 2026-01-27 |
 | 2. Testing Infrastructure & Coverage | 0/TBD | Not started | - |
 | 3. Accessibility Compliance | 0/TBD | Not started | - |
 | 4. Performance & CI Integration | 0/TBD | Not started | - |
 
 ---
 *Roadmap created: 2026-01-27*
-*Last updated: 2026-01-27*
+*Last updated: 2026-01-27 (Phase 1 complete)*
