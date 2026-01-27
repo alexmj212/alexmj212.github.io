@@ -1373,6 +1373,9 @@ nav {
   -webkit-backdrop-filter: blur(5px);
   backdrop-filter: blur(5px);
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   position: relative;
   transition-duration: 0.5s;
   transition-property: all;
@@ -1476,6 +1479,7 @@ nav {
     }
   }
   & .portfolio-footer {
+    margin-top: auto;
     padding-bottom: 1rem;
     padding-left: 1rem;
     padding-right: 1rem;
