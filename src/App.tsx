@@ -85,17 +85,65 @@ const App = () => {
 
         {/* Portfolio Section */}
         <div id="portfolio">
-          <Portfolio />
+          <ErrorBoundary fallback={
+            <div className="w-full py-24">
+              <div className="container-responsive">
+                <div className="text-center py-12">
+                  <div className="text-4xl mb-4">⚠️</div>
+                  <h2 className="text-xl font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                    Portfolio Unavailable
+                  </h2>
+                  <p className="text-gray-500 dark:text-gray-400">
+                    This section failed to load. Please try refreshing the page.
+                  </p>
+                </div>
+              </div>
+            </div>
+          }>
+            <Portfolio />
+          </ErrorBoundary>
         </div>
 
         {/* Skills Section */}
         <div id="skills">
-          <Skills />
+          <ErrorBoundary fallback={
+            <div className="w-full py-24">
+              <div className="container-responsive">
+                <div className="text-center py-12">
+                  <div className="text-4xl mb-4">⚠️</div>
+                  <h2 className="text-xl font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                    Skills Unavailable
+                  </h2>
+                  <p className="text-gray-500 dark:text-gray-400">
+                    This section failed to load. Please try refreshing the page.
+                  </p>
+                </div>
+              </div>
+            </div>
+          }>
+            <Skills />
+          </ErrorBoundary>
         </div>
 
         {/* Experience Section */}
         <div id="experience">
-          <Experience />
+          <ErrorBoundary fallback={
+            <div className="w-full py-24">
+              <div className="container-responsive">
+                <div className="text-center py-12">
+                  <div className="text-4xl mb-4">⚠️</div>
+                  <h2 className="text-xl font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                    Experience Unavailable
+                  </h2>
+                  <p className="text-gray-500 dark:text-gray-400">
+                    This section failed to load. Please try refreshing the page.
+                  </p>
+                </div>
+              </div>
+            </div>
+          }>
+            <Experience />
+          </ErrorBoundary>
         </div>
 
         {/* Footer */}
