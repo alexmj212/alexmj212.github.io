@@ -29,14 +29,15 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. Error boundaries catch and display errors gracefully across all routes
   4. Console shows zero warnings or errors in production build
   5. Portfolio section displays correctly without layout bugs
-**Plans**: 5 plans in 3 waves
+**Plans**: 6 plans in 4 waves (includes 1 gap closure)
 
 Plans:
-- [ ] 01-01-PLAN.md — Three.js memory leak fix (GPU resource disposal)
-- [ ] 01-02-PLAN.md — Technical debt: console removal, theme detection fix
-- [ ] 01-03-PLAN.md — Error boundaries for sections, image fallback UI
-- [ ] 01-04-PLAN.md — Dialog cleanup audit, layout verification
-- [ ] 01-05-PLAN.md — Memory verification with Chrome DevTools
+- [x] 01-01-PLAN.md — Three.js memory leak fix (GPU resource disposal)
+- [x] 01-02-PLAN.md — Technical debt: console removal, theme detection fix
+- [x] 01-03-PLAN.md — Error boundaries for sections, image fallback UI
+- [x] 01-04-PLAN.md — Dialog cleanup audit, layout verification
+- [x] 01-05-PLAN.md — Memory verification with Chrome DevTools
+- [ ] 01-06-PLAN.md — Gap closure: comprehensive memory disposal (forceContextLoss, cloned materials)
 
 ### Phase 2: Testing Infrastructure & Coverage
 **Goal**: Establish comprehensive test foundation enabling confidence in all future changes
