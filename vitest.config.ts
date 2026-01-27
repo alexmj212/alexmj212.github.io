@@ -2,6 +2,8 @@ import { defineConfig } from 'vitest/config'
 import react from '@vitejs/plugin-react'
 import { resolve } from 'path'
 
+// Base configuration for workspace projects
+// When vitest.workspace.ts exists, this serves as the shared base config
 export default defineConfig({
   plugins: [react()],
   resolve: {
@@ -16,14 +18,12 @@ export default defineConfig({
     // Setup file for mocks and cleanup
     setupFiles: ['./src/test/setup.ts'],
 
-    // Default environment for unit tests
+    // Environment for unit tests (jsdom for React components)
     environment: 'jsdom',
 
-    // Include test file patterns
+    // Test patterns
     include: ['src/**/*.test.{ts,tsx}'],
-
-    // Exclude browser tests from default run (separate project)
-    exclude: ['src/**/*.browser.test.{ts,tsx}', 'node_modules'],
+    exclude: ['src/**/*.browser.test.{ts,tsx}', 'src/**/*.memory.test.{ts,tsx}'],
 
     // Coverage configuration (from CONTEXT.md: global 70% threshold)
     coverage: {
