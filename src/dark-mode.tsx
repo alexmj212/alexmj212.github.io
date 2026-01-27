@@ -33,14 +33,18 @@ export function getTheme(): string {
 }
 
 export function initializeThemeDetection() {
-
-  if (localStorage.theme === themeOptions || (!('theme' in localStorage) &&window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+  // Initialize theme from localStorage or system preference
+  if (localStorage.theme === themeOptions.DARK ||
+      (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
     setTheme(themeOptions.DARK);
   } else {
     setTheme(themeOptions.LIGHT);
   }
+
   // Listen to OS theme settings
-  window.matchMedia("(prefers-color-scheme: dark)").addListener((e) => {
+  // Note: This listener persists for app lifetime - no cleanup needed
+  const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+  mediaQuery.addEventListener('change', (e) => {
     if (e.matches) {
       setTheme(themeOptions.DARK);
     } else {
