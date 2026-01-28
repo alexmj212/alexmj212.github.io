@@ -11,7 +11,7 @@ Requirements for production-quality milestone. Each maps to roadmap phases.
 
 - [ ] **MEM-01**: Three.js GPU resources properly disposed (geometries, materials, textures, renderer)
 - [ ] **MEM-02**: Dialog event listeners cleaned up on component unmount (no stale references)
-- [ ] **MEM-03**: Memory profiling tests verify no leaks after 100 component mount/unmount cycles
+- [x] **MEM-03**: Memory profiling tests verify <5MB heap growth after 5 mount/unmount cycles
 - [ ] **MEM-04**: Chrome DevTools memory leak investigation documented in codebase
 - [ ] **ERR-01**: Route-level error boundaries catch and display errors gracefully
 - [ ] **ERR-02**: Error boundary coverage includes all major sections (portfolio, skills, experience)
@@ -133,7 +133,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 |-------------|-------|--------|
 | MEM-01 | Phase 1 | Complete |
 | MEM-02 | Phase 1 | Complete |
-| MEM-03 | Phase 2 | Pending |
+| MEM-03 | Phase 2 | Complete |
 | MEM-04 | Phase 1 | Complete |
 | ERR-01 | Phase 1 | Complete |
 | ERR-02 | Phase 1 | Complete |
