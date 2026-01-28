@@ -56,7 +56,7 @@ Plans:
 - [x] 02-02-PLAN.md — Unit tests for ErrorBoundary and dark mode theme switching
 - [x] 02-03-PLAN.md — Unit tests for Portfolio modal interactions
 - [x] 02-04-PLAN.md — Browser-mode tests for ThreeBackground WebGL and memory leak verification
-- [ ] 02-05-PLAN.md — Gap closure: TypeScript gc() type fix, MEM-03 requirement update
+- [x] 02-05-PLAN.md — Gap closure: TypeScript gc() type fix, MEM-03 requirement update
 
 ### Phase 3: Accessibility Compliance
 **Goal**: Achieve WCAG 2.1 AA compliance demonstrating inclusive design expertise
@@ -96,10 +96,10 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Critical Fixes & Code Cleanup | 6/6 | Complete | 2026-01-27 |
-| 2. Testing Infrastructure & Coverage | 4/5 | Gap closure | - |
+| 2. Testing Infrastructure & Coverage | 5/5 | Complete | 2026-01-28 |
 | 3. Accessibility Compliance | 0/TBD | Not started | - |
 | 4. Performance & CI Integration | 0/TBD | Not started | - |
 
 ---
 *Roadmap created: 2026-01-27*
-*Last updated: 2026-01-27 (Phase 2 gap closure planned)*
+*Last updated: 2026-01-28 (Phase 2 complete)*

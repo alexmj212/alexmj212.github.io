@@ -21,15 +21,15 @@ Requirements for production-quality milestone. Each maps to roadmap phases.
 
 ### Unit Testing & Coverage
 
-- [ ] **TEST-01**: Vitest 4.x configured with React Testing Library
-- [ ] **TEST-02**: TypeScript 5.4+ and Vite 6.0+ upgraded for Vitest compatibility
-- [ ] **TEST-03**: Unit tests for ThreeBackground component (initialization, cleanup, theme switching)
-- [ ] **TEST-04**: Unit tests for Portfolio modal (open/close, event cleanup, keyboard navigation)
-- [ ] **TEST-05**: Unit tests for dark mode theme switching
-- [ ] **TEST-06**: Unit tests for error boundaries
-- [ ] **TEST-07**: Vitest browser mode configured for WebGL testing
-- [ ] **TEST-08**: Test coverage reporting configured with 70% threshold
-- [ ] **TEST-09**: Coverage reports generated for statements, branches, functions, lines
+- [x] **TEST-01**: Vitest 4.x configured with React Testing Library
+- [x] **TEST-02**: TypeScript 5.4+ and Vite 6.0+ upgraded for Vitest compatibility
+- [x] **TEST-03**: Unit tests for ThreeBackground component (initialization, cleanup, theme switching)
+- [x] **TEST-04**: Unit tests for Portfolio modal (open/close, event cleanup, keyboard navigation)
+- [x] **TEST-05**: Unit tests for dark mode theme switching
+- [x] **TEST-06**: Unit tests for error boundaries
+- [x] **TEST-07**: Vitest browser mode configured for WebGL testing
+- [x] **TEST-08**: Test coverage reporting configured with 70% threshold
+- [x] **TEST-09**: Coverage reports generated for statements, branches, functions, lines
 
 ### End-to-End Testing
 
