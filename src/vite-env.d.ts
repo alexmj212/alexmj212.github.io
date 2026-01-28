@@ -23,3 +23,7 @@ declare const process: {
     NODE_ENV: 'development' | 'production' | 'test'
   }
 }
+
+// V8 garbage collection function (available with --expose-gc flag)
+// Used in memory leak tests to force garbage collection before heap measurement
+declare function gc(): void
