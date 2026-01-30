@@ -1,7 +1,10 @@
 import '@testing-library/jest-dom/vitest'
-import 'vitest-axe/extend-expect'
 import { cleanup } from '@testing-library/react'
-import { afterEach, beforeAll, vi } from 'vitest'
+import { afterEach, beforeAll, vi, expect } from 'vitest'
+import { toHaveNoViolations } from 'vitest-axe/matchers'
+
+// Extend Vitest expect with axe matchers
+expect.extend(toHaveNoViolations)
 
 // Cleanup DOM after each test
 afterEach(() => {
@@ -24,6 +27,10 @@ beforeAll(() => {
       dispatchEvent: vi.fn(),
     })),
   })
+
+  // Mock HTMLCanvasElement.prototype.getContext for axe-core color contrast checks
+  // jsdom doesn't implement canvas, so we mock it to avoid errors during a11y testing
+  HTMLCanvasElement.prototype.getContext = vi.fn(() => null) as any
 })
 
 // Mock localStorage (persists across tests unless cleared)

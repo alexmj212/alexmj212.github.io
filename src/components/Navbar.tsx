@@ -119,42 +119,34 @@ const Navbar = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-4" role="menubar" aria-label="Desktop navigation menu">
+            <div className="ml-10 flex items-baseline space-x-4">
               <a
                 href="#about"
                 className="nav-link px-3 py-2 rounded-md text-sm font-medium"
-                role="menuitem"
-                tabIndex={0}
               >
                 About
               </a>
               <a
                 href="#portfolio"
                 className="nav-link px-3 py-2 rounded-md text-sm font-medium"
-                role="menuitem"
-                tabIndex={0}
               >
                 Portfolio
               </a>
               <a
                 href="#skills"
                 className="nav-link px-3 py-2 rounded-md text-sm font-medium"
-                role="menuitem"
-                tabIndex={0}
               >
                 Skills
               </a>
               <a
                 href="#experience"
                 className="nav-link px-3 py-2 rounded-md text-sm font-medium"
-                role="menuitem"
-                tabIndex={0}
               >
                 Experience
               </a>
 
               {/* Contact Icons */}
-              <div className="hidden md:flex space-x-2 ml-4" role="navigation" aria-label="Social media and contact links">
+              <div className="hidden md:flex space-x-2 ml-4">
                 <ContactList
                   iconSize="text-lg"
                   className="flex space-x-2"

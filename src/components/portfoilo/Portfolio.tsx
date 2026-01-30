@@ -260,61 +260,56 @@ const Portfolio = () => {
             <article
               className="portfolio-card"
               data-project={index + 1}
-              onClick={() => openDialog(portfolioItem)}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                  e.preventDefault();
-                  openDialog(portfolioItem);
-                }
-              }}
-              tabIndex={0}
-              role="button"
-              aria-label={`View ${portfolioItem.project} project details`}
             >
-              <div className="portfolio-header">
-                {portfolioItem.images && portfolioItem.images.length > 0 && (
-                  <div className="portfolio-image-container">
-                    <div className="portfolio-image">
-                      <PortfolioImage
-                        src={portfolioItem.images[0]}
-                        alt={portfolioItem.project}
-                      />
+              <button
+                className="portfolio-card-button"
+                onClick={() => openDialog(portfolioItem)}
+                aria-label={`View ${portfolioItem.project} project details`}
+              >
+                <div className="portfolio-header">
+                  {portfolioItem.images && portfolioItem.images.length > 0 && (
+                    <div className="portfolio-image-container">
+                      <div className="portfolio-image">
+                        <PortfolioImage
+                          src={portfolioItem.images[0]}
+                          alt={portfolioItem.project}
+                        />
+                      </div>
+                    </div>
+                  )}
+                  <div className="portfolio-title-section">
+                    <h2 className="content-h2">{portfolioItem.project}</h2>
+                    <p className="portfolio-caption">{portfolioItem.caption}</p>
+                    <div className="portfolio-meta">
+                      <span className="portfolio-company">{portfolioItem.company}</span>
+                      <span className="portfolio-separator">•</span>
+                      <span className="portfolio-date">{portfolioItem.date}</span>
                     </div>
                   </div>
-                )}
-                <div className="portfolio-title-section">
-                  <h2 className="content-h2">{portfolioItem.project}</h2>
-                  <p className="portfolio-caption">{portfolioItem.caption}</p>
-                  <div className="portfolio-meta">
-                    <span className="portfolio-company">{portfolioItem.company}</span>
-                    <span className="portfolio-separator">•</span>
-                    <span className="portfolio-date">{portfolioItem.date}</span>
+                </div>
+
+                <div className="portfolio-footer">
+                  <div className="portfolio-badges">
+                    {portfolioItem.badges.map((badge, badgeIndex) => (
+                      <span key={badgeIndex} className="badge">
+                        {badge}
+                      </span>
+                    ))}
                   </div>
                 </div>
-              </div>
-
-              <div className="portfolio-footer">
-                <div className="portfolio-badges">
-                  {portfolioItem.badges.map((badge, badgeIndex) => (
-                    <span key={badgeIndex} className="badge">
-                      {badge}
-                    </span>
-                  ))}
-                </div>
-                {portfolioItem.link && (
-                  <a
-                    href={portfolioItem.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hero-button text-sm px-4 py-2"
-                    onClick={(e) => e.stopPropagation()}
-                  >
-                    Visit Project
-                    <span className="sr-only"> (opens in new window)</span>
-                    <i className="fas fa-external-link-alt ml-2" aria-hidden="true"></i>
-                  </a>
-                )}
-              </div>
+              </button>
+              {portfolioItem.link && (
+                <a
+                  href={portfolioItem.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hero-button text-sm px-4 py-2 portfolio-visit-link"
+                >
+                  Visit Project
+                  <span className="sr-only"> (opens in new window)</span>
+                  <i className="fas fa-external-link-alt ml-2" aria-hidden="true"></i>
+                </a>
+              )}
             </article>
             </li>
           ))}

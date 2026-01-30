@@ -89,4 +89,15 @@
     visibility: visible;
     display: flex;
   }
+
+  /* Portfolio card button - unstyled button that fills the card */
+  .portfolio-card-button {
+    @apply w-full text-left bg-transparent border-0 p-0 cursor-pointer;
+    @apply flex flex-col flex-1;
+  }
+
+  /* Portfolio visit link - positioned outside button to avoid nested interactive */
+  .portfolio-visit-link {
+    @apply mt-4;
+  }
 }
