@@ -22,35 +22,38 @@ const App = () => {
         {/* Navigation */}
         <Navbar />
         {/* Home/Hero Section */}
-        <div id="home" className="w-full h-screen flex justify-center items-center -mt-8 relative">
-          <div className="w-full max-w-[90vw] xl:max-w-[85vw] 2xl:max-w-[80vw] px-4 sm:px-6 lg:px-8">
-            <div className="hero-layout">
-              <div className="hero-title-section">
-                <h1 className="hero-title">Hey, I'm AJ</h1>
-              </div>
+        <header>
+          <div id="home" className="w-full h-screen flex justify-center items-center -mt-8 relative">
+            <div className="w-full max-w-[90vw] xl:max-w-[85vw] 2xl:max-w-[80vw] px-4 sm:px-6 lg:px-8">
+              <div className="hero-layout">
+                <div className="hero-title-section">
+                  <h1 className="hero-title">Hey, I'm AJ</h1>
+                </div>
 
-              <div className="hero-content">
-                <p className="hero-subtitle mb-8">
-                  I'm a <strong className="font-semibold text-accent2 dark:text-accent2-dark"> senior front-end software engineer</strong> based in
-                  <i className="whitespace-nowrap font-light text-accent1 dark:text-accent1-dark"> Lexington, KY</i> and I specialize in building (and sometimes designing) experiences for the web.
-                </p>
-                <div className="hero-actions">
-                  <a href="#portfolio" className="hero-button">
-                    <span>Explore My Projects</span>
-                    <i className="fas fa-arrow-down ml-2"></i>
-                  </a>
+                <div className="hero-content">
+                  <p className="hero-subtitle mb-8">
+                    I'm a <strong className="font-semibold text-accent2 dark:text-accent2-dark"> senior front-end software engineer</strong> based in
+                    <i className="whitespace-nowrap font-light text-accent1 dark:text-accent1-dark"> Lexington, KY</i> and I specialize in building (and sometimes designing) experiences for the web.
+                  </p>
+                  <div className="hero-actions">
+                    <a href="#portfolio" className="hero-button">
+                      <span>Explore My Projects</span>
+                      <i className="fas fa-arrow-down ml-2"></i>
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        </header>
 
         {/* About Section */}
-        <div id="about" className="section-bg-alt w-full py-24">
+        <main id="main-content">
+          <div id="about" className="section-bg-alt w-full py-24">
           <div className="container-responsive">
             <article className="about-card">
               <div className="about-header">
-                <h1 className="section-title text-gray-900 dark:text-white">About Me</h1>
+                <h2 className="section-title text-gray-900 dark:text-white">About Me</h2>
               </div>
 
               <div className="about-content">
@@ -126,25 +129,26 @@ const App = () => {
         </div>
 
         {/* Experience Section */}
-        <div id="experience">
-          <ErrorBoundary fallback={
-            <div className="w-full py-24">
-              <div className="container-responsive">
-                <div className="text-center py-12">
-                  <div className="text-4xl mb-4">⚠️</div>
-                  <h2 className="text-xl font-semibold text-gray-700 dark:text-gray-300 mb-2">
-                    Experience Unavailable
-                  </h2>
-                  <p className="text-gray-500 dark:text-gray-400">
-                    This section failed to load. Please try refreshing the page.
-                  </p>
+          <div id="experience">
+            <ErrorBoundary fallback={
+              <div className="w-full py-24">
+                <div className="container-responsive">
+                  <div className="text-center py-12">
+                    <div className="text-4xl mb-4">⚠️</div>
+                    <h2 className="text-xl font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                      Experience Unavailable
+                    </h2>
+                    <p className="text-gray-500 dark:text-gray-400">
+                      This section failed to load. Please try refreshing the page.
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
-          }>
-            <Experience />
-          </ErrorBoundary>
-        </div>
+            }>
+              <Experience />
+            </ErrorBoundary>
+          </div>
+        </main>
 
         {/* Footer */}
         <Footer />

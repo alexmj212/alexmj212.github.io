@@ -5,7 +5,7 @@ const Experience = () => {
   return (
     <div className="w-full py-24">
       <div className="container-responsive">
-        <h1 className="section-title">Experience</h1>
+        <h2 className="section-title">Experience</h2>
         <p className="mb-12">
           I've worked on teams of all shapes and sizes. My strengths are <strong>communication</strong> and <strong>team coordination</strong>. I've lead projects and initiatives across multiple teams. I accomplish this by using my strengths to
           translate project requirements into successful solutions.
