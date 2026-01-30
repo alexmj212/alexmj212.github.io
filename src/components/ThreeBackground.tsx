@@ -54,10 +54,10 @@ const ThreeBackground = () => {
     console.log("ThreeBackground: Canvas mounted, initializing Three.js...");
     console.log("Canvas element:", canvas);
 
-    // Check WebGL support before attempting initialization
-    const testContext = canvas.getContext('webgl') || canvas.getContext('webgl2') || canvas.getContext('experimental-webgl');
+    // Check WebGL 2 support (required by Three.js r163+)
+    const testContext = canvas.getContext('webgl2');
     if (!testContext) {
-      console.warn("WebGL not supported - Three.js background disabled");
+      console.warn("WebGL 2 not supported - Three.js background disabled (Three.js r163+ requires WebGL 2)");
       return;
     }
 
@@ -71,7 +71,7 @@ const ThreeBackground = () => {
       canvas: canvas,
       alpha: true,
       antialias: true,
-      context: testContext as WebGLRenderingContext,
+      context: testContext as WebGL2RenderingContext,
       });
 
       rendererRef.current = renderer;
