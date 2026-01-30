@@ -54,24 +54,17 @@ const ThreeBackground = () => {
     console.log("ThreeBackground: Canvas mounted, initializing Three.js...");
     console.log("Canvas element:", canvas);
 
-    // Check WebGL 2 support (required by Three.js r163+)
-    const testContext = canvas.getContext('webgl2');
-    if (!testContext) {
-      console.warn("WebGL 2 not supported - Three.js background disabled (Three.js r163+ requires WebGL 2)");
-      return;
-    }
-
     try {
       console.log("Initializing Three.js...");
 
-      // Scene, camera, renderer setup (exact copy from Jekyll)
+      // Scene, camera, renderer setup
+      // Three.js r163+ requires WebGL 2, will throw if not available
       const scene = new THREE.Scene();
       const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
       const renderer = new THREE.WebGLRenderer({
       canvas: canvas,
       alpha: true,
       antialias: true,
-      context: testContext as WebGL2RenderingContext,
       });
 
       rendererRef.current = renderer;
@@ -411,10 +404,16 @@ const ThreeBackground = () => {
       }
       };
     } catch (error) {
-      console.error("Three.js initialization error:", error instanceof Error ? error.message : String(error));
-      // Security: Graceful degradation on error
+      const errorMessage = error instanceof Error ? error.message : String(error);
+      // Check if it's a WebGL 2 support error
+      if (errorMessage.includes('WebGL 1 is not supported') || errorMessage.includes('WebGL') || errorMessage.includes('webgl')) {
+        console.warn("WebGL 2 not supported - Three.js background disabled (Three.js r163+ requires WebGL 2)");
+      } else {
+        console.error("Three.js initialization error:", errorMessage);
+      }
+      // Security: Graceful degradation on error - show gradient background only
       return () => {
-      console.log('Three.js cleanup called after initialization error');
+        console.log('Three.js cleanup called after initialization error');
       };
     }
   }, []);

@@ -6,12 +6,12 @@
 @import "@fontsource/inter/700.css"; /* font-bold */
 @import "@fontsource/inter/900.css"; /* font-black */
 
+/* Import accessibility styles from base.css (must be before @tailwind) */
+@import "./src/styles/base.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-/* Import accessibility styles from base.css */
-@import "./src/styles/base.css";
 
 /* CSS Variables */
 :root {
