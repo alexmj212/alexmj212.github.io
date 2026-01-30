@@ -4,6 +4,11 @@ import userEvent from '@testing-library/user-event'
 import Portfolio from './Portfolio'
 import portfolioData from '../../data/portfolioData'
 
+// Mock focus-trap-react to avoid focus-trap issues in jsdom
+vi.mock('focus-trap-react', () => ({
+  FocusTrap: ({ children }: { children: React.ReactNode }) => children,
+}))
+
 // Mock HTMLDialogElement methods not implemented in jsdom
 beforeEach(() => {
   HTMLDialogElement.prototype.showModal = vi.fn(function (this: HTMLDialogElement) {
@@ -25,14 +30,15 @@ describe('Portfolio', () => {
     it('renders section title', () => {
       render(<Portfolio />)
 
-      expect(screen.getByRole('heading', { level: 1, name: /portfolio/i })).toBeInTheDocument()
+      expect(screen.getByRole('heading', { level: 2, name: /portfolio/i })).toBeInTheDocument()
     })
 
     it('renders portfolio cards for each data item', () => {
       render(<Portfolio />)
 
-      const articles = screen.getAllByRole('article')
-      expect(articles).toHaveLength(portfolioData.length)
+      // Portfolio cards now have role="button" due to accessibility improvements
+      const cards = screen.getAllByRole('button', { name: /project details/i })
+      expect(cards).toHaveLength(portfolioData.length)
     })
 
     it('renders project names on cards', () => {
@@ -66,7 +72,7 @@ describe('Portfolio', () => {
       const user = userEvent.setup()
       render(<Portfolio />)
 
-      const firstCard = screen.getAllByRole('article')[0]
+      const firstCard = screen.getAllByRole('button', { name: /project details/i })[0]
       await user.click(firstCard)
 
       expect(HTMLDialogElement.prototype.showModal).toHaveBeenCalled()
@@ -77,7 +83,7 @@ describe('Portfolio', () => {
       const user = userEvent.setup()
       render(<Portfolio />)
 
-      const firstCard = screen.getAllByRole('article')[0]
+      const firstCard = screen.getAllByRole('button', { name: /project details/i })[0]
       await user.click(firstCard)
 
       const dialog = document.querySelector('dialog')
@@ -95,11 +101,11 @@ describe('Portfolio', () => {
       render(<Portfolio />)
 
       // Open dialog
-      const firstCard = screen.getAllByRole('article')[0]
+      const firstCard = screen.getAllByRole('button', { name: /project details/i })[0]
       await user.click(firstCard)
 
       // Click close button (the x button)
-      const closeButton = screen.getByRole('button', { name: /×/i })
+      const closeButton = screen.getByRole('button', { name: /close dialog/i })
       await user.click(closeButton)
 
       // Wait for state update
@@ -113,7 +119,7 @@ describe('Portfolio', () => {
       render(<Portfolio />)
 
       // Open dialog
-      const firstCard = screen.getAllByRole('article')[0]
+      const firstCard = screen.getAllByRole('button', { name: /project details/i })[0]
       await user.click(firstCard)
 
       const dialog = document.querySelector('dialog')
@@ -121,7 +127,7 @@ describe('Portfolio', () => {
       expect(document.body.classList.contains('overflow-hidden')).toBe(true)
 
       // Create a spy on the close button to verify the close flow works
-      const closeButton = screen.getByRole('button', { name: /×/i })
+      const closeButton = screen.getByRole('button', { name: /close dialog/i })
 
       // Dispatch Escape key - in jsdom this triggers our custom handler
       const escapeEvent = new KeyboardEvent('keydown', {
@@ -142,7 +148,7 @@ describe('Portfolio', () => {
       render(<Portfolio />)
 
       // Open dialog
-      const firstCard = screen.getAllByRole('article')[0]
+      const firstCard = screen.getAllByRole('button', { name: /project details/i })[0]
       await user.click(firstCard)
 
       const dialog = document.querySelector('dialog')
@@ -186,7 +192,7 @@ describe('Portfolio', () => {
         return
       }
 
-      const cards = screen.getAllByRole('article')
+      const cards = screen.getAllByRole('button', { name: /project details/i })
       const cardWithLink = cards.find((card) => {
         const link = within(card).queryByRole('link', { name: /visit project/i })
         return link !== null
@@ -233,7 +239,7 @@ describe('Portfolio', () => {
       if (!itemWithImages) return
 
       const cardIndex = portfolioData.indexOf(itemWithImages)
-      const cards = screen.getAllByRole('article')
+      const cards = screen.getAllByRole('button', { name: /project details/i })
       await user.click(cards[cardIndex])
 
       // Find dialog image
@@ -255,7 +261,7 @@ describe('Portfolio', () => {
       const user = userEvent.setup()
       render(<Portfolio />)
 
-      const firstCard = screen.getAllByRole('article')[0]
+      const firstCard = screen.getAllByRole('button', { name: /project details/i })[0]
       await user.click(firstCard)
 
       expect(screen.getByRole('heading', { name: /challenge/i })).toBeInTheDocument()
@@ -265,7 +271,7 @@ describe('Portfolio', () => {
       const user = userEvent.setup()
       render(<Portfolio />)
 
-      const firstCard = screen.getAllByRole('article')[0]
+      const firstCard = screen.getAllByRole('button', { name: /project details/i })[0]
       await user.click(firstCard)
 
       expect(screen.getByRole('heading', { name: /solution/i })).toBeInTheDocument()
@@ -275,7 +281,7 @@ describe('Portfolio', () => {
       const user = userEvent.setup()
       render(<Portfolio />)
 
-      const firstCard = screen.getAllByRole('article')[0]
+      const firstCard = screen.getAllByRole('button', { name: /project details/i })[0]
       await user.click(firstCard)
 
       expect(screen.getByRole('heading', { name: /impact/i })).toBeInTheDocument()
@@ -293,7 +299,7 @@ describe('Portfolio', () => {
       if (!itemWithHighlights) return
 
       const cardIndex = portfolioData.indexOf(itemWithHighlights)
-      const cards = screen.getAllByRole('article')
+      const cards = screen.getAllByRole('button', { name: /project details/i })
       await user.click(cards[cardIndex])
 
       expect(screen.getByRole('heading', { name: /technical highlights/i })).toBeInTheDocument()
@@ -311,7 +317,7 @@ describe('Portfolio', () => {
       if (!itemWithHighlights) return
 
       const cardIndex = portfolioData.indexOf(itemWithHighlights)
-      const cards = screen.getAllByRole('article')
+      const cards = screen.getAllByRole('button', { name: /project details/i })
       await user.click(cards[cardIndex])
 
       // Check that each technical highlight is rendered
@@ -328,7 +334,7 @@ describe('Portfolio', () => {
 
       expect(document.body.classList.contains('overflow-hidden')).toBe(false)
 
-      const firstCard = screen.getAllByRole('article')[0]
+      const firstCard = screen.getAllByRole('button', { name: /project details/i })[0]
       await user.click(firstCard)
 
       expect(document.body.classList.contains('overflow-hidden')).toBe(true)
@@ -338,12 +344,12 @@ describe('Portfolio', () => {
       const user = userEvent.setup()
       render(<Portfolio />)
 
-      const firstCard = screen.getAllByRole('article')[0]
+      const firstCard = screen.getAllByRole('button', { name: /project details/i })[0]
       await user.click(firstCard)
 
       expect(document.body.classList.contains('overflow-hidden')).toBe(true)
 
-      const closeButton = screen.getByRole('button', { name: /×/i })
+      const closeButton = screen.getByRole('button', { name: /close dialog/i })
       await user.click(closeButton)
 
       expect(document.body.classList.contains('overflow-hidden')).toBe(false)
@@ -366,7 +372,7 @@ describe('Portfolio', () => {
       const user = userEvent.setup()
       render(<Portfolio />)
 
-      const firstCard = screen.getAllByRole('article')[0]
+      const firstCard = screen.getAllByRole('button', { name: /project details/i })[0]
       await user.click(firstCard)
 
       const dialog = document.querySelector('dialog')
@@ -383,7 +389,7 @@ describe('Portfolio', () => {
       const user = userEvent.setup()
       render(<Portfolio />)
 
-      const firstCard = screen.getAllByRole('article')[0]
+      const firstCard = screen.getAllByRole('button', { name: /project details/i })[0]
       await user.click(firstCard)
 
       const firstProject = portfolioData[0]
@@ -401,7 +407,7 @@ describe('Portfolio', () => {
       if (!itemWithLink) return
 
       const cardIndex = portfolioData.indexOf(itemWithLink)
-      const cards = screen.getAllByRole('article')
+      const cards = screen.getAllByRole('button', { name: /project details/i })
       await user.click(cards[cardIndex])
 
       const links = screen.getAllByRole('link', { name: /visit project/i })
