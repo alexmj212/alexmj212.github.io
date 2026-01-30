@@ -108,9 +108,9 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-16">
           {/* Enhanced Logo/Name */}
           <div className="flex items-center">
-            <a 
-              href="/" 
-              className="nav-link font-bold text-xl px-3 py-2 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent"
+            <a
+              href="/"
+              className="nav-link font-bold text-xl px-3 py-2"
               aria-label="Alex Johnson - Home"
             >
               Alex Johnson
@@ -122,7 +122,7 @@ const Navbar = () => {
             <div className="ml-10 flex items-baseline space-x-4" role="menubar" aria-label="Desktop navigation menu">
               <a
                 href="#about"
-                className="nav-link px-3 py-2 rounded-md text-sm font-medium focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent"
+                className="nav-link px-3 py-2 rounded-md text-sm font-medium"
                 role="menuitem"
                 tabIndex={0}
               >
@@ -130,7 +130,7 @@ const Navbar = () => {
               </a>
               <a
                 href="#portfolio"
-                className="nav-link px-3 py-2 rounded-md text-sm font-medium focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent"
+                className="nav-link px-3 py-2 rounded-md text-sm font-medium"
                 role="menuitem"
                 tabIndex={0}
               >
@@ -138,7 +138,7 @@ const Navbar = () => {
               </a>
               <a
                 href="#skills"
-                className="nav-link px-3 py-2 rounded-md text-sm font-medium focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent"
+                className="nav-link px-3 py-2 rounded-md text-sm font-medium"
                 role="menuitem"
                 tabIndex={0}
               >
@@ -146,7 +146,7 @@ const Navbar = () => {
               </a>
               <a
                 href="#experience"
-                className="nav-link px-3 py-2 rounded-md text-sm font-medium focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent"
+                className="nav-link px-3 py-2 rounded-md text-sm font-medium"
                 role="menuitem"
                 tabIndex={0}
               >
@@ -165,7 +165,7 @@ const Navbar = () => {
               {/* Dark Mode Toggle */}
               <button
                 onClick={() => setIsDarkMode(!isDarkMode)}
-                className="hidden md:block ml-4 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-accent2 dark:focus:ring-accent2-dark transition-colors"
+                className="hidden md:block ml-4 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
                 aria-label={isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'}
                 title={isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'}
               >
@@ -180,10 +180,10 @@ const Navbar = () => {
 
           {/* Enhanced Mobile menu button */}
           <div className="md:hidden">
-            <button 
+            <button
               ref={menuButtonRef}
               onClick={toggleMenu}
-              className="text-white hover:text-gray-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent p-2 rounded hover:bg-white hover:bg-opacity-10 transition-all duration-200"
+              className="text-white hover:text-gray-200 p-2 rounded hover:bg-white hover:bg-opacity-10 transition-all duration-200"
               aria-expanded={isMenuOpen}
               aria-controls="mobile-menu"
               aria-label={isMenuOpen ? "Close main menu" : "Open main menu"}
@@ -213,7 +213,7 @@ const Navbar = () => {
             <a
               ref={firstMenuItemRef}
               href="#about"
-              className="nav-link block px-3 py-2 rounded-md text-base font-medium focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent"
+              className="nav-link block px-3 py-2 rounded-md text-base font-medium"
               onClick={handleLinkClick}
               role="menuitem"
               tabIndex={isMenuOpen ? 0 : -1}
@@ -222,7 +222,7 @@ const Navbar = () => {
             </a>
             <a
               href="#portfolio"
-              className="nav-link block px-3 py-2 rounded-md text-base font-medium focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent"
+              className="nav-link block px-3 py-2 rounded-md text-base font-medium"
               onClick={handleLinkClick}
               role="menuitem"
               tabIndex={isMenuOpen ? 0 : -1}
@@ -231,7 +231,7 @@ const Navbar = () => {
             </a>
             <a
               href="#skills"
-              className="nav-link block px-3 py-2 rounded-md text-base font-medium focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent"
+              className="nav-link block px-3 py-2 rounded-md text-base font-medium"
               onClick={handleLinkClick}
               role="menuitem"
               tabIndex={isMenuOpen ? 0 : -1}
@@ -240,7 +240,7 @@ const Navbar = () => {
             </a>
             <a
               href="#experience"
-              className="nav-link block px-3 py-2 rounded-md text-base font-medium focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent"
+              className="nav-link block px-3 py-2 rounded-md text-base font-medium"
               onClick={handleLinkClick}
               role="menuitem"
               tabIndex={isMenuOpen ? 0 : -1}
@@ -260,7 +260,7 @@ const Navbar = () => {
             {/* Mobile Dark Mode Toggle */}
             <button
               onClick={() => setIsDarkMode(!isDarkMode)}
-              className="mt-3 w-full p-3 rounded-lg bg-white bg-opacity-10 hover:bg-opacity-20 focus:outline-none focus:ring-2 focus:ring-white transition-colors"
+              className="mt-3 w-full p-3 rounded-lg bg-white bg-opacity-10 hover:bg-opacity-20 transition-colors"
               aria-label={isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'}
             >
               <span className="flex items-center justify-center">
