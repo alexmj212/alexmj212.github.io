@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
+import { FocusTrap } from 'focus-trap-react';
 import portfolioData, { PortfolioItem } from "../../data/portfolioData";
 
 interface PortfolioDialogProps {
@@ -9,6 +10,8 @@ interface PortfolioDialogProps {
 
 const PortfolioDialog: React.FC<PortfolioDialogProps> = ({ item, isOpen, onClose }) => {
   const dialogRef = React.useRef<HTMLDialogElement>(null);
+  const closeButtonRef = React.useRef<HTMLButtonElement>(null);
+  const triggerRef = React.useRef<HTMLElement | null>(null);
   const [dialogImageError, setDialogImageError] = useState(false);
 
   // Reset image error state when item changes
@@ -21,9 +24,17 @@ const PortfolioDialog: React.FC<PortfolioDialogProps> = ({ item, isOpen, onClose
     if (!dialog) return;
 
     if (isOpen) {
+      // Store the element that opened the dialog
+      triggerRef.current = document.activeElement as HTMLElement;
       dialog.showModal();
+      // Focus close button after modal opens
+      setTimeout(() => {
+        closeButtonRef.current?.focus();
+      }, 0);
     } else if (dialog.open) {
       dialog.close();
+      // Restore focus to the element that opened the dialog
+      triggerRef.current?.focus();
     }
   }, [isOpen]);
 
@@ -71,14 +82,29 @@ const PortfolioDialog: React.FC<PortfolioDialogProps> = ({ item, isOpen, onClose
   if (!item) return null;
 
   return (
-    <dialog
-      ref={dialogRef}
-      className="backdrop:bg-black backdrop:bg-opacity-50 backdrop:backdrop-blur-sm bg-transparent p-4 max-w-4xl w-full h-[90vh]"
+    <FocusTrap
+      active={isOpen}
+      focusTrapOptions={{
+        initialFocus: false,
+        escapeDeactivates: false,
+        clickOutsideDeactivates: false,
+        allowOutsideClick: true,
+        returnFocusOnDeactivate: false,
+      }}
     >
+      <dialog
+        ref={dialogRef}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="portfolio-dialog-title"
+        className="backdrop:bg-black backdrop:bg-opacity-50 backdrop:backdrop-blur-sm bg-transparent p-4 max-w-4xl w-full h-[90vh]"
+      >
       <div className="bg-white dark:bg-gray-900 rounded-xl shadow-2xl w-full h-full overflow-hidden relative flex flex-col">
         <button
+          ref={closeButtonRef}
           className="absolute top-4 right-4 w-8 h-8 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 rounded-full flex justify-center items-center text-gray-600 dark:text-gray-400 text-xl font-bold cursor-pointer z-10"
           onClick={onClose}
+          aria-label="Close dialog"
         >
           ×
         </button>
@@ -103,7 +129,7 @@ const PortfolioDialog: React.FC<PortfolioDialogProps> = ({ item, isOpen, onClose
             </div>
           )}
           <div className="flex-1">
-            <h2 className="content-h2">{item.project}</h2>
+            <h2 id="portfolio-dialog-title" className="content-h2">{item.project}</h2>
             <p className="text-lg mb-3 text-gray-700 dark:text-gray-300">{item.caption}</p>
             <div className="text-sm mb-4">
               <span className="font-semibold text-accent1 dark:text-accent1-dark">{item.company}</span>
@@ -116,23 +142,23 @@ const PortfolioDialog: React.FC<PortfolioDialogProps> = ({ item, isOpen, onClose
         {/* Scrollable Content */}
         <div className="flex-1 px-6 space-y-6 overflow-y-auto custom-scrollbar">
           <div className="space-y-2">
-            <h4 className="subsection-header gradient-border-left">Challenge</h4>
+            <h3 className="subsection-header gradient-border-left">Challenge</h3>
             <p className="text-gray-700 dark:text-gray-300 leading-relaxed">{item.challenge}</p>
           </div>
 
           <div className="space-y-2">
-            <h4 className="subsection-header gradient-border-left">Solution</h4>
+            <h3 className="subsection-header gradient-border-left">Solution</h3>
             <p className="text-gray-700 dark:text-gray-300 leading-relaxed">{item.solution}</p>
           </div>
 
           <div className="space-y-2">
-            <h4 className="subsection-header gradient-border-left">Impact</h4>
+            <h3 className="subsection-header gradient-border-left">Impact</h3>
             <p className="text-gray-700 dark:text-gray-300 leading-relaxed">{item.impact}</p>
           </div>
 
           {item.technical_highlights && item.technical_highlights.length > 0 && (
             <div className="space-y-2">
-              <h4 className="subsection-header gradient-border-left">Technical Highlights</h4>
+              <h3 className="subsection-header gradient-border-left">Technical Highlights</h3>
               <div className="space-y-2 ml-4">
                 {item.technical_highlights.map((highlight, index) => (
                   <div
@@ -165,12 +191,14 @@ const PortfolioDialog: React.FC<PortfolioDialogProps> = ({ item, isOpen, onClose
               className="hero-button text-sm px-4 py-2 whitespace-nowrap"
             >
               Visit Project
-              <i className="fas fa-external-link-alt ml-2"></i>
+              <span className="sr-only"> (opens in new window)</span>
+              <i className="fas fa-external-link-alt ml-2" aria-hidden="true"></i>
             </a>
           )}
         </div>
       </div>
     </dialog>
+    </FocusTrap>
   );
 };
 
@@ -221,18 +249,27 @@ const Portfolio = () => {
   return (
     <div className="w-full py-24">
       <div className="container-responsive">
-        <h1 className="section-title">Portfolio</h1>
+        <h2 className="section-title">Portfolio</h2>
         <p>
           I take great <strong>pride</strong> in the work that I do. I translate that into successful projects and initiatives. When a project is successful, it deserves to be shared. Here are just a few examples of projects of which I am most proud.
         </p>
 
-        <div className="portfolio-showcase my-16">
+        <ul className="portfolio-showcase my-16" role="list">
           {portfolioData.map((portfolioItem, index) => (
+            <li key={`${portfolioItem.date}-${portfolioItem.project}`}>
             <article
-              key={`${portfolioItem.date}-${portfolioItem.project}`}
               className="portfolio-card"
               data-project={index + 1}
               onClick={() => openDialog(portfolioItem)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  openDialog(portfolioItem);
+                }
+              }}
+              tabIndex={0}
+              role="button"
+              aria-label={`View ${portfolioItem.project} project details`}
             >
               <div className="portfolio-header">
                 {portfolioItem.images && portfolioItem.images.length > 0 && (
@@ -273,13 +310,15 @@ const Portfolio = () => {
                     onClick={(e) => e.stopPropagation()}
                   >
                     Visit Project
-                    <i className="fas fa-external-link-alt ml-2"></i>
+                    <span className="sr-only"> (opens in new window)</span>
+                    <i className="fas fa-external-link-alt ml-2" aria-hidden="true"></i>
                   </a>
                 )}
               </div>
             </article>
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
 
       <PortfolioDialog
