@@ -6,6 +6,7 @@ import Portfolio from "./components/portfoilo/Portfolio";
 import Skills from "./components/skills/Skills";
 import Experience from "./components/experience/Experience";
 import ContactList from "./components/ContactList";
+import SkipLink from "./components/a11y/SkipLink";
 
 const App = () => {
   const currentYear = new Date().getFullYear();
@@ -13,6 +14,7 @@ const App = () => {
 
   return (
     <div className="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+      <SkipLink />
       {/* Fixed Three.js Background with Error Boundary */}
       <ErrorBoundary>
         <ThreeBackground />
