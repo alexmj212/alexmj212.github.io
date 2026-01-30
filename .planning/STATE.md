@@ -10,18 +10,18 @@ See: .planning/PROJECT.md (updated 2026-01-27)
 ## Current Position
 
 Phase: 3 of 4 (Accessibility Compliance)
-Plan: 1 of 4 in current phase
+Plan: 2 of 4 in current phase
 Status: In progress
-Last activity: 2026-01-30 — Completed 03-01-PLAN.md (Semantic HTML & Landmarks)
+Last activity: 2026-01-30 — Completed 03-02-PLAN.md (Portfolio Modal Accessibility)
 
-Progress: [███████████████░] 12 of 15 plans complete (80%)
+Progress: [███████████████░] 13 of 15 plans complete (87%)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 12
-- Average duration: 3.4 min
-- Total execution time: 0.68 hours
+- Total plans completed: 13
+- Average duration: 3.2 min
+- Total execution time: 0.72 hours
 
 **By Phase:**
 
@@ -29,11 +29,11 @@ Progress: [███████████████░] 12 of 15 plans comp
 |-------|-------|-------|----------|
 | 01    | 6     | 23min | 3.8min   |
 | 02    | 5     | 20min | 4.0min   |
-| 03    | 1     | 3min  | 3.0min   |
+| 03    | 2     | 5min  | 2.5min   |
 
 **Recent Trend:**
-- Last 7 plans: 02-01 (3min), 02-02 (2min), 02-03 (5min), 02-04 (8min), 02-05 (2min), 03-01 (3min)
-- Trend: Phase 3 started - semantic HTML and ARIA landmarks established for WCAG 2.1 AA compliance
+- Last 7 plans: 02-02 (2min), 02-03 (5min), 02-04 (8min), 02-05 (2min), 03-01 (3min), 03-02 (2min)
+- Trend: Phase 3 progressing - accessibility features added with focus trap and keyboard navigation
 
 *Updated after each plan completion*
 
@@ -79,6 +79,11 @@ Recent decisions affecting current work:
 - **03-01:** Change all section titles from h1 to h2 (About Me, Skills, Experience, Footer)
 - **03-01:** Add header landmark wrapping hero section, main landmark wrapping content sections
 - **03-01:** Hide Three.js canvas from screen readers with aria-hidden="true"
+- **03-02:** Use focus-trap-react with manual focus/escape handling (initialFocus: false, escapeDeactivates: false)
+- **03-02:** Focus close button on modal open for immediate dismiss access
+- **03-02:** Store and restore focus to portfolio card that triggered modal
+- **03-02:** Portfolio cards as ul/li structure for screen reader navigation
+- **03-02:** Fix heading hierarchy: h2 for Portfolio section, h3 for dialog subsections
 
 ### Pending Todos
 
@@ -109,12 +114,18 @@ None yet.
   - Proper heading hierarchy (h1 > h2, no skipped levels)
   - ARIA landmarks (header, main, footer)
   - Three.js canvas hidden from screen readers
-- Next: Plan 02 - Keyboard Navigation & Focus Management
+- ✅ Plan 02: Portfolio Modal Accessibility complete
+  - FocusTrap wrapper with focus-trap-react
+  - ARIA attributes: aria-modal, aria-labelledby, role="dialog"
+  - Focus management: close button receives focus on open, card receives focus on close
+  - Keyboard-navigable cards with Enter/Space handlers
+  - Portfolio cards wrapped in ul/li structure
+- Next: Plan 03 - Skip Links & Color Contrast
 
 ## Session Continuity
 
-Last session: 2026-01-30 05:48:51 UTC
-Stopped at: Completed 03-01-PLAN.md (Semantic HTML & Landmarks)
+Last session: 2026-01-30 05:49:09 UTC
+Stopped at: Completed 03-02-PLAN.md (Portfolio Modal Accessibility)
 Resume file: None
 
 ---
