@@ -13,7 +13,7 @@ This roadmap transforms the portfolio site into production-quality code demonstr
 Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Critical Fixes & Code Cleanup** - Fix production stability issues and eliminate technical debt
-- [ ] **Phase 2: Testing Infrastructure & Coverage** - Establish test foundation with Vitest and comprehensive unit tests
+- [x] **Phase 2: Testing Infrastructure & Coverage** - Establish test foundation with Vitest and comprehensive unit tests
 - [ ] **Phase 3: Accessibility Compliance** - Achieve WCAG 2.1 AA standards with automated and manual validation
 - [ ] **Phase 4: Performance & CI Integration** - Add production monitoring and automated quality gates
 
@@ -68,10 +68,14 @@ Plans:
   3. Focus management traps focus in portfolio modal and returns to trigger on close
   4. Color contrast meets WCAG AA standards (4.5:1 for normal text)
   5. Automated accessibility tests (vitest-axe and @axe-core/playwright) pass with zero violations
-**Plans**: TBD
+**Plans**: 5 plans in 4 waves
 
 Plans:
-- [ ] TBD
+- [ ] 03-01-PLAN.md — Semantic HTML: heading hierarchy fix, landmarks, Three.js canvas aria-hidden
+- [ ] 03-02-PLAN.md — Portfolio modal accessibility: focus trap, ARIA attributes, keyboard navigation
+- [ ] 03-03-PLAN.md — Skip links, global focus indicators, color contrast audit, reduced motion
+- [ ] 03-04-PLAN.md — Automated a11y testing: vitest-axe unit tests, @axe-core/playwright E2E
+- [ ] 03-05-PLAN.md — Accessibility audit documentation, keyboard verification, screen reader checklist
 
 ### Phase 4: Performance & CI Integration
 **Goal**: Integrate comprehensive quality gates preventing regressions and monitoring production performance
@@ -97,9 +101,9 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4
 |-------|----------------|--------|-----------|
 | 1. Critical Fixes & Code Cleanup | 6/6 | Complete | 2026-01-27 |
 | 2. Testing Infrastructure & Coverage | 5/5 | Complete | 2026-01-28 |
-| 3. Accessibility Compliance | 0/TBD | Not started | - |
+| 3. Accessibility Compliance | 0/5 | Planning complete | - |
 | 4. Performance & CI Integration | 0/TBD | Not started | - |
 
 ---
 *Roadmap created: 2026-01-27*
-*Last updated: 2026-01-28 (Phase 2 complete)*
+*Last updated: 2026-01-30 (Phase 3 planned)*
