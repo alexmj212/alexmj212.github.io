@@ -10,6 +10,9 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Import accessibility styles from base.css */
+@import "./src/styles/base.css";
+
 /* CSS Variables */
 :root {
   --ruby-red: #a21622;

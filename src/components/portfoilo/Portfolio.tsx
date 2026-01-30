@@ -83,7 +83,7 @@ const PortfolioDialog: React.FC<PortfolioDialogProps> = ({ item, isOpen, onClose
 
   return (
     <FocusTrap
-      active={isOpen}
+      active={isOpen && !!dialogRef.current?.open}
       focusTrapOptions={{
         initialFocus: false,
         escapeDeactivates: false,
