@@ -5,23 +5,23 @@
 See: .planning/PROJECT.md (updated 2026-01-27)
 
 **Core value:** Production-quality code demonstrating senior frontend engineering expertise
-**Current focus:** Phase 2 - Testing Infrastructure & Coverage (ready for planning)
+**Current focus:** Phase 3 - Accessibility Compliance (in progress)
 
 ## Current Position
 
-Phase: 2 of 4 (Testing Infrastructure & Coverage)
-Plan: 5 of 5 in current phase
-Status: Phase complete (verification gaps closed)
-Last activity: 2026-01-28 — Completed 02-05-PLAN.md (Gap Closure: TypeScript & Requirements)
+Phase: 3 of 4 (Accessibility Compliance)
+Plan: 1 of 4 in current phase
+Status: In progress
+Last activity: 2026-01-30 — Completed 03-01-PLAN.md (Semantic HTML & Landmarks)
 
-Progress: [██████████████] 11 of 11 plans complete (100%)
+Progress: [███████████████░] 12 of 15 plans complete (80%)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 11
+- Total plans completed: 12
 - Average duration: 3.4 min
-- Total execution time: 0.63 hours
+- Total execution time: 0.68 hours
 
 **By Phase:**
 
@@ -29,10 +29,11 @@ Progress: [██████████████] 11 of 11 plans complete (
 |-------|-------|-------|----------|
 | 01    | 6     | 23min | 3.8min   |
 | 02    | 5     | 20min | 4.0min   |
+| 03    | 1     | 3min  | 3.0min   |
 
 **Recent Trend:**
-- Last 7 plans: 01-06 (3min), 02-01 (3min), 02-02 (2min), 02-03 (5min), 02-04 (8min), 02-05 (2min)
-- Trend: Phase 2 complete with gap closure - TypeScript compilation and requirements accuracy verified
+- Last 7 plans: 02-01 (3min), 02-02 (2min), 02-03 (5min), 02-04 (8min), 02-05 (2min), 03-01 (3min)
+- Trend: Phase 3 started - semantic HTML and ARIA landmarks established for WCAG 2.1 AA compliance
 
 *Updated after each plan completion*
 
@@ -74,6 +75,10 @@ Recent decisions affecting current work:
 - **02-05:** Use declare function gc(): void at module scope for gc() type (not declare global)
 - **02-05:** Update MEM-03 from 100 to 5 cycles to reflect actual implementation and test performance
 - **02-05:** Document <5MB threshold explicitly in MEM-03 requirement (was implicit in test)
+- **03-01:** Keep single h1 "Hey, I'm AJ" in hero as page title (WCAG requirement)
+- **03-01:** Change all section titles from h1 to h2 (About Me, Skills, Experience, Footer)
+- **03-01:** Add header landmark wrapping hero section, main landmark wrapping content sections
+- **03-01:** Hide Three.js canvas from screen readers with aria-hidden="true"
 
 ### Pending Todos
 
@@ -98,12 +103,20 @@ None yet.
 - ✅ Requirements accurate (MEM-03 reflects 5 cycles, <5MB threshold)
 - All 56 tests passing (47 unit + 9 browser)
 
+**Phase 3 - IN PROGRESS:**
+- ✅ Plan 01: Semantic HTML & Landmarks complete
+  - Single h1 page structure (was 6 h1 elements)
+  - Proper heading hierarchy (h1 > h2, no skipped levels)
+  - ARIA landmarks (header, main, footer)
+  - Three.js canvas hidden from screen readers
+- Next: Plan 02 - Keyboard Navigation & Focus Management
+
 ## Session Continuity
 
-Last session: 2026-01-28 01:09:42 UTC
-Stopped at: Completed 02-05-PLAN.md (Gap Closure: TypeScript & Requirements) - Phase 2 COMPLETE
+Last session: 2026-01-30 05:48:51 UTC
+Stopped at: Completed 03-01-PLAN.md (Semantic HTML & Landmarks)
 Resume file: None
 
 ---
 *State initialized: 2026-01-27*
-*Last updated: 2026-01-28*
+*Last updated: 2026-01-30*
