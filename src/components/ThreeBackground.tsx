@@ -388,19 +388,11 @@ const ThreeBackground = () => {
       // 8. Dispose the renderer
       renderer.dispose();
 
-      // 9. Force WebGL context loss
-      renderer.forceContextLoss();
-
-      // 10. Remove canvas from DOM
-      if (renderer.domElement && renderer.domElement.parentNode) {
-          renderer.domElement.parentNode.removeChild(renderer.domElement);
-      }
-
-      // 11. Nullify all refs
+      // 9. Nullify renderer ref (but don't force context loss - prevents remount issues)
       rendererRef.current = null;
 
       if (process.env.NODE_ENV === 'development') {
-          console.log('[ThreeBackground] Cleanup complete - all resources disposed, WebGL context lost');
+          console.log('[ThreeBackground] Cleanup complete - all resources disposed');
       }
       };
     } catch (error) {
