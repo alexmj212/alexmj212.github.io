@@ -414,6 +414,8 @@ const ThreeBackground = () => {
   return (
     <div
       id="three-background"
+      role="presentation"
+      aria-label="Decorative background animation"
       style={{
       position: "fixed",
       top: 0,
@@ -428,6 +430,7 @@ const ThreeBackground = () => {
       <canvas
       ref={canvasRef}
       id="hero-canvas"
+      aria-hidden="true"
       style={{
           width: "100%",
           height: "100%",
