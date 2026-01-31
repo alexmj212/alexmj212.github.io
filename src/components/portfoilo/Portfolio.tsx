@@ -303,7 +303,7 @@ const Portfolio = () => {
                   href={portfolioItem.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hero-button text-sm px-4 py-2 portfolio-visit-link"
+                  className="hero-button text-sm px-4 py-2 mt-4 mx-4"
                 >
                   Visit Project
                   <span className="sr-only"> (opens in new window)</span>

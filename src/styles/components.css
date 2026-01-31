@@ -96,8 +96,4 @@
     @apply flex flex-col flex-1;
   }
 
-  /* Portfolio visit link - positioned outside button to avoid nested interactive */
-  .portfolio-visit-link {
-    @apply mt-4 ml-4;
-  }
 }
