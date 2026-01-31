@@ -254,7 +254,7 @@ const Portfolio = () => {
           I take great <strong>pride</strong> in the work that I do. I translate that into successful projects and initiatives. When a project is successful, it deserves to be shared. Here are just a few examples of projects of which I am most proud.
         </p>
 
-        <ul className="portfolio-showcase my-16" role="list">
+        <ul className="portfolio-showcase my-16 list-none" role="list">
           {portfolioData.map((portfolioItem, index) => (
             <li key={`${portfolioItem.date}-${portfolioItem.project}`}>
             <article

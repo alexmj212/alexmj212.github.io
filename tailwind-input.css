@@ -567,7 +567,7 @@
     }
 
     & .portfolio-title-section {
-      @apply p-4;
+      @apply p-4 text-left;
     }
 
     & .portfolio-caption {
