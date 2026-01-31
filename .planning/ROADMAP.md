@@ -87,10 +87,14 @@ Plans:
   3. Playwright E2E tests verify 5 critical user flows (portfolio, resume, mobile, theme, keyboard nav)
   4. GitHub Actions workflows run all quality gates on every PR (unit tests, E2E, accessibility, Lighthouse)
   5. Lighthouse CI enforces performance (90+) and accessibility (90+) score thresholds
-**Plans**: TBD
+**Plans**: 5 plans in 3 waves
 
 Plans:
-- [ ] TBD
+- [ ] 04-01-PLAN.md — Web Vitals integration, scroll throttle, performance budget
+- [ ] 04-02-PLAN.md — Three.js optimization: Intersection Observer, adaptive particles
+- [ ] 04-03-PLAN.md — E2E test suite: 5 critical user flows with Page Object Model
+- [ ] 04-04-PLAN.md — Lighthouse CI configuration and threshold enforcement
+- [ ] 04-05-PLAN.md — GitHub Actions quality gates workflow and deploy pipeline update
 
 ## Progress
 
@@ -102,8 +106,8 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4
 | 1. Critical Fixes & Code Cleanup | 6/6 | Complete | 2026-01-27 |
 | 2. Testing Infrastructure & Coverage | 5/5 | Complete | 2026-01-28 |
 | 3. Accessibility Compliance | 5/5 | Complete | 2026-01-30 |
-| 4. Performance & CI Integration | 0/TBD | Not started | - |
+| 4. Performance & CI Integration | 0/5 | In progress | - |
 
 ---
 *Roadmap created: 2026-01-27*
-*Last updated: 2026-01-30 (Phase 3 complete)*
+*Last updated: 2026-01-31 (Phase 4 planned)*
