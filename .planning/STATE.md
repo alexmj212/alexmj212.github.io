@@ -10,18 +10,18 @@ See: .planning/PROJECT.md (updated 2026-01-27)
 ## Current Position
 
 Phase: 4 of 4 (Performance & CI Integration)
-Plan: 3 of 5 in current phase
+Plan: 4 of 5 in current phase
 Status: In progress
-Last activity: 2026-02-01 — Completed 04-03-PLAN.md (E2E Testing for Critical User Flows)
+Last activity: 2026-02-01 — Completed 04-04-PLAN.md (Lighthouse CI Configuration)
 
-Progress: [███████████████████░] 19 of 21 plans complete (90%)
+Progress: [███████████████████░] 20 of 21 plans complete (95%)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 19
+- Total plans completed: 20
 - Average duration: 4.0 min
-- Total execution time: 1.27 hours (76 minutes)
+- Total execution time: 1.33 hours (79.5 minutes)
 
 **By Phase:**
 
@@ -30,11 +30,11 @@ Progress: [███████████████████░] 19 of 2
 | 01    | 6     | 23min | 3.8min   |
 | 02    | 5     | 20min | 4.0min   |
 | 03    | 5     | 29min | 5.8min   |
-| 04    | 3     | 12min | 4.0min   |
+| 04    | 4     | 15.5min | 3.9min  |
 
 **Recent Trend:**
-- Last 7 plans: 03-02 (2min), 03-03 (3min), 03-04 (9min), 03-05 (12min), 04-01 (2min), 04-02 (2min), 04-03 (8min)
-- Trend: Phase 4 E2E testing took longer due to dev server debugging, but all tests passing
+- Last 7 plans: 03-03 (3min), 03-04 (9min), 03-05 (12min), 04-01 (2min), 04-02 (2min), 04-03 (8min), 04-04 (3.5min)
+- Trend: Phase 4 averaging ~4min per plan, maintaining overall velocity
 
 *Updated after each plan completion*
 
@@ -111,6 +111,11 @@ Recent decisions affecting current work:
 - **04-03:** Add tabIndex={-1} to main content element to support skip link keyboard navigation
 - **04-03:** Use role-based selectors (getByRole) everywhere possible for accessibility-driven testing
 - **04-03:** Mobile menu tests run in iPhone 13 viewport, desktop tests in Desktop Chrome
+- **04-04:** Rename lighthouserc.js to lighthouserc.cjs for CommonJS in ESM project (type: module in package.json)
+- **04-04:** Performance and accessibility thresholds at error level (block PRs), best practices and SEO at warn level
+- **04-04:** Static dist serving (./build) instead of dev server for CI reliability
+- **04-04:** 3-run averaging to reduce Lighthouse score variance (5-10 points typical)
+- **04-04:** Temporary public storage for CI results (free, no API keys required)
 
 ### Pending Todos
 
@@ -168,6 +173,7 @@ None yet.
 - ✅ Plan 01: Core Web Vitals monitoring (LCP, INP, CLS) with console logging
 - ✅ Plan 02: Intersection Observer and adaptive particle count implemented
 - ✅ Plan 03: E2E testing infrastructure (12 tests covering 5 critical user flows)
+- ✅ Plan 04: Lighthouse CI configuration (90+ thresholds, budget enforcement)
 - All 54 unit tests + 12 E2E tests passing (66 total, no regressions)
 - Three.js now has comprehensive performance optimizations:
   - Memory leak fixes (Phase 1)
@@ -184,8 +190,8 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-02-01 01:05:49 UTC
-Stopped at: Completed 04-03-PLAN.md (E2E Testing for Critical User Flows) - 2 more plans remaining in Phase 4
+Last session: 2026-02-01 01:12:12 UTC
+Stopped at: Completed 04-04-PLAN.md (Lighthouse CI Configuration) - 1 more plan remaining in Phase 4
 Resume file: None
 
 ---
