@@ -46,6 +46,7 @@ const ThreeBackground = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animationIdRef = useRef<number>();
   const rendererRef = useRef<any>();
+  const isVisibleRef = useRef(true);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -148,6 +149,15 @@ const ThreeBackground = () => {
           contentRotationIntensity: 4, // Content rotation strength (degrees)
           wobbleSmoothing: 1, // Smoothness of rotation transitions (0-1)
       };
+
+      // Device detection for adaptive particle count
+      const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+        navigator.userAgent
+      );
+
+      // Update CONFIG with adaptive values based on device
+      CONFIG.particleCount = isMobile ? 25 : 50;
+      CONFIG.trailCount = isMobile ? 8 : 16;
 
       // Derived values for optimization
       const particles: any[] = [];
@@ -270,8 +280,45 @@ const ThreeBackground = () => {
           particles.push(particle);
       }
 
+      // Intersection Observer for visibility detection
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          isVisibleRef.current = entry.isIntersecting;
+          if (entry.isIntersecting) {
+            // Resume animation when visible
+            if (animationIdRef.current === undefined) {
+              animate();
+            }
+          } else {
+            // Pause animation when off-screen
+            if (animationIdRef.current !== undefined) {
+              cancelAnimationFrame(animationIdRef.current);
+              animationIdRef.current = undefined;
+            }
+          }
+        },
+        { threshold: 0 } // Fire as soon as any part enters/exits viewport
+      );
+      observer.observe(canvas);
+
+      // Tab visibility detection for pause when tab is hidden
+      const handleVisibilityChange = () => {
+        if (document.hidden) {
+          if (animationIdRef.current !== undefined) {
+            cancelAnimationFrame(animationIdRef.current);
+            animationIdRef.current = undefined;
+          }
+        } else {
+          if (animationIdRef.current === undefined && isVisibleRef.current) {
+            animate();
+          }
+        }
+      };
+      document.addEventListener('visibilitychange', handleVisibilityChange);
+
       // Animation loop with perspective-skewed racing motion
       const animate = () => {
+          if (!isVisibleRef.current) return; // Safety: don't schedule if not visible
           animationIdRef.current = requestAnimationFrame(animate);
 
           // Optimized animation loop using config values
@@ -328,16 +375,20 @@ const ThreeBackground = () => {
           console.log('[ThreeBackground] Cleanup starting - disposing resources');
       }
 
-      // 1. Cancel animation frame FIRST
+      // 1. Disconnect observer and remove visibility listener
+      observer.disconnect();
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+
+      // 2. Cancel animation frame
       if (animationIdRef.current !== undefined) {
           cancelAnimationFrame(animationIdRef.current);
           animationIdRef.current = undefined;
       }
 
-      // 2. Remove resize event listener
+      // 3. Remove resize event listener
       window.removeEventListener("resize", handleResize);
 
-      // 3. Dispose all cloned materials explicitly
+      // 4. Dispose all cloned materials explicitly
       if (process.env.NODE_ENV === 'development') {
           console.log(`[ThreeBackground] Disposing ${clonedMaterials.length} cloned materials`);
       }
@@ -346,14 +397,14 @@ const ThreeBackground = () => {
       });
       clonedMaterials.length = 0; // Clear the array
 
-      // 4. Dispose base material and geometry
+      // 5. Dispose base material and geometry
       particleMaterial.dispose();
       particleGeometry.dispose();
 
-      // 5. Clear particles array to release references
+      // 6. Clear particles array to release references
       particles.length = 0;
 
-      // 6. Traverse scene and dispose ALL remaining meshes and lines
+      // 7. Traverse scene and dispose ALL remaining meshes and lines
       scene.traverse((object) => {
           if (object instanceof THREE.Mesh) {
             object.geometry?.dispose();
@@ -382,13 +433,13 @@ const ThreeBackground = () => {
           console.log(`[ThreeBackground] Disposed meshes: ${meshCount}, lines: ${lineCount}`);
       }
 
-      // 7. Clear the scene
+      // 8. Clear the scene
       scene.clear();
 
-      // 8. Dispose the renderer
+      // 9. Dispose the renderer
       renderer.dispose();
 
-      // 9. Nullify renderer ref (but don't force context loss - prevents remount issues)
+      // 10. Nullify renderer ref (but don't force context loss - prevents remount issues)
       rendererRef.current = null;
 
       if (process.env.NODE_ENV === 'development') {
