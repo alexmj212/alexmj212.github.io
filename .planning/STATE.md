@@ -10,18 +10,18 @@ See: .planning/PROJECT.md (updated 2026-01-27)
 ## Current Position
 
 Phase: 4 of 4 (Performance & CI Integration)
-Plan: 2 of 5 in current phase
+Plan: 3 of 5 in current phase
 Status: In progress
-Last activity: 2026-02-01 — Completed 04-02-PLAN.md (Performance Optimizations)
+Last activity: 2026-02-01 — Completed 04-03-PLAN.md (E2E Testing for Critical User Flows)
 
-Progress: [█████████████████░░] 18 of 21 plans complete (86%)
+Progress: [███████████████████░] 19 of 21 plans complete (90%)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 18
-- Average duration: 3.7 min
-- Total execution time: 1.13 hours (68 minutes)
+- Total plans completed: 19
+- Average duration: 4.0 min
+- Total execution time: 1.27 hours (76 minutes)
 
 **By Phase:**
 
@@ -30,11 +30,11 @@ Progress: [█████████████████░░] 18 of 21 p
 | 01    | 6     | 23min | 3.8min   |
 | 02    | 5     | 20min | 4.0min   |
 | 03    | 5     | 29min | 5.8min   |
-| 04    | 2     | 4min  | 2.0min   |
+| 04    | 3     | 12min | 4.0min   |
 
 **Recent Trend:**
-- Last 7 plans: 03-01 (3min), 03-02 (2min), 03-03 (3min), 03-04 (9min), 03-05 (12min), 04-01 (2min), 04-02 (2min)
-- Trend: Phase 4 performance optimizations executing quickly - straightforward implementations with no complications
+- Last 7 plans: 03-02 (2min), 03-03 (3min), 03-04 (9min), 03-05 (12min), 04-01 (2min), 04-02 (2min), 04-03 (8min)
+- Trend: Phase 4 E2E testing took longer due to dev server debugging, but all tests passing
 
 *Updated after each plan completion*
 
@@ -106,6 +106,11 @@ Recent decisions affecting current work:
 - **04-02:** Use static device detection (user agent) rather than dynamic FPS monitoring or Device Memory API
 - **04-02:** Adaptive particle reduction: 50→25 (desktop→mobile), trails: 16→8
 - **04-02:** Silent adaptation with no UI indication per CONTEXT.md decision
+- **04-03:** Use separate Playwright projects (e2e, e2e-mobile, memory) to avoid viewport conflicts
+- **04-03:** Increase action timeout to 10s and use waitUntil: 'networkidle' for React SPA hydration
+- **04-03:** Add tabIndex={-1} to main content element to support skip link keyboard navigation
+- **04-03:** Use role-based selectors (getByRole) everywhere possible for accessibility-driven testing
+- **04-03:** Mobile menu tests run in iPhone 13 viewport, desktop tests in Desktop Chrome
 
 ### Pending Todos
 
@@ -162,18 +167,25 @@ None yet.
 **Phase 4 - Performance & CI Integration (In Progress):**
 - ✅ Plan 01: Core Web Vitals monitoring (LCP, INP, CLS) with console logging
 - ✅ Plan 02: Intersection Observer and adaptive particle count implemented
-- All 54 tests passing (no regressions)
+- ✅ Plan 03: E2E testing infrastructure (12 tests covering 5 critical user flows)
+- All 54 unit tests + 12 E2E tests passing (66 total, no regressions)
 - Three.js now has comprehensive performance optimizations:
   - Memory leak fixes (Phase 1)
   - Off-screen pause detection (Plan 02)
   - Tab-switch pause detection (Plan 02)
   - Mobile-adaptive particle count (Plan 02)
   - Reduced-motion support (Phase 3)
+- E2E testing coverage:
+  - Portfolio browsing flow (modal open/close, Escape key)
+  - Resume navigation (sections, content validation)
+  - Mobile menu interaction (iPhone 13 viewport)
+  - Theme toggle (light/dark, persistence)
+  - Keyboard navigation (skip link, Tab, focus indicators)
 
 ## Session Continuity
 
-Last session: 2026-02-01 00:59:08 UTC
-Stopped at: Completed 04-02-PLAN.md (Performance Optimizations) - 3 more plans remaining in Phase 4
+Last session: 2026-02-01 01:05:49 UTC
+Stopped at: Completed 04-03-PLAN.md (E2E Testing for Critical User Flows) - 2 more plans remaining in Phase 4
 Resume file: None
 
 ---
