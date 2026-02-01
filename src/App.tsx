@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import ThreeBackground from "./components/ThreeBackground";
 import ErrorBoundary from "./components/ErrorBoundary";
 import Navbar from "./components/Navbar";
@@ -7,10 +8,16 @@ import Skills from "./components/skills/Skills";
 import Experience from "./components/experience/Experience";
 import ContactList from "./components/ContactList";
 import SkipLink from "./components/a11y/SkipLink";
+import { reportWebVitals } from "./vitals";
 
 const App = () => {
   const currentYear = new Date().getFullYear();
   const yearsExperience = currentYear - 2013;
+
+  // Report Core Web Vitals once per page load
+  useEffect(() => {
+    reportWebVitals();
+  }, []);
 
   return (
     <div className="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
