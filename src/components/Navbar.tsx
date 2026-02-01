@@ -32,6 +32,7 @@ const Navbar = () => {
   const [isDarkMode, setIsDarkMode] = useDarkMode();
   const firstMenuItemRef = useRef<HTMLAnchorElement>(null);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const throttleTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const toggleMenu = () => {
     const newMenuState = !isMenuOpen;
@@ -74,6 +75,10 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
+      // Throttle: skip this event if timer is active
+      if (throttleTimer.current) return;
+
+      // Execute scroll logic immediately
       const currentScrollY = window.scrollY;
       const scrollThreshold = 100;
 
@@ -86,12 +91,21 @@ const Navbar = () => {
       }
 
       setLastScrollY(currentScrollY);
+
+      // Set throttle timer (100ms)
+      throttleTimer.current = setTimeout(() => {
+        throttleTimer.current = null;
+      }, 100);
     };
 
     window.addEventListener('scroll', handleScroll);
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      // Clean up throttle timer on unmount
+      if (throttleTimer.current) {
+        clearTimeout(throttleTimer.current);
+      }
     };
   }, [lastScrollY]);
 
