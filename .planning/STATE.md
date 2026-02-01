@@ -99,6 +99,9 @@ Recent decisions affecting current work:
 - **03-05:** PostCSS requires @import directives before @tailwind directives (base.css must load first)
 - **03-05:** Three.js cleanup should not call forceContextLoss() to allow React StrictMode remounts
 - **03-05:** Use Playwright for automated verification instead of repeated manual testing
+- **04-01:** Web Vitals console logging in dev mode only (no analytics integration)
+- **04-01:** 100ms throttle interval for Navbar scroll handler (inline implementation, no external library)
+- **04-01:** Generous performance budget starting points (will tighten based on CI data)
 - **04-02:** Implement BOTH IntersectionObserver and visibilitychange for comprehensive pause detection
 - **04-02:** Use static device detection (user agent) rather than dynamic FPS monitoring or Device Memory API
 - **04-02:** Adaptive particle reduction: 50→25 (desktop→mobile), trails: 16→8
@@ -157,7 +160,7 @@ None yet.
 - Full WCAG 2.1 AA compliance achieved
 
 **Phase 4 - Performance & CI Integration (In Progress):**
-- ✅ Plan 01: Lighthouse performance baseline established
+- ✅ Plan 01: Core Web Vitals monitoring (LCP, INP, CLS) with console logging
 - ✅ Plan 02: Intersection Observer and adaptive particle count implemented
 - All 54 tests passing (no regressions)
 - Three.js now has comprehensive performance optimizations:
