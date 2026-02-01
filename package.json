@@ -14,7 +14,8 @@
     "test:browser": "vitest --config=vitest.browser.config.ts",
     "test:coverage": "vitest --coverage",
     "test:memory": "playwright test tests/memory --headed",
-    "test:e2e": "playwright test --project=e2e --project=e2e-mobile"
+    "test:e2e": "playwright test --project=e2e --project=e2e-mobile",
+    "test:lighthouse": "lhci autorun"
   },
   "dependencies": {
     "@fontsource/inter": "^5.2.6",
