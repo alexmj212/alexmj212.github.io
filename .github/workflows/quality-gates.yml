@@ -1,0 +1,165 @@
+name: Quality Gates
+
+on:
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: "quality-${{ github.event.pull_request.number }}"
+  cancel-in-progress: true
+
+jobs:
+  # Job 1: TypeScript compilation + Unit tests + Accessibility tests
+  unit-tests:
+    name: Unit & Accessibility Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Type check
+        run: npx tsc --noEmit
+
+      - name: Run unit tests with coverage
+        run: npx vitest run --coverage
+
+      - name: Upload coverage report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: coverage/
+          retention-days: 7
+
+  # Job 2: E2E tests with Playwright
+  e2e-tests:
+    name: E2E Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps chromium
+
+      - name: Build
+        run: npm run build
+
+      - name: Run E2E tests
+        run: npx playwright test --project=e2e --project=e2e-mobile
+
+      - name: Upload Playwright report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 7
+
+  # Job 3: Lighthouse CI (performance + accessibility scores)
+  lighthouse:
+    name: Lighthouse CI
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Run Lighthouse CI
+        run: npx @lhci/cli autorun
+
+  # Job 4: Coverage comment on PR
+  coverage-comment:
+    name: Coverage Report
+    needs: unit-tests
+    runs-on: ubuntu-latest
+    if: always() && needs.unit-tests.result == 'success'
+    permissions:
+      pull-requests: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download coverage report
+        uses: actions/download-artifact@v4
+        with:
+          name: coverage-report
+          path: coverage/
+
+      - name: Post coverage comment
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            let comment = '## Test Coverage Report\n\n';
+
+            try {
+              const summary = fs.readFileSync('coverage/coverage-summary.json', 'utf8');
+              const data = JSON.parse(summary);
+              const total = data.total;
+
+              comment += '| Metric | Coverage |\n';
+              comment += '|--------|----------|\n';
+              comment += `| Statements | ${total.statements.pct}% |\n`;
+              comment += `| Branches | ${total.branches.pct}% |\n`;
+              comment += `| Functions | ${total.functions.pct}% |\n`;
+              comment += `| Lines | ${total.lines.pct}% |\n`;
+            } catch (e) {
+              comment += '_Coverage data unavailable_\n';
+            }
+
+            // Find existing comment or create new one
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            });
+
+            const botComment = comments.find(c =>
+              c.body.includes('## Test Coverage Report')
+            );
+
+            if (botComment) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: botComment.id,
+                body: comment,
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body: comment,
+              });
+            }
