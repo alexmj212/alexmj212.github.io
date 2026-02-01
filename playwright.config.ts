@@ -34,13 +34,28 @@ export default defineConfig({
   // Configure projects for major browsers
   projects: [
     {
-      name: 'chromium',
+      name: 'memory',
+      testMatch: '**/memory/**',
       use: {
         ...devices['Desktop Chrome'],
         // Enable Chrome DevTools Protocol for memory profiling
         launchOptions: {
           args: ['--disable-blink-features=AutomationControlled'],
         }
+      },
+    },
+    {
+      name: 'e2e',
+      testMatch: '**/e2e/**/*.spec.ts',
+      use: {
+        ...devices['Desktop Chrome'],
+      },
+    },
+    {
+      name: 'e2e-mobile',
+      testMatch: '**/e2e/mobile-menu.spec.ts',
+      use: {
+        ...devices['iPhone 13'],
       },
     },
   ],

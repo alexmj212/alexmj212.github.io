@@ -13,7 +13,8 @@
     "test:unit": "vitest",
     "test:browser": "vitest --config=vitest.browser.config.ts",
     "test:coverage": "vitest --coverage",
-    "test:memory": "playwright test tests/memory --headed"
+    "test:memory": "playwright test tests/memory --headed",
+    "test:e2e": "playwright test --project=e2e --project=e2e-mobile"
   },
   "dependencies": {
     "@fontsource/inter": "^5.2.6",
@@ -33,7 +34,8 @@
     "react-router-dom": "^7.8.2",
     "react-scroll": "^1.8.7",
     "three": "^0.179.1",
-    "typescript": "^5.6.3"
+    "typescript": "^5.6.3",
+    "web-vitals": "^5.1.0"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.11.0",
