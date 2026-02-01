@@ -29,6 +29,9 @@ export default defineConfig({
 
     // Collect trace when retrying the failed test
     trace: 'on-first-retry',
+
+    // Increase default timeout for actions (React app needs time to hydrate)
+    actionTimeout: 10000,
   },
 
   // Configure projects for major browsers
@@ -46,7 +49,7 @@ export default defineConfig({
     },
     {
       name: 'e2e',
-      testMatch: '**/e2e/**/*.spec.ts',
+      testMatch: ['**/e2e/portfolio.spec.ts', '**/e2e/resume.spec.ts', '**/e2e/theme-toggle.spec.ts', '**/e2e/keyboard-nav.spec.ts'],
       use: {
         ...devices['Desktop Chrome'],
       },

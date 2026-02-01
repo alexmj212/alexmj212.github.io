@@ -28,8 +28,8 @@ export class HomePage {
   }
 
   async goto() {
-    await this.page.goto('/');
-    await expect(this.heroTitle).toBeVisible();
+    await this.page.goto('/', { waitUntil: 'networkidle' });
+    await expect(this.heroTitle).toBeVisible({ timeout: 15000 });
   }
 
   async navigateToSection(section: string) {

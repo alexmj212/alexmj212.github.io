@@ -57,7 +57,7 @@ const App = () => {
         </header>
 
         {/* About Section */}
-        <main id="main-content">
+        <main id="main-content" tabIndex={-1}>
           <div id="about" className="section-bg-alt w-full py-24">
           <div className="container-responsive">
             <article className="about-card">
