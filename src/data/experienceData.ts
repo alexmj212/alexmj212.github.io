@@ -17,11 +17,11 @@ export const experienceData: ExperienceItem[] = [
     title: "Senior Software Engineer",
     company: "Xometry, Inc.",
     summary: [
-      "Lead frontend development for enterprise manufacturing marketplace platform",
-      "Architect and implement scalable React applications serving thousands of customers",
-      "Collaborate with cross-functional teams to deliver customer-facing features and internal tools",
-      "Mentor junior developers and contribute to engineering best practices and standards",
-      "Drive technical initiatives to improve performance, accessibility, and user experience"
+      "Led frontend development for B2B manufacturing marketplace serving thousands of manufacturers processing 2,000+ daily quotes",
+      "Architected enterprise design system adopted by multiple product teams, significantly reducing duplicate code and accelerating feature development",
+      "Delivered performance optimizations improving quote generation speed by 28% through architectural improvements",
+      "Collaborated with cross-functional teams of 5-10 engineers to ship customer-facing features and internal tools on agile cycles",
+      "Drove technical initiatives including component library standards, TypeScript migration, and GraphQL optimization"
     ],
     projects: [
       {
@@ -35,10 +35,11 @@ export const experienceData: ExperienceItem[] = [
     title: "Software Engineer",
     company: "TwinSpires.com",
     summary: [
-      "Work with multiple delivery teams focused on web-based products",
-      "Coordinate design and implementation to meet project goals",
-      "Organize developers and quality assurance team members for site-wide projects",
-      "Support legacy products and administrative applications"
+      "Built features for online wagering platform serving 200,000+ daily active users",
+      "Led cross-functional teams through major platform initiatives: dark mode implementation, responsive redesign (98% feature parity), and live video integration",
+      "Coordinated design and implementation across multiple product teams, organizing developers and QA for site-wide releases",
+      "Optimized frontend performance through CSS consolidation, reducing bundle sizes by 15% and improving page load times",
+      "Maintained and enhanced legacy AngularJS applications while modernizing to Angular with TypeScript"
     ],
     projects: [
       {
@@ -52,10 +53,10 @@ export const experienceData: ExperienceItem[] = [
     title: "Software Engineer",
     company: "The Jockey Club Technology Services",
     summary: [
-      "Created and deployed user interfaces and server infrastructure",
-      "Lead the management of remote resources to achieve project goals",
-      "Communicated proactively among team members and clients",
-      "Supported and maintained existing applications and infrastructure"
+      "Developed full-stack web applications using AngularJS and Grails serving horse racing industry clients",
+      "Built responsive user interfaces and server infrastructure with Bootstrap and MS SQL Server",
+      "Led coordination of remote development resources to deliver client projects on schedule",
+      "Maintained and enhanced existing applications including Drupal-based content management systems"
     ],
     projects: [
       {
