@@ -20,8 +20,12 @@ export const portfolioData: PortfolioItem[] = [
     caption: "Advanced Quoting Features for Manufacturing Marketplace",
     challenge: "Managing real-time pricing calculations across thousands of manufacturing partners while handling diverse material specifications and maintaining rapid response times for customer quote requests.",
     solution: "Built React-based quoting workflows with GraphQL data fetching and TypeScript type safety. Created reusable component libraries for manufacturing specifications and multi-step flows with validation.",
-    impact: "Improved quote generation speed and accuracy, enabling faster pricing delivery and increased conversion rates across the enterprise customer base.",
-    technical_highlights: ["Designed form architecture handling 50+ manufacturing parameters with real-time validation", "Optimized GraphQL queries to reduce quote load times", "Built reusable component system used across multiple product teams"],
+    impact: "Reduced quote generation time by 28% (25s → 18s) through asynchronous upload and geometry analysis, processing 2,000+ daily quotes and measurably improving conversion rates.",
+    technical_highlights: [
+      "Implemented asynchronous architecture for concurrent file upload and geometry analysis during form completion, eliminating sequential processing bottlenecks",
+      "Designed form architecture handling 50+ manufacturing parameters with real-time validation",
+      "Built reusable component system adopted by multiple product teams supporting thousands of daily quotes",
+    ],
     badges: ["React", "TypeScript", "GraphQL"],
   },
   {
@@ -31,12 +35,12 @@ export const portfolioData: PortfolioItem[] = [
     caption: "Enterprise Design System for Manufacturing Platform",
     challenge: "Building flexible components that adapt to diverse product needs while maintaining consistent APIs and scaling across teams without tight coupling.",
     solution: "Architected composable React components with flexible prop APIs and TypeScript generics. Built comprehensive Storybook documentation and implemented design tokens for consistent theming.",
-    impact: "Improved UI consistency across the platform and increased component reuse, reducing duplicate code and enabling faster feature development.",
+    impact: "Built enterprise design system with 30+ components and 100+ Storybook stories, adopted by multiple teams, significantly reducing duplicate code effort and accelerating feature development across the platform.",
     technical_highlights: [
-      "Architected composable component APIs with TypeScript generics supporting diverse product requirements",
-      "Built comprehensive Storybook documentation with interactive examples",
+      "Architected 30+ composable components with TypeScript generics supporting diverse product requirements",
+      "Built extensive Storybook documentation with 100+ interactive examples and usage guidelines",
       "Implemented design token system ensuring visual consistency across platform",
-      "Created reusable form and data display patterns adopted by multiple teams",
+      "Created reusable form and data display patterns that reduced development time and code duplication across multiple teams",
     ],
     badges: ["React", "TypeScript", "Storybook", "CSS3", "Design Systems"],
   },
@@ -47,12 +51,12 @@ export const portfolioData: PortfolioItem[] = [
     caption: "Partner Financial Management System",
     challenge: "Provide a simple user experience that encapsulates all financial data for accounting and transaction recording.",
     solution:
-      "This dashboard is a combination of existing transaction systems and a new frontend architecture that presented financial data in a unique and accessible interface for staff members. It offered tools to view, create, and downloads transactions associated with partner activity.",
+      "Built a unified dashboard combining existing transaction systems with new frontend architecture that presented financial data in an accessible interface for staff members. Offered tools to view, create, and download transactions associated with partner activity.",
     impact:
-      "This dashbaord replaced a set of aging management systems and exposed new data previous unavailable for partner finance management across Xometry's partner network. Staff was able now able to quickly respond to partner needs and quickly assess transaction totals and payouts.",
+      "Consolidated multiple legacy systems into unified dashboard, significantly improving staff efficiency for partner financial inquiries and exposing previously unavailable transaction data across Xometry's partner network. Staff gained ability to quickly respond to partner needs and assess transaction totals and payouts.",
     technical_highlights: [
-      "A complex table component that included pagination, filtering, and sorting supporting thousands of transactions.",
-      "A unique drilldown UX design that allowed staff to start at a high level and drill-down to singular transactions",
+      "Built complex table component with pagination, filtering, and sorting supporting thousands of partner transactions",
+      "Designed unique drilldown UX allowing staff to navigate from high-level summaries to individual transactions",
     ],
     badges: ["React", "TypeScript", "Tanstack Table", "Graphql"],
   },
@@ -103,12 +107,12 @@ export const portfolioData: PortfolioItem[] = [
     challenge:
       "A redesigned TwinSpires.com was initially desktop-only and an aging mobile website needed to be replaced with a scalable single frontend. Complex betting interfaces and real-time data required complete reimagining for mobile without losing functionality.",
     solution: "Spearheaded mobile-first responsive redesign, creating adaptive component system that maintained full feature parity across all screen sizes. Implemented progressive enhancement strategy.",
-    impact: "Increased mobile user engagement by serving a mobile-focused presentation and achieved 98% feature parity between desktop and mobile experiences.",
+    impact: "Delivered mobile-responsive experience to the platform's second-largest user segment, increasing mobile engagement and achieving 98% feature parity between desktop and mobile experiences.",
     technical_highlights: [
       "Architected responsive component library with breakpoint-specific behaviors",
       "Implemented touch-optimized betting interfaces for complex wagering",
       "Optimized mobile performance by reducing bundle sizes and compiled CSS",
-      "Led cross-browser compatibility testing across 20+ device/OS combinations",
+      "Led rigorous cross-browser compatibility testing across 20+ device/OS combinations",
     ],
     badges: ["Angular", "TypeScript", "Mobile", "CSS3"],
   },
@@ -142,7 +146,7 @@ export const portfolioData: PortfolioItem[] = [
     solution:
       "Built a comprehensive React-based word game that reverse-engineered Wordle's mechanics through careful analysis. Implemented a sophisticated validation system handling edge cases like duplicate letters, created a dual-dictionary system (2,316 puzzle words + 10,000 valid guesses), and added features beyond the original including difficulty modes, dark/light themes, and both daily and random puzzle options. The architecture uses TypeScript for type safety and local storage for persistent game state.",
     impact:
-      "Successfully deployed reaching 3,400+ unique users since launch. Generated 180,000+ game interactions with 34,000+ puzzles solved and an average of 72 guesses per active user. The project served as a deep technical exploration documented in a 3-part blog series, demonstrating expertise in React state management, complex string validation algorithms, and user experience design. User engagement metrics show strong retention with features like difficulty modes (300+ uses) and theme switching (300+ uses) being actively utilized.",
+      "Successfully deployed to 3,400+ unique users generating 180,000+ game interactions with 34,000+ puzzles solved. Achieved 20-35% user retention rate with 38 minutes average engagement time per active user, demonstrating strong product-market fit. The project served as a deep technical exploration documented in a 3-part blog series, showcasing expertise in React state management, complex string validation algorithms, and user experience design.",
     technical_highlights: [
       "Engineered dual-dictionary validation system with 12,000+ words for accurate guess validation",
       "Implemented complex letter hint algorithm handling duplicate letters and position matching with proper state management",
