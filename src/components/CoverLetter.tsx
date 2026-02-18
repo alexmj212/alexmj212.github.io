@@ -20,7 +20,7 @@ const CoverLetter = () => {
     root.classList.remove("dark");
 
     return () => {
-      document.title = "Alex Johnson - Senior Front-End Software Engineer";
+      document.title = "Alex Johnson - Senior Frontend Engineer";
       // Restore previous theme when leaving
       if (previousTheme) {
         root.classList.add("dark");
@@ -137,7 +137,7 @@ const CoverLetter = () => {
           <section className="space-y-4 text-gray-700 leading-relaxed">
             <p>
               I am writing to express my interest in the <span className="font-semibold">{formData.positionTitle}</span> position at{" "}
-              <span className="font-semibold">{formData.companyName}</span>. With over 11 years of experience in front-end development, I have
+              <span className="font-semibold">{formData.companyName}</span>. With over 11 years of experience in frontend development, I have
               built a career around creating scalable web applications and leading teams to deliver exceptional user experiences.
             </p>
 

@@ -8,7 +8,7 @@ const DocumentHeader = () => {
         {/* Name and title */}
         <h1>Alex Johnson</h1>
 
-        <h2>Senior Front-End Software Engineer</h2>
+        <h2>Senior Frontend Engineer</h2>
       </hgroup>
 
       {/* Contact info */}

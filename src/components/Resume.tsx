@@ -14,7 +14,7 @@ const Resume = () => {
     root.classList.remove("dark");
 
     return () => {
-      document.title = "Alex Johnson - Senior Front-End Software Engineer";
+      document.title = "Alex Johnson - Senior Frontend Engineer";
       // Restore previous theme when leaving
       if (previousTheme) {
         root.classList.add("dark");

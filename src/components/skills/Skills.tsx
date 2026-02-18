@@ -11,8 +11,8 @@ const Skills = () => {
             <div className="skills-header">
               <h2 className="section-title text-gray-900 dark:text-white">Skills</h2>
               <p className="text-gray-700 dark:text-gray-300">
-                In my career, I've developed using many languages and frameworks. Experience in a wide variety of front-end technologies has sharpened my skills. It has also helped me maintain a <strong>strong foundation</strong> in the basics of
-                front-end web development. I've even done a little work server-side.
+                In my career, I've developed using many languages and frameworks. Experience in a wide variety of frontend technologies has sharpened my skills. It has also helped me maintain a <strong>strong foundation</strong> in the basics of
+                frontend web development. I've even done a little work server-side.
               </p>
             </div>
 

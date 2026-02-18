@@ -41,7 +41,7 @@ const App = () => {
 
                 <div className="hero-content">
                   <p className="hero-subtitle mb-8">
-                    I'm a <strong className="font-semibold text-accent2 dark:text-accent2-dark"> senior front-end software engineer</strong> based in
+                    I'm a <strong className="font-semibold text-accent2 dark:text-accent2-dark"> senior frontend engineer</strong> based in
                     <i className="whitespace-nowrap font-light text-accent1 dark:text-accent1-dark"> Lexington, KY</i> and I specialize in building (and sometimes designing) experiences for the web.
                   </p>
                   <div className="hero-actions">
