@@ -31,7 +31,8 @@ const Resume = () => {
           {/* Professional Summary */}
           <section>
             <p className="text-gray-700 leading-relaxed">
-              Senior frontend engineer with expertise in React, TypeScript, and scalable web architecture. Delivered mobile-responsive redesign achieving 98% feature parity, architected design system adopted by 4+ product teams, and accelerated critical user workflows by 28% (25s → 18s) through frontend optimization. Proven impact on applications serving 200,000+ daily active users.
+              Senior frontend engineer with expertise in React, TypeScript, and scalable web architecture. Delivered mobile-responsive redesign achieving 98% feature parity, architected design system adopted by 4+ product teams, and accelerated
+              critical user workflows by 28% through frontend optimization. Proven impact on applications serving 200,000+ daily active users.
             </p>
           </section>
 
@@ -43,7 +44,7 @@ const Resume = () => {
             <dl className="grid grid-cols-[auto_1fr] gap-x-6 gap-y-2">
               {Object.entries(skillsData).map(([key, category]) => (
                 <Fragment key={key}>
-                  <dt className="font-semibold">{category.title}:</dt>
+                  <dt className="leading-relaxed font-semibold">{category.title}:</dt>
                   <dd className="leading-relaxed">{category.skills.map((skill) => skill.name).join(" • ")}</dd>
                 </Fragment>
               ))}

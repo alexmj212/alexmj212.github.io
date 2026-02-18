@@ -20,7 +20,7 @@ export const portfolioData: PortfolioItem[] = [
     caption: "Advanced Quoting Features for Manufacturing Marketplace",
     challenge: "Managing real-time pricing calculations across thousands of manufacturing partners while handling diverse material specifications and maintaining rapid response times for customer quote requests.",
     solution: "Built React-based quoting workflows with GraphQL data fetching and TypeScript type safety. Created reusable component libraries for manufacturing specifications and multi-step flows with validation.",
-    impact: "Reduced quote generation time by 28% (25s → 18s) through asynchronous upload and geometry analysis, processing 2,000+ daily quotes and measurably improving conversion rates.",
+    impact: "Reduced quote generation time by 28% (25s to 18s) through asynchronous upload and geometry analysis, processing 2,000+ daily quotes and measurably improving conversion rates.",
     technical_highlights: [
       "Implemented asynchronous architecture for concurrent file upload and geometry analysis during form completion, eliminating sequential processing bottlenecks",
       "Designed form architecture handling 50+ manufacturing parameters with real-time validation",
