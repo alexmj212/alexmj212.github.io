@@ -53,10 +53,8 @@ export const experienceData: ExperienceItem[] = [
     title: "Software Engineer",
     company: "The Jockey Club Technology Services",
     summary: [
-      "Developed full-stack web applications using AngularJS and Grails serving horse racing industry clients",
-      "Built responsive user interfaces and server infrastructure with Bootstrap and MS SQL Server",
-      "Led coordination of remote development resources to deliver client projects on schedule",
-      "Maintained and enhanced existing applications including Drupal-based content management systems"
+      "Developed full-stack web applications using AngularJS, Grails, and MS SQL Server for horse racing industry clients",
+      "Led coordination of remote development teams and maintained Drupal-based content management systems"
     ],
     projects: [
       {
@@ -70,15 +68,8 @@ export const experienceData: ExperienceItem[] = [
     title: "System Administrator",
     company: "iEntry, Inc.",
     summary: [
-      "Developed critical data and server infrastructure software",
-      "Implemented marketing tools to identify subscriber audience"
+      "Developed server infrastructure software and marketing tools for subscriber analytics"
     ]
-  },
-  {
-    date: "2011 - 2013",
-    title: "Technical Desktop Support",
-    company: "College of Arts and Sciences - University of Kentucky",
-    summary: []
   }
 ];
 
