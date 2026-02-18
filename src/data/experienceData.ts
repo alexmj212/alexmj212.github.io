@@ -57,12 +57,6 @@ export const experienceData: ExperienceItem[] = [
       },
     ],
   },
-  {
-    date: "2013 - 2014",
-    title: "System Administrator",
-    company: "iEntry, Inc.",
-    summary: [],
-  },
 ];
 
 export default experienceData;
