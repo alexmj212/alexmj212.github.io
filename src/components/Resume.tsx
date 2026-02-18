@@ -5,9 +5,6 @@ import DocumentHeader from "./DocumentHeader";
 import "../styles/document.css";
 
 const Resume = () => {
-  const currentYear = new Date().getFullYear();
-  const yearsExperience = currentYear - 2013;
-
   useEffect(() => {
     document.title = "Alex Johnson - Resume";
 
@@ -34,8 +31,7 @@ const Resume = () => {
           {/* Professional Summary */}
           <section>
             <p className="text-gray-700 leading-relaxed">
-              Senior front-end software engineer with {yearsExperience} years of experience building exceptional user experiences and coordinating teams to deliver projects from concept to production. Specialized in modern web technologies with a
-              focus on design, usability, and performance optimization. Proven track record of leading frontend initiatives and mentoring development teams in enterprise environments.
+              Senior frontend engineer with expertise in React, TypeScript, and scalable web architecture. Delivered mobile-responsive redesign achieving 98% feature parity, architected design system adopted by 4+ product teams, and accelerated critical user workflows by 28% (25s → 18s) through frontend optimization. Proven impact on applications serving 200,000+ daily active users.
             </p>
           </section>
 
