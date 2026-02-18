@@ -80,7 +80,7 @@ const Resume = () => {
                   {/* Technologies */}
                   {exp.projects && exp.projects[0]?.skills && exp.projects[0].skills.length > 0 && (
                     <aside className="text-gray-600">
-                      <strong>Key Technologies:</strong> <span className="text-gray-500">{exp.projects[0].skills.join(", ")}</span>
+                      <strong>Key Technologies:</strong> <span className="text-gray-500">{exp.projects[0].skills.join(" • ")}</span>
                     </aside>
                   )}
                 </article>
