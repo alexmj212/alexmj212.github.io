@@ -52,10 +52,7 @@ export const experienceData: ExperienceItem[] = [
     date: "2014 - 2017",
     title: "Software Engineer",
     company: "The Jockey Club Technology Services",
-    summary: [
-      "Developed full-stack web applications using AngularJS, Grails, and MS SQL Server for horse racing industry clients",
-      "Led coordination of remote development teams and maintained Drupal-based content management systems"
-    ],
+    summary: [],
     projects: [
       {
         name: "",
@@ -67,9 +64,7 @@ export const experienceData: ExperienceItem[] = [
     date: "2013 - 2014",
     title: "System Administrator",
     company: "iEntry, Inc.",
-    summary: [
-      "Developed server infrastructure software and marketing tools for subscriber analytics"
-    ]
+    summary: []
   }
 ];
 
