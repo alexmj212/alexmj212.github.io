@@ -86,6 +86,32 @@ export const skillsData: Record<string, SkillCategory> = {
       },
     ],
   },
+  additional: {
+    title: "Additional Skills",
+    icon: "fas fa-plus-circle",
+    skills: [
+      {
+        name: "Node.js",
+        description: "Build tools, frontend tooling, development servers, npm scripts",
+      },
+      {
+        name: "AWS (S3, DynamoDB)",
+        description: "Cloud storage, static hosting, CDN integration, NoSQL integration",
+      },
+      {
+        name: "Figma",
+        description: "Design collaboration, prototyping, developer handoff",
+      },
+      {
+        name: "Agile Methodologies",
+        description: "SCRUM, sprint planning, retrospectives, story estimation",
+      },
+      {
+        name: "Monorepo Management",
+        description: "Yarn workspaces, Lerna, shared libraries, workspace optimization",
+      },
+    ],
+  },
   tools: {
     title: "Development Tools",
     icon: "fas fa-tools",
@@ -137,32 +163,6 @@ export const skillsData: Record<string, SkillCategory> = {
       {
         name: "Docker",
         description: "Containerization, multi-stage builds, compose, deployment",
-      },
-    ],
-  },
-  additional: {
-    title: "Additional Skills",
-    icon: "fas fa-plus-circle",
-    skills: [
-      {
-        name: "Node.js",
-        description: "Build tools, frontend tooling, development servers, npm scripts",
-      },
-      {
-        name: "AWS (S3, DynamoDB)",
-        description: "Cloud storage, static hosting, CDN integration, NoSQL integration",
-      },
-      {
-        name: "Figma",
-        description: "Design collaboration, prototyping, developer handoff",
-      },
-      {
-        name: "Agile Methodologies",
-        description: "SCRUM, sprint planning, retrospectives, story estimation",
-      },
-      {
-        name: "Monorepo Management",
-        description: "Yarn workspaces, Lerna, shared libraries, workspace optimization",
       },
     ],
   },

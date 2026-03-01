@@ -1,4 +1,4 @@
-import { useEffect, Fragment } from "react";
+import { useEffect } from "react";
 import experienceData from "../data/experienceData";
 import { skillsData } from "../data/skillsData";
 import DocumentHeader from "./DocumentHeader";
@@ -41,14 +41,18 @@ const Resume = () => {
           {/* Technical Skills */}
           <section>
             <h3>Technical Skills</h3>
-            <dl className="grid grid-cols-[auto_1fr] gap-x-6 gap-y-2">
-              {Object.entries(skillsData).map(([key, category]) => (
-                <Fragment key={key}>
-                  <dt className="leading-relaxed font-semibold">{category.title}:</dt>
-                  <dd className="leading-relaxed">{category.skills.map((skill) => skill.name).join(" • ")}</dd>
-                </Fragment>
+            <ul className="leading-relaxed text-gray-700 list-none p-0 m-0 space-y-2">
+              {Object.values(skillsData).map((category) => (
+                <li key={category.title}>
+                  {category.skills.map((skill, skillIndex) => (
+                    <span key={skill.name}>
+                      {skill.name}
+                      {skillIndex < category.skills.length - 1 && " • "}
+                    </span>
+                  ))}
+                </li>
               ))}
-            </dl>
+            </ul>
           </section>
 
           <hr />
